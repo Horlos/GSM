@@ -1,6 +1,4 @@
-﻿#if DEBUG
-
-namespace GSM
+﻿namespace GSM
 {
     using System;
     using GSM.Identity;
@@ -75,5 +73,3 @@ namespace GSM
         }
     }
 }
-
-#endif

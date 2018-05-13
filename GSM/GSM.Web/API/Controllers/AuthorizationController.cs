@@ -8,10 +8,6 @@ using GSM.API.Models;
 using GSM.Data.Services.Interfaces;
 using GSM.Infrastructure.Filters;
 
-#if !DEBUG
-using System.Web.Security;
-#endif
-
 namespace GSM.API.Controllers
 {
     [Authorize]
@@ -188,18 +184,10 @@ namespace GSM.API.Controllers
             return Ok();
         }
 
-#if !DEBUG
-        private bool IsUserLocated(string userName)
-        {
-            return Membership.GetUser(userName) != null;
-        }
-#else
         // TODO: Add checking with Identity if needed.
         private bool IsUserLocated(string userName)
         {
             return true;
         }
-#endif
-
     }
 }

@@ -1,5 +1,4 @@
-﻿#if DEBUG
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(GSM.Startup))]
@@ -13,4 +12,3 @@ namespace GSM
         }
     }
 }
-#endif

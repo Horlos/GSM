@@ -1,6 +1,4 @@
-﻿#if DEBUG
-
-namespace GSM.Controllers
+﻿namespace GSM.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -394,5 +392,3 @@ namespace GSM.Controllers
         #endregion
     }
 }
-
-#endif
