@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+@section styles
+{  
+    <link href="~/Content/Styles/grid-loader.css" rel="stylesheet" />
+}
+
+<div ng-app="app.lookup">
+    <div ng-view></div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/angular-toastr/angular-toastr.tpls.js"></script>
+    <script src="~/Scripts/Custom/UserSettings.js"></script>
+
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/common/router/routerSection.js"></script>
+    <script src="~/Scripts/angular-app/common/router/routeHelper.js"></script>
+
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    <script src="~/Scripts/angular-app/services/userSettingsService.js"></script>
+
+    @Scripts.Render("~/bundles/lookup")
+}

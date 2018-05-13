@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Strand/_Layout.cshtml";
+}
+
+@section styles {
+    <link href="~/Content/Styles/Strands/strand-batch.css" rel="stylesheet" />
+    <link href="~/Content/Styles/Strands/create-strand-batch.css" rel="stylesheet" />
+}
+
+<div id="create-strand-batch" class="container-fluid" ng-app="app.strands" ng-cloak>
+    <div ui-view></div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angularMoment")
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/angular-ui-router/angular-ui-router.js"></script>
+    <script src="~/Scripts/angular-toastr/angular-toastr.tpls.js"></script>
+    <script src="~/Scripts/angular-local-storage/angular-local-storage.js"></script>
+    <script src="~/Scripts/ng-file-upload/ng-file-upload-shim.js"></script>
+    <script src="~/Scripts/ng-file-upload/ng-file-upload.js"></script>
+
+    @Scripts.Render("~/bundles/angular-app")
+
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/searchOptions.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+    
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    <script src="~/Scripts/angular-app/widgets/selectModalCtrl.js"></script>
+    
+    @Scripts.Render("~/bundles/create-strand-batch")
+}

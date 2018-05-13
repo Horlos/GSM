@@ -1,0 +1,402 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 2006.0.0.060314"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"5AEF17CF0347"
+    enforceClosureAutoLoad 	FALSE
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	0.250000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	0
+	gridY      	0
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	3
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"5AEF17CF0349"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list
+	    (object Class "Guest"
+		quid       	"5AEF17F70274"
+		stereotype 	"Actor")
+	    (object Class "Biologist"
+		quid       	"5AEF180C036C"
+		stereotype 	"Actor"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF181E03BC"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF17F70274")))
+	    (object Class "Chemist"
+		quid       	"5AEF18250060"
+		stereotype 	"Actor"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF1855008A"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF17F70274")))
+	    (object Class "Chief chemist"
+		quid       	"5AEF184503D8"
+		stereotype 	"Actor"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF1858009C"
+			supplier   	"Use Case View::Chemist"
+			quidu      	"5AEF18250060")))
+	    (object Class "Bioanalytic"
+		quid       	"5AEF1870029F"
+		stereotype 	"Actor"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF188A0159"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF17F70274")))
+	    (object Class "Synthetic Chemist"
+		quid       	"5AEF18800370"
+		stereotype 	"Actor"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF188D0304"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF17F70274")))
+	    (object Class "Administrator"
+		quid       	"5AEF189A0087"
+		stereotype 	"Actor"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF18A401D5"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF17F70274"))))
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"5AEF17CF0361"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	168
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Use Case View::Guest" @1
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(911, 243)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@1
+			    location   	(911, 403)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	328
+			    justify    	0
+			    label      	"Guest")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF17F70274"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Biologist" @2
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(713, 756)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@2
+			    location   	(713, 916)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	331
+			    justify    	0
+			    label      	"Biologist")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF180C036C"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @3
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF181E03BC"
+			client     	@2
+			supplier   	@1
+			vertices   	(list Points
+			    (740, 676)
+			    (849, 393))
+			line_style 	0)
+		    (object ClassView "Class" "Use Case View::Chemist" @4
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(358, 756)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@4
+			    location   	(358, 916)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	335
+			    justify    	0
+			    label      	"Chemist")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF18250060"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Chief chemist" @5
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(364, 1228)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@5
+			    location   	(364, 1388)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	339
+			    justify    	0
+			    label      	"Chief chemist")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF184503D8"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @6
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF1855008A"
+			client     	@4
+			supplier   	@1
+			vertices   	(list Points
+			    (415, 700)
+			    (852, 294))
+			line_style 	0)
+		    (object InheritView "" @7
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF1858009C"
+			client     	@5
+			supplier   	@4
+			vertices   	(list Points
+			    (360, 1146)
+			    (358, 941))
+			line_style 	0)
+		    (object ClassView "Class" "Use Case View::Bioanalytic" @8
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1041, 747)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@8
+			    location   	(1041, 907)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	343
+			    justify    	0
+			    label      	"Bioanalytic")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF1870029F"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Use Case View::Synthetic Chemist" @9
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1427, 756)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@9
+			    location   	(1427, 916)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	347
+			    justify    	0
+			    label      	"Synthetic Chemist")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF18800370"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @10
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF188A0159"
+			client     	@8
+			supplier   	@1
+			vertices   	(list Points
+			    (1017, 665)
+			    (955, 428))
+			line_style 	0)
+		    (object InheritView "" @11
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF188D0304"
+			client     	@9
+			supplier   	@1
+			vertices   	(list Points
+			    (1368, 698)
+			    (968, 299))
+			line_style 	0)
+		    (object ClassView "Class" "Use Case View::Administrator" @12
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1470, 247)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@12
+			    location   	(1470, 407)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	351
+			    justify    	0
+			    label      	"Administrator")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF189A0087"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @13
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF18A401D5"
+			client     	@12
+			supplier   	@1
+			vertices   	(list Points
+			    (1411, 243)
+			    (968, 243))
+			line_style 	0)))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"5AEF17CF0348"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"5AEF17CF034A"
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main"
+		quid       	"5AEF17CF034E"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"5AEF17CF034A"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"5AEF17CF0360"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list)))
+	category   	"Logical View"
+	quidu      	"5AEF17CF0348")
+    process_structure 	(object Processes
+	quid       	"5AEF17CF034B"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"5AEF17CF034D"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	quid       	"5AEF17CF034C"))

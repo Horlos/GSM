@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Duplex/_Layout.cshtml";
+}
+
+<div class="container-fluid" ng-app="createDuplexApp" ng-controller="createDuplexController as ctrl">
+    <form name="createDuplexForm" class="form-horizontal" ng-submit="submit()">
+        <div class="row">
+            <h3 style="margin-top:0;">Create Duplex</h3>
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;" for="Target">Target:</label>
+                <div class="col-md-6">
+                    <select id="Target" ng-model="ctrl.duplex.Target" ng-options="target.Name for target in ctrl.availableTargets track by target.Id" class="form-control" ng-change="LoadStrands()"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;" for="SenseStrand">Sense Strand:</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="ctrl.duplex.SenseStrand.StrandId" ng-disabled="true" style="max-width: initial" />
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="ctrl.selectStrand('Sense')">
+                                <i class="">Add</i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;" for="AntiSenseStrand">Antisense Strand:</label>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="ctrl.duplex.AntiSenseStrand.StrandId" ng-disabled="true" style="max-width: initial" />
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="ctrl.selectStrand('Antisense')">
+                                <i class="">Add</i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row"><span class="text-danger field-validation-error col-md-2 col-md-offset-2" ng-bind="ctrl.duplex.Error.Duplex"></span></div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-5">
+                    <div class="btn-group">
+                        <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" ng-click="ctrl.saveDuplex()" ng-disabled="! ctrl.permitSave()" />
+                        <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="ctrl.cancelChanges()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/Custom/Utils.js"></script>
+    <script src="~/Scripts/angular-app/widgets/selectModalCtrl.js"></script>
+    <script src="~/Scripts/angular-app/AppService.js"></script>
+    <script src="~/Scripts/angular-app/synthesisRequest/services/SynthesisRequestService.js"></script>
+    <script src="~/Scripts/angular-app/duplexes/controllers/CreateDuplex.js"></script>
+}

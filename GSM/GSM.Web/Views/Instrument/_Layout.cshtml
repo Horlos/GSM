@@ -1,0 +1,30 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/Shared/_AngularLayout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav navbar-left">
+            <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "font-weight:bold" : "")">@Html.ActionLink("Search Instruments", "Index", "Instrument")</li>
+            @if (User.HasPermissions(Permission.CreateEditInstruments))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "font-weight:bold" : "")">@Html.ActionLink("Create Instrument", "Create", "Instrument")</li>
+            }
+        </ul>
+    </div>
+    @RenderBody()
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/angular-toastr/angular-toastr.tpls.js"></script>
+    @RenderSection("scripts", required: false)
+}

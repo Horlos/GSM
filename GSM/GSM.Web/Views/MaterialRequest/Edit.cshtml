@@ -1,0 +1,157 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/MaterialRequest/_Layout.cshtml";
+}
+
+@{
+    var isDisabled = !User.HasPermissions(Permission.CreateMaterialRequest) ? 1 : 0;
+}
+
+<div class="container-fluid" ng-app="materialRequestApp" ng-controller="EditCreateMaterialRequestController as ctrl">
+    <form name="ctrl.createForm" class="form-horizontal" ng-submit="ctrl.save()">
+        <div class="row">
+            <h3 style="margin-top:0px;">Edit Material Request</h3>
+        </div>
+        <div class="row form-horizontal">
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;" for="SenseStrand">Request Date:</label>
+                <div class="col-md-2">
+                    <input type="text"
+                           name="RequestDate"
+                           class="form-control"
+                           style="max-width: initial"
+                           value="{{ctrl.formData.RequestDate | amDateFormat:'MM/DD/YYYY'}}"
+                           ng-disabled="true"
+                           close-text="Close" />
+                </div>
+            </div>
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;" for="AntiSenseStrand">Need By Date:</label>
+                <div class="col-md-2">
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               style="max-width: initial"
+                               uib-datepicker-popup=""
+                               ng-model="ctrl.formData.NeedByDate"
+                               is-open="dpOpened_1"
+                               min-date="" max-date=""
+                               datepicker-options=""
+                               date-disabled=""
+                               ng-required="true"
+                               close-text="Close" />
+                        <span class="input-group-btn" ng-hide="@isDisabled">
+                            <button type="button" class="btn btn-default" ng-click="dpOpened_1 = !dpOpened_1">
+                                <!--<i class="glyphicon glyphicon-calendar"></i>-->
+                                <i class="">OPEN</i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label" style="text-align:left;" for="SenseStrand">Status:</label>
+                <div class="col-md-2">
+                    <select class="form-control"
+                            ng-model="ctrl.formData.Status"
+                            ng-options="status as status.Description for status in ctrl.StatusList track by status.Id"
+                            ng-required="true"
+                            close-text="Close"
+                            ng-disabled="@isDisabled"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label" style="text-align:left;" for="SenseStrand">Notes:</label>
+                <div class="col-md-2">
+                    <textarea class="form-control"
+                              ng-model="ctrl.formData.Notes" rows="5"
+                              ng-disabled="@isDisabled">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row form-horizontal">
+            <div class="col-md-5 panel panel-default">
+                <label class="label label-default" style="position:relative;top:-10px;left:5px;">Requested Strands</label>
+                <div class="row">
+                    <div class="grid col-md-9"
+                         style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                         ui-grid="ctrl.selectedSenseStrands"
+                         ui-grid-resize-columns
+                         ui-grid-selection>
+                    </div>
+                    <div class="col-md-2" ng-hide="@isDisabled">
+                        <div class="form-group">
+                            <input type="button" value="Add..." class="btn btn-sm btn-default"
+                                   ng-click="ctrl.addItems('strands')" ng-disabled="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" value="Remove" class="btn btn-sm btn-default"
+                                   ng-click="ctrl.removeSelectedAntisenseStrand()"
+                                   ng-disabled="ctrl.selectedAntisenseStrand == null" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-md-1">
+                <p>Combined With:</p>
+            </div>-->
+            <div class="col-md-5 col-md-offset-1 panel panel-default">
+                <label class="label label-default" style="position:relative;top:-10px;left:5px;">Requested Duplexes</label>
+                <div class="row">
+                    <div class="grid col-md-9"
+                         style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                         ui-grid="ctrl.selectedSenseDuplexes"
+                         ui-grid-resize-columns
+                         ui-grid-selection>
+                    </div>
+                    <div class="col-md-2" ng-hide="@isDisabled">
+                        <div class="form-group">
+                            <input type="button" value="Add..." class="btn btn-sm btn-default"
+                                   ng-click="ctrl.addItemasDuplexes('duplexes')" ng-disabled="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" value="Remove" class="btn btn-sm btn-default"
+                                   ng-click="ctrl.removeSelectedAntisenseDuplexes()" ng-disabled="ctrl.selectedAntisenseDuplexes == null" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row form-horizontal">
+            <div class="row"><span class="text-danger field-validation-error col-md-2 col-md-offset-2" ng-bind="ctrl.submitMessage"></span></div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-5">
+                    <div class="btn-group">
+                        <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block"
+                               ng-disabled="!ctrl.canSubmit || !ctrl.createForm.$valid" />
+                        <input type="button" id="cancel" value="Cancel" class="btn btn-default"
+                               ng-disabled="!ctrl.canReset"
+                               ng-click="ctrl.cancelChanges()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/ng-template" id="AmountRequestedInput">
+        <input type="number" step="0.01" ng-model="MODEL_COL_FIELD" ng-pattern="/^([0-9]{0,8})+(\.[0-9]{0,2})?$/" required min="0.01"/>
+    </script>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/Custom/Utils.js"></script>
+    <script src="~/Scripts/angular-app/widgets/selectModalCtrl.js"></script>
+    <script src="~/Scripts/Custom/UserSettings.js"></script>
+    <script src="~/Scripts/angular-app/AppService.js"></script>
+    <script src="~/Scripts/angular-app/materialRequest/services/MaterialRequestService.js"></script>
+
+    <script src="~/Scripts/angular-app/materialRequest/MaterialRequestApp.js"></script>
+    <script src="~/Scripts/angular-app/materialRequest/controllers/EditCreateMaterialRequestCtrl.js"></script>
+    <!--<script src="~/Scripts/Custom/material-request/material-request.app.js"></script>-->
+}

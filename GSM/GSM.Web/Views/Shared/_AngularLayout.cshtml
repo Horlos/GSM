@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/angular/css")
+    @RenderSection("styles", required: false)
+}
+
+@RenderBody()
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angular")
+    @*@Scripts.Render("~/bundles/ui-bootstrap")*@
+    @Scripts.Render("~/bundles/angular-app")
+    @RenderSection("scripts", required: false)
+}

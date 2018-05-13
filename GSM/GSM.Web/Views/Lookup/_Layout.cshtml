@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_AngularLayout.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/Styles/Lookup/lookup.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+}
+
+<div class="row" ng-app="app">
+    <div class="col-md-2" ng-controller="NavigationCtrl as vm">
+        <ul class="nav navbar-left">
+            <li ng-class="{'active-link': vm.isActive('@Url.RouteUrl("Targets")') || vm.isActive('/Lookup')}">@Html.RouteLink("Targets", "Targets")</li>
+            <li ng-class="{'active-link': vm.isActive('@Url.RouteUrl("Instruments")')}">@Html.RouteLink("Instruments", "Instruments")</li>
+            <li ng-class="{'active-link': vm.isActive('@Url.RouteUrl("Species")')}">@Html.RouteLink("Species", "Species")</li>
+            <li ng-class="{'active-link': vm.isActive('@Url.RouteUrl("Strands")')}">@Html.RouteLink("Strands", "Strands")</li>
+            <li ng-class="{'active-link': vm.isActive('@Url.RouteUrl("Duplexes")')}">@Html.RouteLink("Duplexes", "Duplexes")</li>
+            <li ng-class="{'active-link': vm.isActive('@Url.RouteUrl("ModStructures")')}">@Html.RouteLink("Modifier Structures", "ModStructures")</li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        @RenderBody()
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/angular-app/layout/navigationCtrl.js"></script>
+    @RenderSection("scripts", required: false)
+}

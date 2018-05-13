@@ -1,0 +1,35 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/angular/css")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav navbar-left">
+            <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "font-weight:bold" : "")">@Html.ActionLink("Search Material Requests", "Index", "MaterialRequest")</li>
+            @if (User.HasPermissions(Permission.CreateMaterialRequest))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "font-weight:bold" : "")">@Html.ActionLink("Create Material Request", "Create", "MaterialRequest")</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-10">
+        @RenderBody()
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angularMoment")
+    @Scripts.Render("~/bundles/contextmenu")
+    @RenderSection("scripts", required: false)
+}

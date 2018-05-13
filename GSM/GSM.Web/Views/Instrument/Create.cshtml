@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+<div class="col-md-10" ng-app="app.instruments" ng-controller="CreateInstrumentCtrl as vm">
+    <h3 style="margin-top:0;">Create Instrument</h3>
+    <form name="form" class="form-horizontal" ng-submit="vm.submit()">
+        <div class="form-group">
+            <label class="col-md-3 control-label" style="text-align:left;" for="txtName">Instrument Name:</label>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-error" ng-bind="vm.instrument.Error.Name"></span>
+                <input class="form-control" id="txtName" style="max-width:59%;" type="text" ng-model="vm.instrument.Name" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label" style="text-align:left;" for="max-amidites">Maximum Amidites:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="max-amidites" style="max-width:59%;" type="text" ng-model="vm.instrument.MaxAmidites" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-5">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" ng-disabled="!vm.permitSubmit()" />
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    
+    @Scripts.Render("~/bundles/create-instrument")
+}

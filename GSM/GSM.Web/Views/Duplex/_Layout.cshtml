@@ -1,0 +1,43 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/angular/css")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", false)
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav navbar-left">
+            <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "font-weight:bold" : "")">@Html.ActionLink("Search Duplexes", "Index", "Duplex")</li>
+            @if (User.HasPermissions(Permission.CreateDuplex))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "font-weight:bold" : "")">@Html.ActionLink("Create Duplex", "Create", "Duplex")</li>
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "CreateDuplexes" ? "font-weight:bold" : "")">@Html.ActionLink("Multiple Duplexes", "CreateDuplexes", "Duplex")</li>
+            }
+            @if (User.HasPermissions(Permission.ImportDuplexes))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Import" ? "font-weight:bold" : "")">@Html.ActionLink("Import Duplexes", "Import", "Duplex")</li>
+            }
+            <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Batches" ? "font-weight:bold" : "")">@Html.ActionLink("Search Duplex Batches", "Batches", "Duplex")</li>
+            @if (User.HasPermissions(Permission.CreateDuplexBatch))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "CreateDuplexBatch" ? "font-weight:bold" : "")">@Html.ActionLink("Create Duplex Batch", "CreateDuplexBatch", "Duplex")</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-10">
+        @RenderBody()
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angular")
+    @RenderSection("scripts", required: false)
+}

@@ -1,0 +1,15 @@
+﻿.invalid {
+    border: 1px solid red;
+}
+
+.ng-cloak {
+    display: none !important;
+}
+
+input:invalid {
+    outline: none;
+}
+
+#create-strand-batch-form .control-label {
+    text-align: left;
+}

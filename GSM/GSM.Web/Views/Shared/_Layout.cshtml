@@ -1,0 +1,71 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Gene Synthesis Database Application</title>
+    <link href="~/Content/Styles/shared.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div id="navbar" class="navbar navbar-inverse text-center">
+        <div class="flexible-container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            @if (Request.IsAuthenticated)
+            {
+                <div id="menu-navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Lookup", "Index", "Lookup")</li>
+                        <li>@Html.ActionLink("Material Request", "Index", "MaterialRequest")</li>
+                        <li>@Html.ActionLink("Synthesis Request", "Index", "SynthesisRequest")</li>
+                        <li>@Html.ActionLink("Strands", "Index", "Strand")</li>
+                        <li>@Html.ActionLink("Duplexes", "Index", "Duplex")</li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administration<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @if (User.HasPermissions(Permission.ManageRoles))
+                                {
+                                    <li>@Html.ActionLink("Manage Roles", "Index", "Roles")</li>
+                                }
+                                <li>@Html.ActionLink("Instruments", "Index", "Instrument")</li>
+                                <li>@Html.ActionLink("Species", "Index", "Species")</li>
+                                <li>@Html.ActionLink("Targets", "Index", "Target")</li>
+                                <li>@Html.ActionLink("Mod Structures", "Index", "ModStructure")</li>
+                                <li>@Html.ActionLink("Modifier Templates", "Index", "ModifierTemplate")</li>
+
+                            </ul>
+                        </li>
+                        <li>@Html.Partial("_LoginPartial")</li>
+                    </ul>
+                    
+                </div>
+            }
+        </div>
+    </div>
+    <div class="body-content" style="margin-top:30px; margin-right:60px;">
+        @RenderBody()
+    </div>
+    <div style="position: fixed; bottom: 10px; left: 10px;">
+        @{
+            var version = typeof(MvcApplication).Assembly.GetName().Version;
+        }
+        @string.Format("Version - {0}.{1}.{2}", version.Major, version.Minor, version.Build)
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

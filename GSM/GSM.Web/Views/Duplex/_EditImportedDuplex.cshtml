@@ -1,0 +1,51 @@
+﻿<form name="form" class="form-horizontal">
+    <div class="row">
+        <h3 style="margin-top:0;">Create Duplex</h3>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="Target">Target:</label>
+            <div class="col-md-6">
+                <select id="Target" ng-model="vm.duplex.Target" ng-options="target.Name for target in vm.availableTargets track by target.Id" class="form-control" ng-change="vm.loadStrands()"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;">Sense Strand:</label>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="vm.duplex.SenseStrand.StrandId" ng-disabled="true" style="max-width: initial" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.selectStrand('Sense')">
+                            <i class="">Add</i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" >Antisense Strand:</label>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="vm.duplex.AntiSenseStrand.StrandId" ng-disabled="true" style="max-width: initial" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.selectStrand('Antisense')">
+                            <i class="">Add</i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row"><span class="text-danger field-validation-error col-md-2 col-md-offset-2" ng-bind="vm.duplex.Error.Duplex"></span></div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-5">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Return" class="btn btn-success btn-primary center-block" ng-click="vm.returnDuplex()" ng-disabled="!vm.permitSave()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+﻿<div class="row">
+    <h3 class="form-header" ng-cloak>Split Strand Batch {{vm.sourceStrandBatch.BatchNumber}}: </h3>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <label class="label label-default label-top">Strand</label>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="strand-table-header">Strand ID</div>
+                        <div ng-bind="vm.strand.StrandId"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="strand-table-header">Sequence 5'->3'</div>
+                        <div ng-bind="vm.strand.Sequence"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="strand-table-header">Target</div>
+                        <div ng-bind="vm.strand.Target.Name"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="strand-table-header">MW</div>
+                        <div ng-bind="vm.strand.MW"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="parentForm" ng-submit="vm.submitForm()">
+    <div class="row">
+        <div class="col-md-6" ng-repeat="(index, strandBatch) in vm.splittedBatches">
+            <div class="panel panel-default">
+                <label class="label label-default label-top" ng-cloak>Batch {{index + 1}}</label>
+                <div class="panel-body">
+                    <create-batch-form ng-model="strandBatch" register-form-scope="registerFormScope" is-form-submitted="vm.isFormSubmitted"></create-batch-form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group pull-right">
+                <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary" ng-click="vm.onSubmit()" />
+                <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+            </div>
+        </div>
+    </div>
+</form>

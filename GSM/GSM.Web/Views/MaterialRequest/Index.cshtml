@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/MaterialRequest/_Layout.cshtml";
+}
+
+@section styles
+{
+    <link href="~/Content/Styles/grid-loader.css" rel="stylesheet" />
+}
+
+<div ng-app="materialRequestApp" ng-controller="IndexMaterialRequestCtrl as ctrl">
+    <div class="row" style="margin-bottom:20px;">
+        <div class="col-md-4">
+            <h3 style="margin-top:0;">Search Material Requests</h3>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-7">
+                <div class="search-field">
+                    <input class="form-control"
+                           ng-model='ctrl.filterValue'
+                           ng-change="ctrl.singleFilter()"
+                           ng-disabled="ctrl.advancedFiltering"
+                           ng-init="ctrl.advancedFiltering=false"
+                           required>
+                    <span class="search-clear" ng-click="ctrl.clearFilter()">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <button id='toggleFiltering' ng-click="ctrl.toggleFiltering()" class="btn btn-success">Advanced Filtering</button>
+            </div>
+        </div>
+    </div>
+    <div class="grid"
+         ui-grid="ctrl.availableMaterialRequets" 
+         ui-grid-pagination 
+         ui-grid-move-columns 
+         ui-grid-resize-columns 
+         ui-grid-selection
+         ui-grid-auto-fit-columns>
+        <div class="grid-overlay" ng-class="{'show-grid-overlay': ctrl.loading}">
+            <div class="load-container">
+                <div class="load-speeding-wheel"></div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-success" ng-href="/api/materialRequestCsv?{{ctrl.exportAsCSV}}" title="Export search results"><span>Export to CSV</span></a>
+</div>
+@section scripts
+{
+    <script src="~/Scripts/Custom/Utils.js"></script>
+
+    <script src="~/Scripts/Custom/UserSettings.js"></script>
+    <script src="~/Scripts/angular-app/AppService.js"></script>
+    <script src="~/Scripts/angular-app/materialRequest/services/MaterialRequestService.js"></script>
+
+    <script src="~/Scripts/angular-app/materialRequest/MaterialRequestApp.js"></script>
+    <script src="~/Scripts/angular-app/materialRequest/controllers/IndexMaterialRequestCtrl.js"></script>
+}

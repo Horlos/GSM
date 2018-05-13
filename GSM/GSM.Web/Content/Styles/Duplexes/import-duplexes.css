@@ -1,0 +1,50 @@
+﻿.red-highlighting {
+    color: red;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.label-top {
+    position: relative;
+    top: -10px;
+    left: 5px;
+}
+
+.select-file-control {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.process-btn {
+    margin-top: 15px;
+    margin-left: 78px;
+}
+
+#imported-duplexs-panel {
+    min-height: 400px;
+}
+
+.table-cell {
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.delete-duplex, .edit-duplex {
+    cursor: pointer;
+}
+
+.duplicated-duplex {
+    border-bottom: 1px solid red !important;
+    border-top: 1px solid red !important;
+}
+
+.duplicated-duplex:first-child {
+    border-left: 1px solid red !important;
+}
+
+.duplicated-duplex:last-child {
+    border-right: 1px solid red !important;
+}

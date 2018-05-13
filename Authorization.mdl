@@ -1,0 +1,6335 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 2006.0.0.060314"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"5AEF18C002B4"
+    enforceClosureAutoLoad 	FALSE
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	0.250000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	0
+	gridY      	0
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	3
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"5AEF18C002B6"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list
+	    (object Class "Guest"
+		quid       	"5AEF190F023F"
+		stereotype 	"Actor")
+	    (object Class "Authentication System"
+		quid       	"5AEF283F0384"
+		stereotype 	"Actor")
+	    (object Class "Administrator"
+		quid       	"5AEF2A130385"
+		stereotype 	"Actor")
+	    (object UseCase "Register"
+		quid       	"5AEF192202EA"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2014008E"
+			stereotype 	"include"
+			supplier   	"Use Case View::Fill registration form"
+			quidu      	"5AEF200C03A9")
+		    (object Dependency_Relationship
+			quid       	"5AEF2587029C"
+			stereotype 	"include"
+			supplier   	"Use Case View::Approve registration"
+			quidu      	"5AEF257300B2")))
+	    (object UseCase "Login"
+		quid       	"5AEF192B0321"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF1A70027A"
+			documentation 	"include"
+			stereotype 	"include"
+			supplier   	"Use Case View::Register"
+			quidu      	"5AEF192202EA")
+		    (object Dependency_Relationship
+			quid       	"5AEF1FAB00DA"
+			stereotype 	"include"
+			supplier   	"Use Case View::Enter username"
+			quidu      	"5AEF1F7F03C5")
+		    (object Dependency_Relationship
+			quid       	"5AEF1FAF033A"
+			stereotype 	"include"
+			supplier   	"Use Case View::Enter password"
+			quidu      	"5AEF1F910273")))
+	    (object UseCase "Reset password"
+		quid       	"5AEF1931010C"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF1FEF0317"
+			stereotype 	"include"
+			supplier   	"Use Case View::Enter email"
+			quidu      	"5AEF1FCA0353")
+		    (object Dependency_Relationship
+			quid       	"5AEF21600321"
+			stereotype 	"extend"
+			supplier   	"Use Case View::Login"
+			quidu      	"5AEF192B0321")))
+	    (object UseCase "Authenticate"
+		quid       	"5AEF1E56030A")
+	    (object UseCase "Enter username"
+		quid       	"5AEF1F7F03C5")
+	    (object UseCase "Enter password"
+		quid       	"5AEF1F910273")
+	    (object UseCase "Enter email"
+		quid       	"5AEF1FCA0353")
+	    (object UseCase "Fill registration form"
+		quid       	"5AEF200C03A9")
+	    (object UseCase "Logout"
+		quid       	"5AEF22DA000D")
+	    (object UseCase "Create registranion request"
+		quid       	"5AEF24460106"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF246E015B"
+			supplier   	"Use Case View::Fill registration form"
+			quidu      	"5AEF200C03A9")))
+	    (object UseCase "Authenticate user"
+		quid       	"5AEF2480012A")
+	    (object UseCase "Approve registration"
+		quid       	"5AEF257300B2"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2ABC02B7"
+			stereotype 	"include"
+			supplier   	"Use Case View::Create registration request"
+			quidu      	"5AEF286B0159")))
+	    (object UseCase "Context based approval"
+		quid       	"5AEF2599038A"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF25A4024F"
+			supplier   	"Use Case View::Approve registration"
+			quidu      	"5AEF257300B2")))
+	    (object UseCase "Administrator approval"
+		quid       	"5AEF259B032E"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF25A102B6"
+			supplier   	"Use Case View::Approve registration"
+			quidu      	"5AEF257300B2")))
+	    (object UseCase "Create registration request"
+		quid       	"5AEF286B0159"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2C7202E1"
+			supplier   	"Use Case View::Reject registration request"
+			quidu      	"5AEF2C4D01C2")))
+	    (object UseCase "As Chemist"
+		quid       	"5AEF289F03C3"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF28BA0072"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A")))
+	    (object UseCase "As Biologist"
+		quid       	"5AEF28A300CC"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF28B6021E"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A")))
+	    (object UseCase "As Administrator"
+		quid       	"5AEF28A503B5"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF28BD00C0"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A")))
+	    (object UseCase "As Chief-chemist"
+		quid       	"5AEF2AF90123"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF2B0A0216"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A")))
+	    (object UseCase "As Bioanalyst"
+		quid       	"5AEF2B19001E"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF2B4002EC"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A")))
+	    (object UseCase "Reject registration request"
+		quid       	"5AEF2C4D01C2"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2C7900F9"
+			stereotype 	"include"
+			supplier   	"Use Case View::Create registration request"
+			quidu      	"5AEF286B0159")))
+	    (object UseCase "As Synthetic chemist"
+		quid       	"5AEF2E3B02F2"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF2E4E02E9"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A")))
+	    (object Association "$UNNAMED$0"
+		quid       	"5AEF193F021E"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$1"
+			quid       	"5AEF1940004F"
+			supplier   	"Use Case View::Register"
+			quidu      	"5AEF192202EA"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$2"
+			quid       	"5AEF19400051"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF190F023F")))
+	    (object Association "$UNNAMED$3"
+		quid       	"5AEF194103CB"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$4"
+			quid       	"5AEF19420244"
+			supplier   	"Use Case View::Login"
+			quidu      	"5AEF192B0321"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$5"
+			quid       	"5AEF19420246"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF190F023F")))
+	    (object Association "$UNNAMED$6"
+		quid       	"5AEF194402E6"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$7"
+			quid       	"5AEF19450230"
+			supplier   	"Use Case View::Reset password"
+			quidu      	"5AEF1931010C"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$8"
+			quid       	"5AEF19450232"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF190F023F")))
+	    (object Association "$UNNAMED$9"
+		quid       	"5AEF22E50335"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$10"
+			quid       	"5AEF22E60239"
+			supplier   	"Use Case View::Logout"
+			quidu      	"5AEF22DA000D"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$11"
+			quid       	"5AEF22E6023B"
+			supplier   	"Use Case View::Guest"
+			quidu      	"5AEF190F023F")))
+	    (object Association "$UNNAMED$12"
+		quid       	"5AEF28C7019C"
+		stereotype 	"uses"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$13"
+			quid       	"5AEF28C8026A"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$14"
+			quid       	"5AEF28C8026D"
+			supplier   	"Use Case View::Login"
+			quidu      	"5AEF192B0321")))
+	    (object Association "$UNNAMED$15"
+		quid       	"5AEF28CF03DD"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$16"
+			quid       	"5AEF28D0038B"
+			supplier   	"Use Case View::Authenticate user"
+			quidu      	"5AEF2480012A"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$17"
+			quid       	"5AEF28D00390"
+			supplier   	"Use Case View::Authentication System"
+			quidu      	"5AEF283F0384")))
+	    (object Association "$UNNAMED$18"
+		quid       	"5AEF28DB01CC"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$19"
+			quid       	"5AEF28DC0041"
+			supplier   	"Use Case View::Create registration request"
+			quidu      	"5AEF286B0159"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$20"
+			quid       	"5AEF28DC0043"
+			supplier   	"Use Case View::Authentication System"
+			quidu      	"5AEF283F0384")))
+	    (object Association "$UNNAMED$21"
+		quid       	"5AEF294103C0"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$22"
+			quid       	"5AEF2942029D"
+			supplier   	"Use Case View::Context based approval"
+			quidu      	"5AEF2599038A"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$23"
+			quid       	"5AEF2942029F"
+			supplier   	"Use Case View::Authentication System"
+			quidu      	"5AEF283F0384")))
+	    (object Association "$UNNAMED$24"
+		quid       	"5AEF2A1E00B3"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$25"
+			quid       	"5AEF2A1F009E"
+			supplier   	"Use Case View::Administrator approval"
+			quidu      	"5AEF259B032E"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$26"
+			quid       	"5AEF2A1F00A0"
+			supplier   	"Use Case View::Administrator"
+			quidu      	"5AEF2A130385")))
+	    (object Association "$UNNAMED$27"
+		quid       	"5AEF2C6B03A6"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$28"
+			quid       	"5AEF2C6C03CF"
+			supplier   	"Use Case View::Reject registration request"
+			quidu      	"5AEF2C4D01C2"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$29"
+			quid       	"5AEF2C6C03D1"
+			supplier   	"Use Case View::Administrator"
+			quidu      	"5AEF2A130385")))
+	    (object Association "$UNNAMED$30"
+		quid       	"5AF0AC53000F"
+		stereotype 	"uses"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$31"
+			quid       	"5AF0AC550167"
+			supplier   	"Use Case View::Create registration request"
+			quidu      	"5AEF286B0159"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$32"
+			quid       	"5AF0AC55016C"
+			supplier   	"Use Case View::Register"
+			quidu      	"5AEF192202EA")))
+	    (object Mechanism @1
+		logical_models 	(list unit_reference_list
+		    (object Object "$UNNAMED$33"
+			quid       	"5AEF512403E1"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF513E02A4"
+				supplier   	"Login form"
+				quidu      	"5AEF512F01FE"
+				messages   	(list Messages
+				    (object Message "Enter correct credentials"
+					quid       	"5AEF513E02A5"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Redirect to dashboard"
+					quid       	"5AEF5472002D"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.2"
+					ordinal    	13
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			class      	"Use Case View::Guest"
+			quidu      	"5AEF190F023F"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Login form"
+			quid       	"5AEF512F01FE"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF51670252"
+				supplier   	"Authentication Service"
+				quidu      	"5AEF514502BA"
+				messages   	(list Messages
+				    (object Message "Send login request"
+					quid       	"5AEF51670253"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1"
+					ordinal    	1
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "User authenticated"
+					quid       	"5AEF51F8027A"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.5"
+					ordinal    	12
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Authentication Service"
+			quid       	"5AEF514502BA"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF51B90370"
+				supplier   	"Accouts Repository"
+				quidu      	"5AEF51890360"
+				messages   	(list Messages
+				    (object Message "Find user by username"
+					quid       	"5AEF51B90371"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1"
+					ordinal    	2
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "User found"
+					quid       	"5AEF51E3016A"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.2"
+					ordinal    	5
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AEF53C00160"
+				supplier   	"Authentication Service"
+				quidu      	"5AEF514502BA"
+				messages   	(list Messages
+				    (object Message "Validate password"
+					quid       	"5AEF53C00161"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.2"
+					ordinal    	6
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Authenticate user"
+					quid       	"5AEF557C0052"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.4"
+					ordinal    	11
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AEF55000305"
+				supplier   	"Roles Repository"
+				quidu      	"5AEF54E6000C"
+				messages   	(list Messages
+				    (object Message "Get user roles"
+					quid       	"5AEF55000306"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.3"
+					ordinal    	7
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Return list of roles"
+					quid       	"5AEF556801B7"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.3.2"
+					ordinal    	10
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Accouts Repository"
+			quid       	"5AEF51890360"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF51BF0211"
+				supplier   	"SQL Database"
+				quidu      	"5AEF51A103A8"
+				messages   	(list Messages
+				    (object Message "Query Accounts table"
+					quid       	"5AEF51BF0212"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "SQL Database"
+			quid       	"5AEF51A103A8"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF51DA00DA"
+				supplier   	"Accouts Repository"
+				quidu      	"5AEF51890360"
+				messages   	(list Messages
+				    (object Message "Return query results"
+					quid       	"5AEF51DA00DB"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1.1"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Roles Repository"
+			quid       	"5AEF54E6000C"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF550D0344"
+				supplier   	"SQL Database"
+				quidu      	"5AEF51A103A8"
+				messages   	(list Messages
+				    (object Message "Query Roles table"
+					quid       	"5AEF550D0345"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.3.1"
+					ordinal    	8
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Return query results"
+					quid       	"5AEF553D0134"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.3.1.1"
+					ordinal    	9
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)))
+	    (object Mechanism @2
+		logical_models 	(list unit_reference_list
+		    (object Object "$UNNAMED$34"
+			quid       	"5AEF57B4013F"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF57B40140"
+				supplier   	"Login form"
+				quidu      	"5AEF57B40147"
+				messages   	(list Messages
+				    (object Message "Enter wrong credentials"
+					quid       	"5AEF57B40141"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Notify user"
+					quid       	"5AEF59030148"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.2"
+					ordinal    	8
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			class      	"Use Case View::Guest"
+			quidu      	"5AEF190F023F"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Login form"
+			quid       	"5AEF57B40147"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF57B40146"
+				supplier   	"Authentication Service"
+				quidu      	"5AEF57B4014C"
+				messages   	(list Messages
+				    (object Message "Send login request"
+					quid       	"5AEF57B40145"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1"
+					ordinal    	1
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Wrong credentials"
+					quid       	"5AEF5889030E"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.2.1"
+					ordinal    	9
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Authentication Service"
+			quid       	"5AEF57B4014C"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF57B4014B"
+				supplier   	"Accouts Repository"
+				quidu      	"5AEF57B40157"
+				messages   	(list Messages
+				    (object Message "Find user by username"
+					quid       	"5AEF57B4014A"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1"
+					ordinal    	2
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "User found"
+					quid       	"5AEF57B40153"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3"
+					ordinal    	6
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "User not found"
+					quid       	"5AEF58D300B5"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.2"
+					ordinal    	5
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AEF57B4014D"
+				supplier   	"Authentication Service"
+				quidu      	"5AEF57B4014C"
+				messages   	(list Messages
+				    (object Message "Validate password"
+					quid       	"5AEF57B4014E"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.2"
+					ordinal    	7
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	TRUE)
+		    (object Object "Accouts Repository"
+			quid       	"5AEF57B40157"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF57B40156"
+				supplier   	"SQL Database"
+				quidu      	"5AEF57B4015B"
+				messages   	(list Messages
+				    (object Message "Query Accounts table"
+					quid       	"5AEF57B40155"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "SQL Database"
+			quid       	"5AEF57B4015B"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AEF57B4015A"
+				supplier   	"Accouts Repository"
+				quidu      	"5AEF57B40157"
+				messages   	(list Messages
+				    (object Message "Return query results"
+					quid       	"5AEF57B40159"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1.1"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)))
+	    (object Mechanism @3
+		logical_models 	(list unit_reference_list
+		    (object Object "$UNNAMED$35"
+			quid       	"5AEF5AF1011D"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0AC970248"
+				supplier   	"Registration form"
+				quidu      	"5AF0AC89021C"
+				messages   	(list Messages
+				    (object Message "Fill registration form"
+					quid       	"5AF0AC970249"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Redirect user to Home page"
+					quid       	"5AF0AF53027D"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3.4.1"
+					ordinal    	16
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			class      	"Use Case View::Guest"
+			quidu      	"5AEF190F023F"
+			persistence 	"Transient"
+			creationObj 	TRUE
+			multi      	FALSE)
+		    (object Object "Registration form"
+			quid       	"5AF0AC89021C"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0ACC102DF"
+				supplier   	"Authentication Service"
+				quidu      	"5AF0ACAE0006"
+				messages   	(list Messages
+				    (object Message "Send registration request"
+					quid       	"5AF0ACC102E0"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1"
+					ordinal    	1
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "User registered"
+					quid       	"5AF0AF1F0289"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3.4"
+					ordinal    	15
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Authentication Service"
+			quid       	"5AF0ACAE0006"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0ACE30193"
+				supplier   	"Authentication Service"
+				quidu      	"5AF0ACAE0006"
+				messages   	(list Messages
+				    (object Message "Create registration request"
+					quid       	"5AF0ACE30194"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1"
+					ordinal    	2
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Approve registration request"
+					quid       	"5AF0AD730210"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3"
+					ordinal    	7
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0AD300178"
+				supplier   	"Domain Repository"
+				quidu      	"5AF0ACD4004F"
+				messages   	(list Messages
+				    (object Message "Check user email registered"
+					quid       	"5AF0AD300179"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.2"
+					ordinal    	5
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Email found"
+					quid       	"5AF0AD5601F9"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.2.1"
+					ordinal    	6
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0ADC70330"
+				supplier   	"Account Repository"
+				quidu      	"5AF0ADAF0013"
+				messages   	(list Messages
+				    (object Message "Create user"
+					quid       	"5AF0ADC70331"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3.2"
+					ordinal    	10
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Return user id"
+					quid       	"5AF0AE180312"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3.2.2"
+					ordinal    	13
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0AEF10202"
+				supplier   	"Email Sender"
+				quidu      	"5AF0AEE2007B"
+				messages   	(list Messages
+				    (object Message "Send email"
+					quid       	"5AF0AFD00071"
+					frequency  	"Aperiodic"
+					synchronization 	"Asynchronous"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3.3"
+					ordinal    	14
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B32302D7"
+				supplier   	"SQL Database"
+				quidu      	"5AF0ADD603D1"
+				messages   	(list Messages
+				    (object Message "Save registration request"
+					quid       	"5AF0B32302D8"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Create results"
+					quid       	"5AF0B336019C"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.1.1"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Update registration request"
+					quid       	"5AF0B3630021"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3.1"
+					ordinal    	8
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Update results"
+					quid       	"5AF0B374034C"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3.1.1"
+					ordinal    	9
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Domain Repository"
+			quid       	"5AF0ACD4004F"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Account Repository"
+			quid       	"5AF0ADAF0013"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0ADE70357"
+				supplier   	"SQL Database"
+				quidu      	"5AF0ADD603D1"
+				messages   	(list Messages
+				    (object Message "Insert rows"
+					quid       	"5AF0ADE70358"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3.2.1"
+					ordinal    	11
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Return results"
+					quid       	"5AF0ADF5018E"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3.2.1.1"
+					ordinal    	12
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "SQL Database"
+			quid       	"5AF0ADD603D1"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Email Sender"
+			quid       	"5AF0AEE2007B"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)))
+	    (object Mechanism @4
+		logical_models 	(list unit_reference_list
+		    (object Object "$UNNAMED$36"
+			quid       	"5AF0B010020C"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0B010020D"
+				supplier   	"Registration form"
+				quidu      	"5AF0B0100214"
+				messages   	(list Messages
+				    (object Message "Fill registration form"
+					quid       	"5AF0B010020E"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Redirect to Confiramtion page"
+					quid       	"5AF0B271016A"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.4.1"
+					ordinal    	11
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			class      	"Use Case View::Guest"
+			quidu      	"5AEF190F023F"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Registration form"
+			quid       	"5AF0B0100214"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0B0100213"
+				supplier   	"Authentication Service"
+				quidu      	"5AF0B0100219"
+				messages   	(list Messages
+				    (object Message "Send registration request"
+					quid       	"5AF0B0100212"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1"
+					ordinal    	1
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Registration request sent"
+					quid       	"5AF0B2460236"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.4"
+					ordinal    	9
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Authentication Service"
+			quid       	"5AF0B0100219"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0B0100218"
+				supplier   	"Authentication Service"
+				quidu      	"5AF0B0100219"
+				messages   	(list Messages
+				    (object Message "Create registration request"
+					quid       	"5AF0B0100217"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1"
+					ordinal    	2
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B010021A"
+				supplier   	"Domain Repository"
+				quidu      	"5AF0B0100239"
+				messages   	(list Messages
+				    (object Message "Email not found"
+					quid       	"5AF0B23A0180"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.2.1"
+					ordinal    	6
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B010021D"
+				supplier   	"Account Repository"
+				quidu      	"5AF0B010022B"
+				messages   	(list Messages
+				    (object Message "Create user"
+					quid       	"5AF0B1070304"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.5"
+					ordinal    	14
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Return user id"
+					quid       	"5AF0B1620232"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.5.2"
+					ordinal    	17
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B0100220"
+				supplier   	"Email Sender"
+				quidu      	"5AF0B0100237"
+				messages   	(list Messages
+				    (object Message "Send email"
+					quid       	"5AF0B17C02D3"
+					frequency  	"Aperiodic"
+					synchronization 	"Asynchronous"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.6"
+					ordinal    	18
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B0610048"
+				supplier   	"$UNNAMED$37"
+				quidu      	"5AF0B03C022D"
+				messages   	(list Messages
+				    (object Message "Send request"
+					quid       	"5AF0B0610049"
+					frequency  	"Aperiodic"
+					synchronization 	"Asynchronous"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3"
+					ordinal    	7
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Registration approved"
+					quid       	"5AF0B08F0231"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3.1.2"
+					ordinal    	13
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B21400CC"
+				supplier   	"Domain Repository"
+				quidu      	"5AF0B0100239"
+				messages   	(list Messages
+				    (object Message "Check user email registered"
+					quid       	"5AF0B21400CD"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.2"
+					ordinal    	5
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B2A20033"
+				supplier   	"SQL Database"
+				quidu      	"5AF0B0100231"
+				messages   	(list Messages
+				    (object Message "Save request"
+					quid       	"5AF0B2A20034"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Return results"
+					quid       	"5AF0B2B00391"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.1.1"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Domain Repository"
+			quid       	"5AF0B0100239"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Account Repository"
+			quid       	"5AF0B010022B"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0B010022A"
+				supplier   	"SQL Database"
+				quidu      	"5AF0B0100231"
+				messages   	(list Messages
+				    (object Message "Insert rows"
+					quid       	"5AF0B1420351"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.5.1"
+					ordinal    	15
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Return results"
+					quid       	"5AF0B14E01C6"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.5.1.1"
+					ordinal    	16
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "SQL Database"
+			quid       	"5AF0B0100231"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Email Sender"
+			quid       	"5AF0B0100237"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "$UNNAMED$37"
+			quid       	"5AF0B03C022D"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"5AF0B07D00F5"
+				supplier   	"$UNNAMED$37"
+				quidu      	"5AF0B03C022D"
+				messages   	(list Messages
+				    (object Message "Approve request"
+					quid       	"5AF0B07D00F6"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3.1"
+					ordinal    	8
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"5AF0B43402FD"
+				supplier   	"SQL Database"
+				quidu      	"5AF0B0100231"
+				messages   	(list Messages
+				    (object Message "Update registration request"
+					quid       	"5AF0B43402FE"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.3.1.1"
+					ordinal    	10
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "Update results"
+					quid       	"5AF0B4420172"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.3.1.1.1"
+					ordinal    	12
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			class      	"Use Case View::Administrator"
+			quidu      	"5AEF2A130385"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE))))
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"5AEF18C002D0"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	1238
+		origin_y   	125
+		items      	(list diagram_item_list
+		    (object UseCaseView "Use Case View::Reset password" @5
+			location   	(943, 1412)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@5
+			    location   	(943, 1550)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Reset password")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF1931010C"
+			height     	118)
+		    (object UseCaseView "Use Case View::Enter username" @6
+			location   	(1818, 1581)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@6
+			    location   	(1818, 1719)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Enter username")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF1F7F03C5"
+			height     	118)
+		    (object UseCaseView "Use Case View::Enter password" @7
+			location   	(1345, 1644)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@7
+			    location   	(1345, 1782)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Enter password")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF1F910273"
+			height     	118)
+		    (object UseCaseView "Use Case View::Enter email" @8
+			location   	(946, 1781)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@8
+			    location   	(946, 1919)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Enter email")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF1FCA0353"
+			height     	118)
+		    (object DependencyView "" @9
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @10
+			    Parent_View 	@9
+			    location   	(944, 1638)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.435400
+			    height     	1
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF1FEF0317"
+			client     	@5
+			supplier   	@8
+			vertices   	(list Points
+			    (943, 1575)
+			    (942, 1722))
+			line_style 	0)
+		    (object NoteView @11
+			location   	(1678, 1041)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@11
+			    location   	(1449, 960)
+			    fill_color 	13434879
+			    nlines     	3
+			    max_width  	422
+			    justify    	1
+			    label      	
+|Preconditions:
+|registered = true
+|authenticated = false
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	482
+			height     	175)
+		    (object NoteView @12
+			location   	(1081, 537)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@12
+			    location   	(881, 456)
+			    fill_color 	13434879
+			    nlines     	3
+			    max_width  	365
+			    justify    	1
+			    label      	
+|Preconditions:
+|registered = false
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	425
+			height     	175)
+		    (object UseCaseView "Use Case View::Approve registration" @13
+			location   	(3026, 793)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@13
+			    location   	(3026, 931)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Approve registration")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF257300B2"
+			height     	118)
+		    (object UseCaseView "Use Case View::As Chemist" @14
+			location   	(2274, 1866)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@14
+			    location   	(2274, 2004)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"As Chemist")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF289F03C3"
+			height     	118)
+		    (object UseCaseView "Use Case View::As Biologist" @15
+			location   	(2009, 1847)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@15
+			    location   	(2009, 1998)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"As Biologist")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF28A300CC"
+			width      	219
+			height     	144)
+		    (object UseCaseView "Use Case View::As Administrator" @16
+			location   	(2558, 1865)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@16
+			    location   	(2558, 2003)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"As Administrator")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF28A503B5"
+			height     	118)
+		    (object ClassView "Class" "Use Case View::Guest" @17
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(808, 1041)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@17
+			    location   	(808, 1201)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	328
+			    justify    	0
+			    label      	"Guest")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF190F023F"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object UseCaseView "Use Case View::Login" @18
+			location   	(1442, 1234)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@18
+			    location   	(1442, 1372)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Login")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF192B0321"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$3" @19
+			location   	(1098, 1127)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF194103CB"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$4" @20
+				Parent_View 	@19
+				location   	(587, 734)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF19420244"
+				client     	@19
+				supplier   	@18
+				vertices   	(list Points
+				    (1098, 1127)
+				    (1332, 1199))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$5" @21
+				Parent_View 	@19
+				location   	(587, 734)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF19420246"
+				client     	@19
+				supplier   	@17
+				vertices   	(list Points
+				    (1098, 1127)
+				    (865, 1056))
+				line_style 	0)))
+		    (object DependencyView "" @22
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @23
+			    Parent_View 	@22
+			    location   	(1648, 1419)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	238
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.567825
+			    height     	4
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF1FAB00DA"
+			client     	@18
+			supplier   	@6
+			vertices   	(list Points
+			    (1504, 1290)
+			    (1754, 1522))
+			line_style 	0)
+		    (object DependencyView "" @24
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @25
+			    Parent_View 	@24
+			    location   	(1371, 1483)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.464770
+			    height     	9
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF1FAF033A"
+			client     	@18
+			supplier   	@7
+			vertices   	(list Points
+			    (1399, 1397)
+			    (1356, 1586))
+			line_style 	0)
+		    (object DependencyView "" @26
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @27
+			    Parent_View 	@26
+			    location   	(1176, 1320)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extend>>"
+			    pctDist    	0.449903
+			    height     	7
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF21600321"
+			client     	@5
+			supplier   	@18
+			vertices   	(list Points
+			    (1051, 1371)
+			    (1332, 1271))
+			line_style 	0)
+		    (object AttachView "" @28
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@18
+			supplier   	@11
+			vertices   	(list Points
+			    (1506, 1176)
+			    (1570, 1128))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Fill registration form" @29
+			location   	(1606, 371)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@29
+			    location   	(1606, 509)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Fill registration form")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF200C03A9"
+			height     	118)
+		    (object UseCaseView "Use Case View::Authenticate user" @30
+			location   	(2431, 1264)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@30
+			    location   	(2431, 1402)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Authenticate user")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2480012A"
+			height     	118)
+		    (object InheritView "" @31
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF28B6021E"
+			client     	@15
+			supplier   	@30
+			vertices   	(list Points
+			    (2055, 1777)
+			    (2313, 1427))
+			line_style 	0)
+		    (object InheritView "" @32
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF28BA0072"
+			client     	@14
+			supplier   	@30
+			vertices   	(list Points
+			    (2287, 1806)
+			    (2386, 1427))
+			line_style 	0)
+		    (object InheritView "" @33
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF28BD00C0"
+			client     	@16
+			supplier   	@30
+			vertices   	(list Points
+			    (2543, 1805)
+			    (2463, 1427))
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$12" @34
+			location   	(1934, 1246)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @35
+			    Parent_View 	@34
+			    location   	(1930, 1275)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<uses>>"
+			    pctDist    	0.450000
+			    height     	29
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF28C7019C"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$13" @36
+				Parent_View 	@34
+				location   	(411, 398)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF28C8026A"
+				client     	@34
+				supplier   	@30
+				vertices   	(list Points
+				    (1934, 1246)
+				    (2319, 1258))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$14" @37
+				Parent_View 	@34
+				location   	(411, 398)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF28C8026D"
+				client     	@34
+				supplier   	@18
+				vertices   	(list Points
+				    (1934, 1246)
+				    (1550, 1235))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::Context based approval" @38
+			location   	(3499, 797)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@38
+			    location   	(3499, 935)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Context based approval")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2599038A"
+			height     	118)
+		    (object InheritView "" @39
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF25A4024F"
+			client     	@38
+			supplier   	@13
+			vertices   	(list Points
+			    (3389, 793)
+			    (3134, 792))
+			line_style 	0)
+		    (object ClassView "Class" "Use Case View::Authentication System" @40
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3774, 1269)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@40
+			    location   	(3774, 1429)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	328
+			    justify    	0
+			    label      	"Authentication System")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF283F0384"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$15" @41
+			location   	(3127, 1264)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF28CF03DD"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$16" @42
+				Parent_View 	@41
+				location   	(89, 673)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF28D0038B"
+				client     	@41
+				supplier   	@30
+				vertices   	(list Points
+				    (3127, 1264)
+				    (2539, 1263))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$17" @43
+				Parent_View 	@41
+				location   	(89, 673)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF28D00390"
+				client     	@41
+				supplier   	@40
+				vertices   	(list Points
+				    (3127, 1264)
+				    (3715, 1265))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$21" @44
+			location   	(3659, 1073)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF294103C0"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$22" @45
+				Parent_View 	@44
+				location   	(621, 319)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2942029D"
+				client     	@44
+				supplier   	@38
+				vertices   	(list Points
+				    (3659, 1073)
+				    (3593, 960))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$23" @46
+				Parent_View 	@44
+				location   	(621, 319)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2942029F"
+				client     	@44
+				supplier   	@40
+				vertices   	(list Points
+				    (3659, 1073)
+				    (3726, 1187))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::As Chief-chemist" @47
+			location   	(2899, 1847)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@47
+			    location   	(2899, 1985)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"As Chief-chemist")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2AF90123"
+			height     	118)
+		    (object InheritView "" @48
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF2B0A0216"
+			client     	@47
+			supplier   	@30
+			vertices   	(list Points
+			    (2852, 1788)
+			    (2560, 1427))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::As Bioanalyst" @49
+			location   	(3167, 1702)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@49
+			    location   	(3167, 1840)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"As Bioanalyst")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2B19001E"
+			height     	118)
+		    (object InheritView "" @50
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF2B4002EC"
+			client     	@49
+			supplier   	@30
+			vertices   	(list Points
+			    (3070, 1643)
+			    (2589, 1357))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Administrator approval" @51
+			location   	(3027, 461)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@51
+			    location   	(3027, 599)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Administrator approval")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF259B032E"
+			height     	118)
+		    (object InheritView "" @52
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF25A102B6"
+			client     	@51
+			supplier   	@13
+			vertices   	(list Points
+			    (3025, 624)
+			    (3026, 734))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Reject registration request" @53
+			location   	(2799, 189)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@53
+			    location   	(2799, 327)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Reject registration request")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2C4D01C2"
+			height     	118)
+		    (object ClassView "Class" "Use Case View::Administrator" @54
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3804, 456)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@54
+			    location   	(3804, 616)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	328
+			    justify    	0
+			    label      	"Administrator")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF2A130385"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$24" @55
+			location   	(3439, 456)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF2A1E00B3"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$25" @56
+				Parent_View 	@55
+				location   	(30, 218)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2A1F009E"
+				client     	@55
+				supplier   	@51
+				vertices   	(list Points
+				    (3439, 456)
+				    (3135, 457))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$26" @57
+				Parent_View 	@55
+				location   	(30, 218)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2A1F00A0"
+				client     	@55
+				supplier   	@54
+				vertices   	(list Points
+				    (3439, 456)
+				    (3743, 456))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$27" @58
+			location   	(3326, 326)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF2C6B03A6"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$28" @59
+				Parent_View 	@58
+				location   	(-83, 88)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2C6C03CF"
+				client     	@58
+				supplier   	@53
+				vertices   	(list Points
+				    (3326, 326)
+				    (2907, 216))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$29" @60
+				Parent_View 	@58
+				location   	(-83, 88)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2C6C03D1"
+				client     	@58
+				supplier   	@54
+				vertices   	(list Points
+				    (3326, 326)
+				    (3745, 437))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::As Synthetic chemist" @61
+			location   	(3288, 1472)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@61
+			    location   	(3288, 1610)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"As Synthetic chemist")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2E3B02F2"
+			height     	118)
+		    (object InheritView "" @62
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF2E4E02E9"
+			client     	@61
+			supplier   	@30
+			vertices   	(list Points
+			    (3177, 1443)
+			    (2539, 1287))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Register" @63
+			location   	(1606, 758)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@63
+			    location   	(1606, 896)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Register")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF192202EA"
+			height     	118)
+		    (object AttachView "" @64
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@63
+			supplier   	@12
+			vertices   	(list Points
+			    (1496, 711)
+			    (1289, 624))
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$0" @65
+			location   	(1180, 905)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF193F021E"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @66
+				Parent_View 	@65
+				location   	(669, 512)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF1940004F"
+				client     	@65
+				supplier   	@63
+				vertices   	(list Points
+				    (1180, 905)
+				    (1496, 793))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$2" @67
+				Parent_View 	@65
+				location   	(669, 512)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF19400051"
+				client     	@65
+				supplier   	@17
+				vertices   	(list Points
+				    (1180, 905)
+				    (865, 1018))
+				line_style 	0)))
+		    (object DependencyView "" @68
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @69
+			    Parent_View 	@68
+			    location   	(1602, 631)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.415663
+			    height     	4
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF2014008E"
+			client     	@63
+			supplier   	@29
+			vertices   	(list Points
+			    (1606, 700)
+			    (1606, 534))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Create registration request" @70
+			location   	(2362, 872)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@70
+			    location   	(2362, 1010)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Create registration request")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF286B0159"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$18" @71
+			location   	(3155, 1093)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF28DB01CC"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$19" @72
+				Parent_View 	@71
+				location   	(117, 502)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF28DC0041"
+				client     	@71
+				supplier   	@70
+				vertices   	(list Points
+				    (3155, 1093)
+				    (2596, 936))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$20" @73
+				Parent_View 	@71
+				location   	(117, 502)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF28DC0043"
+				client     	@71
+				supplier   	@40
+				vertices   	(list Points
+				    (3155, 1093)
+				    (3715, 1250))
+				line_style 	0)))
+		    (object DependencyView "" @74
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @75
+			    Parent_View 	@74
+			    location   	(2716, 858)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.453535
+			    height     	30
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF2ABC02B7"
+			client     	@13
+			supplier   	@70
+			vertices   	(list Points
+			    (2916, 804)
+			    (2470, 856))
+			line_style 	0)
+		    (object DependencyView "" @76
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @77
+			    Parent_View 	@76
+			    location   	(2515, 659)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.646473
+			    height     	16
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF2C7900F9"
+			client     	@53
+			supplier   	@70
+			vertices   	(list Points
+			    (2693, 352)
+			    (2396, 814))
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$30" @78
+			location   	(1982, 811)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @79
+			    Parent_View 	@78
+			    location   	(1963, 773)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<uses>>"
+			    pctDist    	0.183333
+			    height     	38
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AF0AC53000F"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$31" @80
+				Parent_View 	@78
+				location   	(376, 53)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AF0AC550167"
+				client     	@78
+				supplier   	@70
+				vertices   	(list Points
+				    (1982, 811)
+				    (2251, 852))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$32" @81
+				Parent_View 	@78
+				location   	(376, 53)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AF0AC55016C"
+				client     	@78
+				supplier   	@63
+				vertices   	(list Points
+				    (1982, 811)
+				    (1714, 771))
+				line_style 	0)))))
+	    (object InteractionDiagram "LoginSequenceDiagram"
+		mechanism_ref 	@1
+		quid       	"5AEF511F00BF"
+		title      	"LoginSequenceDiagram"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	494
+		origin_y   	56
+		items      	(list diagram_item_list
+		    (object InterObjView "$UNNAMED$33" @82
+			location   	(441, 256)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@82
+			    location   	(441, 281)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF512403E1"
+			width      	300
+			height     	1925
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @83
+			    location   	(441, 381)
+			    line_color 	3342489
+			    InterObjView 	@82
+			    height     	1710
+			    y_coord    	1620
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @84
+			    location   	(441, 1991)
+			    line_color 	3342489
+			    InterObjView 	@82
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Login form" @85
+			location   	(984, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@85
+			    location   	(984, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Login form")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF512F01FE"
+			width      	300
+			height     	1956
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @86
+			    location   	(984, 381)
+			    line_color 	3342489
+			    InterObjView 	@85
+			    height     	1610
+			    y_coord    	1520
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @87
+			    location   	(984, 1886)
+			    line_color 	3342489
+			    InterObjView 	@85
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Authentication Service" @88
+			location   	(1534, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@88
+			    location   	(1534, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Authentication Service")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF514502BA"
+			width      	300
+			height     	1956
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @89
+			    location   	(1534, 591)
+			    line_color 	3342489
+			    InterObjView 	@88
+			    height     	1295
+			    y_coord    	1205
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @90
+			    location   	(1534, 1080)
+			    line_color 	3342489
+			    InterObjView 	@88
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @91
+			    location   	(1534, 1231)
+			    line_color 	3342489
+			    InterObjView 	@88
+			    height     	90
+			    y_coord    	0
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @92
+			    location   	(1534, 1651)
+			    line_color 	3342489
+			    InterObjView 	@88
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @93
+			    location   	(1534, 1781)
+			    line_color 	3342489
+			    InterObjView 	@88
+			    height     	90
+			    y_coord    	0
+			    Nested     	TRUE))
+		    (object InterObjView "Accouts Repository" @94
+			location   	(2081, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@94
+			    location   	(2081, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Accouts Repository")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF51890360"
+			width      	300
+			height     	973
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @95
+			    location   	(2081, 696)
+			    line_color 	3342489
+			    InterObjView 	@94
+			    height     	384
+			    y_coord    	294
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @96
+			    location   	(2081, 975)
+			    line_color 	3342489
+			    InterObjView 	@94
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Roles Repository" @97
+			location   	(2518, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@97
+			    location   	(2518, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Roles Repository")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF54E6000C"
+			width      	300
+			height     	1613
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @98
+			    location   	(2518, 1336)
+			    line_color 	3342489
+			    InterObjView 	@97
+			    height     	315
+			    y_coord    	225
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @99
+			    location   	(2518, 1546)
+			    line_color 	3342489
+			    InterObjView 	@97
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "SQL Database" @100
+			location   	(2971, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@100
+			    location   	(2971, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"SQL Database")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF51A103A8"
+			width      	300
+			height     	1956
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @101
+			    location   	(2971, 801)
+			    line_color 	3342489
+			    InterObjView 	@100
+			    height     	174
+			    y_coord    	84
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @102
+			    location   	(2971, 1441)
+			    line_color 	3342489
+			    InterObjView 	@100
+			    height     	105
+			    y_coord    	15
+			    Nested     	FALSE))
+		    (object InterMessView "Enter correct credentials" @103
+			location   	(0, 381)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @104
+			    Parent_View 	@103
+			    location   	(712, 340)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF513E02A5"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	482
+			    justify    	0
+			    label      	"Enter correct credentials"
+			    pctDist    	0.500000
+			    height     	42
+			    orientation 	0)
+			line_color 	3342489
+			client     	@82
+			supplier   	@85
+			Focus_Src  	@83
+			Focus_Entry 	@86
+			origin     	(456, 381)
+			terminus   	(968, 381)
+			ordinal    	0)
+		    (object InterMessView "Send login request" @105
+			location   	(0, 591)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @106
+			    Parent_View 	@105
+			    location   	(1258, 547)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF51670253"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	379
+			    justify    	0
+			    label      	"Send login request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@85
+			supplier   	@88
+			Focus_Src  	@86
+			Focus_Entry 	@89
+			origin     	(999, 591)
+			terminus   	(1518, 591)
+			ordinal    	1)
+		    (object InterMessView "Find user by username" @107
+			location   	(0, 696)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @108
+			    Parent_View 	@107
+			    location   	(1809, 655)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF51B90371"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	454
+			    justify    	0
+			    label      	"Find user by username"
+			    pctDist    	0.503876
+			    height     	42
+			    orientation 	0)
+			line_color 	3342489
+			client     	@88
+			supplier   	@94
+			Focus_Src  	@89
+			Focus_Entry 	@95
+			origin     	(1549, 696)
+			terminus   	(2065, 696)
+			ordinal    	2)
+		    (object InterMessView "Query Accounts table" @109
+			location   	(0, 801)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @110
+			    Parent_View 	@109
+			    location   	(2525, 761)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF51BF0212"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	422
+			    justify    	0
+			    label      	"Query Accounts table"
+			    pctDist    	0.500000
+			    height     	41
+			    orientation 	0)
+			line_color 	3342489
+			client     	@94
+			supplier   	@100
+			Focus_Src  	@95
+			Focus_Entry 	@101
+			origin     	(2096, 801)
+			terminus   	(2955, 801)
+			ordinal    	3)
+		    (object InterMessView "Return query results" @111
+			location   	(0, 975)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @112
+			    Parent_View 	@111
+			    location   	(2526, 931)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF51DA00DB"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	407
+			    justify    	0
+			    label      	"Return query results"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@100
+			supplier   	@94
+			Focus_Src  	@101
+			Focus_Entry 	@96
+			origin     	(2955, 975)
+			terminus   	(2097, 975)
+			ordinal    	4)
+		    (object InterMessView "User found" @113
+			location   	(0, 1080)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @114
+			    Parent_View 	@113
+			    location   	(1808, 1036)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF51E3016A"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	241
+			    justify    	0
+			    label      	"User found"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@94
+			supplier   	@88
+			Focus_Src  	@95
+			Focus_Entry 	@90
+			origin     	(2065, 1080)
+			terminus   	(1550, 1080)
+			ordinal    	5)
+		    (object InterMessView "User authenticated" @115
+			location   	(0, 1886)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @116
+			    Parent_View 	@115
+			    location   	(1259, 1842)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF51F8027A"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	404
+			    justify    	0
+			    label      	"User authenticated"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@88
+			supplier   	@85
+			Focus_Src  	@89
+			Focus_Entry 	@87
+			origin     	(1518, 1886)
+			terminus   	(1000, 1886)
+			ordinal    	12)
+		    (object SelfMessView "Validate password" @117
+			location   	(0, 1206)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @118
+			    Parent_View 	@117
+			    location   	(1749, 1168)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF53C00161"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	372
+			    justify    	0
+			    label      	"Validate password"
+			    pctDist    	1.326667
+			    height     	39
+			    orientation 	0)
+			line_color 	3342489
+			client     	@88
+			supplier   	@88
+			Focus_Src  	@89
+			Focus_Entry 	@91
+			origin     	(1550, 1206)
+			terminus   	(1700, 1206)
+			ordinal    	6)
+		    (object InterMessView "Redirect to dashboard" @119
+			location   	(0, 1991)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @120
+			    Parent_View 	@119
+			    location   	(713, 1947)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF5472002D"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	447
+			    justify    	0
+			    label      	"Redirect to dashboard"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@85
+			supplier   	@82
+			Focus_Src  	@86
+			Focus_Entry 	@84
+			origin     	(968, 1991)
+			terminus   	(457, 1991)
+			ordinal    	13)
+		    (object InterMessView "Get user roles" @121
+			location   	(0, 1336)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @122
+			    Parent_View 	@121
+			    location   	(2025, 1292)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF55000306"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	301
+			    justify    	0
+			    label      	"Get user roles"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@88
+			supplier   	@97
+			Focus_Src  	@89
+			Focus_Entry 	@98
+			origin     	(1549, 1336)
+			terminus   	(2502, 1336)
+			ordinal    	7)
+		    (object InterMessView "Query Roles table" @123
+			location   	(0, 1441)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @124
+			    Parent_View 	@123
+			    location   	(2744, 1397)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF550D0345"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	369
+			    justify    	0
+			    label      	"Query Roles table"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@97
+			supplier   	@100
+			Focus_Src  	@98
+			Focus_Entry 	@102
+			origin     	(2533, 1441)
+			terminus   	(2955, 1441)
+			ordinal    	8)
+		    (object InterMessView "Return query results" @125
+			location   	(0, 1546)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @126
+			    Parent_View 	@125
+			    location   	(2745, 1502)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF553D0134"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	429
+			    justify    	0
+			    label      	"Return query results"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@100
+			supplier   	@97
+			Focus_Src  	@102
+			Focus_Entry 	@99
+			origin     	(2955, 1546)
+			terminus   	(2534, 1546)
+			ordinal    	9)
+		    (object InterMessView "Return list of roles" @127
+			location   	(0, 1651)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @128
+			    Parent_View 	@127
+			    location   	(2026, 1607)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF556801B7"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	388
+			    justify    	0
+			    label      	"Return list of roles"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@97
+			supplier   	@88
+			Focus_Src  	@98
+			Focus_Entry 	@92
+			origin     	(2502, 1651)
+			terminus   	(1550, 1651)
+			ordinal    	10)
+		    (object SelfMessView "Authenticate user" @129
+			location   	(0, 1756)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @130
+			    Parent_View 	@129
+			    location   	(1757, 1710)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF557C0052"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	379
+			    justify    	0
+			    label      	"Authenticate user"
+			    pctDist    	1.386667
+			    height     	47
+			    orientation 	0)
+			line_color 	3342489
+			client     	@88
+			supplier   	@88
+			Focus_Src  	@89
+			Focus_Entry 	@93
+			origin     	(1550, 1756)
+			terminus   	(1700, 1756)
+			ordinal    	11)
+		    (object Destruction_Marker @131
+			Parent_View 	@94
+			location   	(2081, 1198)
+			line_color 	3342489
+			fill_color 	13434879)
+		    (object Destruction_Marker @132
+			Parent_View 	@97
+			location   	(2518, 1838)
+			line_color 	3342489
+			fill_color 	13434879)))
+	    (object InteractionDiagram "LoginSequenceDiagram2"
+		mechanism_ref 	@2
+		quid       	"5AEF579C027E"
+		title      	"LoginSequenceDiagram2"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	66
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object InterObjView "$UNNAMED$34" @133
+			location   	(441, 256)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@133
+			    location   	(441, 281)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF57B4013F"
+			width      	300
+			height     	1535
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @134
+			    location   	(441, 381)
+			    line_color 	3342489
+			    InterObjView 	@133
+			    height     	1225
+			    y_coord    	1135
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @135
+			    location   	(441, 1506)
+			    line_color 	3342489
+			    InterObjView 	@133
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Login form" @136
+			location   	(984, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@136
+			    location   	(984, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Login form")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF57B40147"
+			width      	300
+			height     	1566
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @137
+			    location   	(984, 381)
+			    line_color 	3342489
+			    InterObjView 	@136
+			    height     	1237
+			    y_coord    	1147
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @138
+			    location   	(984, 1611)
+			    line_color 	3342489
+			    InterObjView 	@136
+			    height     	90
+			    y_coord    	0
+			    Nested     	TRUE))
+		    (object InterObjView "Authentication Service" @139
+			location   	(1534, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@139
+			    location   	(1534, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Authentication Service")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF57B4014C"
+			width      	300
+			height     	1566
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @140
+			    location   	(1534, 591)
+			    line_color 	3342489
+			    InterObjView 	@139
+			    height     	875
+			    y_coord    	785
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @141
+			    location   	(1534, 1080)
+			    line_color 	3342489
+			    InterObjView 	@139
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @142
+			    location   	(1534, 1214)
+			    line_color 	3342489
+			    InterObjView 	@139
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @143
+			    location   	(1534, 1401)
+			    line_color 	3342489
+			    InterObjView 	@139
+			    height     	210
+			    y_coord    	120
+			    Nested     	TRUE))
+		    (object InterObjView "Accouts Repository" @144
+			location   	(2081, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@144
+			    location   	(2081, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Accouts Repository")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF57B40157"
+			width      	300
+			height     	1270
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @145
+			    location   	(2081, 696)
+			    line_color 	3342489
+			    InterObjView 	@144
+			    height     	518
+			    y_coord    	428
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @146
+			    location   	(2081, 975)
+			    line_color 	3342489
+			    InterObjView 	@144
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "SQL Database" @147
+			location   	(2777, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@147
+			    location   	(2777, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"SQL Database")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF57B4015B"
+			width      	300
+			height     	1566
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @148
+			    location   	(2777, 801)
+			    line_color 	3342489
+			    InterObjView 	@147
+			    height     	264
+			    y_coord    	174
+			    Nested     	FALSE))
+		    (object Destruction_Marker @149
+			Parent_View 	@144
+			location   	(2081, 1495)
+			line_color 	3342489
+			fill_color 	13434879)
+		    (object InterMessView "Enter wrong credentials" @150
+			location   	(0, 381)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @151
+			    Parent_View 	@150
+			    location   	(712, 340)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF57B40141"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	466
+			    justify    	0
+			    label      	"Enter wrong credentials"
+			    pctDist    	0.500000
+			    height     	42
+			    orientation 	0)
+			line_color 	3342489
+			client     	@133
+			supplier   	@136
+			Focus_Src  	@134
+			Focus_Entry 	@137
+			origin     	(456, 381)
+			terminus   	(968, 381)
+			ordinal    	0)
+		    (object InterMessView "Send login request" @152
+			location   	(0, 591)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @153
+			    Parent_View 	@152
+			    location   	(1258, 547)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF57B40145"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	379
+			    justify    	0
+			    label      	"Send login request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@136
+			supplier   	@139
+			Focus_Src  	@137
+			Focus_Entry 	@140
+			origin     	(999, 591)
+			terminus   	(1518, 591)
+			ordinal    	1)
+		    (object InterMessView "Find user by username" @154
+			location   	(0, 696)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @155
+			    Parent_View 	@154
+			    location   	(1809, 655)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF57B4014A"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	454
+			    justify    	0
+			    label      	"Find user by username"
+			    pctDist    	0.503876
+			    height     	42
+			    orientation 	0)
+			line_color 	3342489
+			client     	@139
+			supplier   	@144
+			Focus_Src  	@140
+			Focus_Entry 	@145
+			origin     	(1549, 696)
+			terminus   	(2065, 696)
+			ordinal    	2)
+		    (object InterMessView "Query Accounts table" @156
+			location   	(0, 801)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @157
+			    Parent_View 	@156
+			    location   	(2428, 761)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF57B40155"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	440
+			    justify    	0
+			    label      	"Query Accounts table"
+			    pctDist    	0.500000
+			    height     	41
+			    orientation 	0)
+			line_color 	3342489
+			client     	@144
+			supplier   	@147
+			Focus_Src  	@145
+			Focus_Entry 	@148
+			origin     	(2096, 801)
+			terminus   	(2761, 801)
+			ordinal    	3)
+		    (object InterMessView "Return query results" @158
+			location   	(0, 975)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @159
+			    Parent_View 	@158
+			    location   	(2429, 936)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF57B40159"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	413
+			    justify    	0
+			    label      	"Return query results"
+			    pctDist    	0.500000
+			    height     	40
+			    orientation 	1)
+			line_color 	3342489
+			client     	@147
+			supplier   	@144
+			Focus_Src  	@148
+			Focus_Entry 	@146
+			origin     	(2761, 975)
+			terminus   	(2097, 975)
+			ordinal    	4)
+		    (object InterMessView "User found" @160
+			location   	(0, 1214)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @161
+			    Parent_View 	@160
+			    location   	(1808, 1170)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF57B40153"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	241
+			    justify    	0
+			    label      	"User found"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@144
+			supplier   	@139
+			Focus_Src  	@145
+			Focus_Entry 	@142
+			origin     	(2065, 1214)
+			terminus   	(1550, 1214)
+			ordinal    	6)
+		    (object SelfMessView "Validate password" @162
+			location   	(0, 1376)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @163
+			    Parent_View 	@162
+			    location   	(1758, 1312)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF57B4014E"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	369
+			    justify    	0
+			    label      	"Validate password"
+			    pctDist    	1.393333
+			    height     	65
+			    orientation 	0)
+			line_color 	3342489
+			client     	@139
+			supplier   	@139
+			Focus_Src  	@140
+			Focus_Entry 	@143
+			origin     	(1550, 1376)
+			terminus   	(1700, 1376)
+			ordinal    	7)
+		    (object InterMessView "Wrong credentials" @164
+			location   	(0, 1611)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @165
+			    Parent_View 	@164
+			    location   	(1259, 1567)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF5889030E"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	381
+			    justify    	0
+			    label      	"Wrong credentials"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@139
+			supplier   	@136
+			Focus_Src  	@143
+			Focus_Entry 	@138
+			origin     	(1518, 1611)
+			terminus   	(1000, 1611)
+			ordinal    	9)
+		    (object InterMessView "User not found" @166
+			location   	(0, 1080)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @167
+			    Parent_View 	@166
+			    location   	(1807, 1037)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF58D300B5"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	307
+			    justify    	0
+			    label      	"User not found"
+			    pctDist    	0.500971
+			    height     	44
+			    orientation 	1)
+			line_color 	3342489
+			client     	@144
+			supplier   	@139
+			Focus_Src  	@145
+			Focus_Entry 	@141
+			origin     	(2065, 1080)
+			terminus   	(1550, 1080)
+			ordinal    	5)
+		    (object InterMessView "Notify user" @168
+			location   	(0, 1506)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @169
+			    Parent_View 	@168
+			    location   	(713, 1462)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AEF59030148"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	241
+			    justify    	0
+			    label      	"Notify user"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@136
+			supplier   	@133
+			Focus_Src  	@137
+			Focus_Entry 	@135
+			origin     	(968, 1506)
+			terminus   	(457, 1506)
+			ordinal    	8)))
+	    (object InteractionDiagram "RegistrationSequenceDiagram"
+		mechanism_ref 	@3
+		quid       	"5AEF5AEB0274"
+		title      	"RegistrationSequenceDiagram"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	2556
+		items      	(list diagram_item_list
+		    (object InterObjView "$UNNAMED$35" @170
+			location   	(275, 309)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@170
+			    location   	(275, 334)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF5AF1011D"
+			width      	300
+			height     	2388
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @171
+			    location   	(275, 389)
+			    line_color 	3342489
+			    InterObjView 	@170
+			    height     	2218
+			    y_coord    	2128
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @172
+			    location   	(275, 2507)
+			    line_color 	3342489
+			    InterObjView 	@170
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Registration form" @173
+			location   	(906, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@173
+			    location   	(906, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Registration form")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0AC89021C"
+			width      	300
+			height     	2472
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @174
+			    location   	(906, 431)
+			    line_color 	3342489
+			    InterObjView 	@173
+			    height     	2175
+			    y_coord    	2085
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @175
+			    location   	(906, 2402)
+			    line_color 	3342489
+			    InterObjView 	@173
+			    height     	105
+			    y_coord    	15
+			    Nested     	TRUE))
+		    (object InterObjView "Authentication Service" @176
+			location   	(1467, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@176
+			    location   	(1467, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Authentication Service")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0ACAE0006"
+			width      	300
+			height     	2472
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @177
+			    location   	(1467, 536)
+			    line_color 	3342489
+			    InterObjView 	@176
+			    height     	195
+			    y_coord    	105
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @178
+			    location   	(1467, 666)
+			    line_color 	3342489
+			    InterObjView 	@176
+			    height     	736
+			    y_coord    	646
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @179
+			    location   	(1467, 876)
+			    line_color 	3342489
+			    InterObjView 	@176
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @180
+			    location   	(1467, 1122)
+			    line_color 	3342489
+			    InterObjView 	@176
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @181
+			    location   	(1467, 1337)
+			    line_color 	3342489
+			    InterObjView 	@176
+			    height     	1065
+			    y_coord    	975
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @182
+			    location   	(1467, 1624)
+			    line_color 	3342489
+			    InterObjView 	@176
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @183
+			    location   	(1467, 2070)
+			    line_color 	3342489
+			    InterObjView 	@176
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Domain Repository" @184
+			location   	(2171, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@184
+			    location   	(2171, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Domain Repository")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0ACD4004F"
+			width      	300
+			height     	1047
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @185
+			    location   	(2171, 981)
+			    line_color 	3342489
+			    InterObjView 	@184
+			    height     	141
+			    y_coord    	51
+			    Nested     	FALSE))
+		    (object InterObjView "Account Repository" @186
+			location   	(2600, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@186
+			    location   	(2600, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Account Repository")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0ADAF0013"
+			width      	300
+			height     	1905
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @187
+			    location   	(2600, 1729)
+			    line_color 	3342489
+			    InterObjView 	@186
+			    height     	341
+			    y_coord    	251
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @188
+			    location   	(2600, 1965)
+			    line_color 	3342489
+			    InterObjView 	@186
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "SQL Database" @189
+			location   	(3031, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@189
+			    location   	(3031, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"SQL Database")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0ADD603D1"
+			width      	300
+			height     	2472
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @190
+			    location   	(3031, 771)
+			    line_color 	3342489
+			    InterObjView 	@189
+			    height     	105
+			    y_coord    	15
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @191
+			    location   	(3031, 1519)
+			    line_color 	3342489
+			    InterObjView 	@189
+			    height     	105
+			    y_coord    	15
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @192
+			    location   	(3031, 1834)
+			    line_color 	3342489
+			    InterObjView 	@189
+			    height     	131
+			    y_coord    	41
+			    Nested     	FALSE))
+		    (object InterObjView "Email Sender" @193
+			location   	(3497, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@193
+			    location   	(3497, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Email Sender")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0AEE2007B"
+			width      	300
+			height     	2222
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @194
+			    location   	(3497, 2297)
+			    line_color 	3342489
+			    InterObjView 	@193
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterMessView "Fill registration form" @195
+			location   	(0, 431)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @196
+			    Parent_View 	@195
+			    location   	(590, 387)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AC970249"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	388
+			    justify    	0
+			    label      	"Fill registration form"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@170
+			supplier   	@173
+			Focus_Src  	@171
+			Focus_Entry 	@174
+			origin     	(290, 431)
+			terminus   	(890, 431)
+			ordinal    	0)
+		    (object InterMessView "Send registration request" @197
+			location   	(0, 536)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @198
+			    Parent_View 	@197
+			    location   	(1186, 492)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0ACC102E0"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	491
+			    justify    	0
+			    label      	"Send registration request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@173
+			supplier   	@176
+			Focus_Src  	@174
+			Focus_Entry 	@177
+			origin     	(921, 536)
+			terminus   	(1451, 536)
+			ordinal    	1)
+		    (object SelfMessView "Create registration request" @199
+			location   	(0, 641)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @200
+			    Parent_View 	@199
+			    location   	(1753, 598)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0ACE30194"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	516
+			    justify    	0
+			    label      	"Create registration request"
+			    pctDist    	1.806667
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@176
+			supplier   	@176
+			Focus_Src  	@177
+			Focus_Entry 	@178
+			origin     	(1483, 641)
+			terminus   	(1633, 641)
+			ordinal    	2)
+		    (object InterMessView "Check user email registered" @201
+			location   	(0, 981)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @202
+			    Parent_View 	@201
+			    location   	(1818, 937)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AD300179"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	544
+			    justify    	0
+			    label      	"Check user email registered"
+			    pctDist    	0.500741
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@176
+			supplier   	@184
+			Focus_Src  	@178
+			Focus_Entry 	@185
+			origin     	(1482, 981)
+			terminus   	(2155, 981)
+			ordinal    	5)
+		    (object InterMessView "Email found" @203
+			location   	(0, 1122)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @204
+			    Parent_View 	@203
+			    location   	(1819, 1078)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AD5601F9"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	260
+			    justify    	0
+			    label      	"Email found"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@184
+			supplier   	@176
+			Focus_Src  	@185
+			Focus_Entry 	@180
+			origin     	(2155, 1122)
+			terminus   	(1483, 1122)
+			ordinal    	6)
+		    (object SelfMessView "Approve registration request" @205
+			location   	(0, 1312)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @206
+			    Parent_View 	@205
+			    location   	(1775, 1269)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AD730210"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	535
+			    justify    	0
+			    label      	"Approve registration request"
+			    pctDist    	1.946667
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@176
+			supplier   	@176
+			Focus_Src  	@178
+			Focus_Entry 	@181
+			origin     	(1483, 1312)
+			terminus   	(1633, 1312)
+			ordinal    	7)
+		    (object InterMessView "Create user" @207
+			location   	(0, 1729)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @208
+			    Parent_View 	@207
+			    location   	(1883, 1686)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0ADC70331"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	269
+			    justify    	0
+			    label      	"Create user"
+			    pctDist    	0.364461
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@176
+			supplier   	@186
+			Focus_Src  	@181
+			Focus_Entry 	@187
+			origin     	(1482, 1729)
+			terminus   	(2584, 1729)
+			ordinal    	10)
+		    (object InterMessView "Insert rows" @209
+			location   	(0, 1834)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @210
+			    Parent_View 	@209
+			    location   	(2815, 1790)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0ADE70358"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	256
+			    justify    	0
+			    label      	"Insert rows"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@186
+			supplier   	@189
+			Focus_Src  	@187
+			Focus_Entry 	@192
+			origin     	(2615, 1834)
+			terminus   	(3015, 1834)
+			ordinal    	11)
+		    (object InterMessView "Return results" @211
+			location   	(0, 1965)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @212
+			    Parent_View 	@211
+			    location   	(2816, 1921)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0ADF5018E"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	309
+			    justify    	0
+			    label      	"Return results"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@189
+			supplier   	@186
+			Focus_Src  	@192
+			Focus_Entry 	@188
+			origin     	(3015, 1965)
+			terminus   	(2616, 1965)
+			ordinal    	12)
+		    (object InterMessView "Return user id" @213
+			location   	(0, 2070)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @214
+			    Parent_View 	@213
+			    location   	(2034, 2026)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AE180312"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	319
+			    justify    	0
+			    label      	"Return user id"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@186
+			supplier   	@176
+			Focus_Src  	@187
+			Focus_Entry 	@183
+			origin     	(2584, 2070)
+			terminus   	(1483, 2070)
+			ordinal    	13)
+		    (object InterMessView "User registered" @215
+			location   	(0, 2402)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @216
+			    Parent_View 	@215
+			    location   	(1187, 2358)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AF1F0289"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	341
+			    justify    	0
+			    label      	"User registered"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@176
+			supplier   	@173
+			Focus_Src  	@181
+			Focus_Entry 	@175
+			origin     	(1451, 2402)
+			terminus   	(922, 2402)
+			ordinal    	15)
+		    (object InterMessView "Redirect user to Home page" @217
+			location   	(0, 2507)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @218
+			    Parent_View 	@217
+			    location   	(592, 2464)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AF53027D"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	566
+			    justify    	0
+			    label      	"Redirect user to Home page"
+			    pctDist    	0.497727
+			    height     	44
+			    orientation 	1)
+			line_color 	3342489
+			client     	@173
+			supplier   	@170
+			Focus_Src  	@175
+			Focus_Entry 	@172
+			origin     	(890, 2507)
+			terminus   	(291, 2507)
+			ordinal    	16)
+		    (object InterMessView "Send email" @219
+			location   	(0, 2297)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @220
+			    Parent_View 	@219
+			    location   	(2419, 2258)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0AFD00071"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	269
+			    justify    	0
+			    label      	"Send email"
+			    pctDist    	0.469235
+			    height     	40
+			    orientation 	0)
+			line_color 	3342489
+			client     	@176
+			supplier   	@193
+			Focus_Src  	@181
+			Focus_Entry 	@194
+			origin     	(1482, 2297)
+			terminus   	(3481, 2297)
+			ordinal    	14)
+		    (object InterMessView "Save registration request" @221
+			location   	(0, 771)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @222
+			    Parent_View 	@221
+			    location   	(2248, 727)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B32302D8"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	485
+			    justify    	0
+			    label      	"Save registration request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@176
+			supplier   	@189
+			Focus_Src  	@178
+			Focus_Entry 	@190
+			origin     	(1482, 771)
+			terminus   	(3015, 771)
+			ordinal    	3)
+		    (object InterMessView "Create results" @223
+			location   	(0, 876)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @224
+			    Parent_View 	@223
+			    location   	(2249, 832)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B336019C"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	298
+			    justify    	0
+			    label      	"Create results"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@189
+			supplier   	@176
+			Focus_Src  	@190
+			Focus_Entry 	@179
+			origin     	(3015, 876)
+			terminus   	(1483, 876)
+			ordinal    	4)
+		    (object InterMessView "Update registration request" @225
+			location   	(0, 1519)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @226
+			    Parent_View 	@225
+			    location   	(2247, 1476)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B3630021"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	523
+			    justify    	0
+			    label      	"Update registration request"
+			    pctDist    	0.499022
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@176
+			supplier   	@189
+			Focus_Src  	@181
+			Focus_Entry 	@191
+			origin     	(1482, 1519)
+			terminus   	(3015, 1519)
+			ordinal    	8)
+		    (object InterMessView "Update results" @227
+			location   	(0, 1624)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @228
+			    Parent_View 	@227
+			    location   	(2249, 1580)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B374034C"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	329
+			    justify    	0
+			    label      	"Update results"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@189
+			supplier   	@176
+			Focus_Src  	@191
+			Focus_Entry 	@182
+			origin     	(3015, 1624)
+			terminus   	(1483, 1624)
+			ordinal    	9)
+		    (object Destruction_Marker @229
+			Parent_View 	@193
+			location   	(3497, 2447)
+			line_color 	3342489
+			fill_color 	13434879)
+		    (object Destruction_Marker @230
+			Parent_View 	@186
+			location   	(2600, 2130)
+			line_color 	3342489
+			fill_color 	13434879)
+		    (object Destruction_Marker @231
+			Parent_View 	@184
+			location   	(2171, 1272)
+			line_color 	3342489
+			fill_color 	13434879)))
+	    (object InteractionDiagram "RegistrationSequenceDiagram2"
+		mechanism_ref 	@4
+		quid       	"5AF0B0080322"
+		title      	"RegistrationSequenceDiagram2"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	194
+		origin_y   	3742
+		items      	(list diagram_item_list
+		    (object InterObjView "$UNNAMED$36" @232
+			location   	(275, 309)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@232
+			    location   	(275, 334)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B010020C"
+			width      	300
+			height     	2828
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @233
+			    location   	(275, 389)
+			    line_color 	3342489
+			    InterObjView 	@232
+			    height     	1692
+			    y_coord    	1602
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @234
+			    location   	(275, 1981)
+			    line_color 	3342489
+			    InterObjView 	@232
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Registration form" @235
+			location   	(906, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@235
+			    location   	(906, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Registration form")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B0100214"
+			width      	300
+			height     	2912
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @236
+			    location   	(906, 431)
+			    line_color 	3342489
+			    InterObjView 	@235
+			    height     	1356
+			    y_coord    	1266
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @237
+			    location   	(906, 1771)
+			    line_color 	3342489
+			    InterObjView 	@235
+			    height     	210
+			    y_coord    	120
+			    Nested     	TRUE))
+		    (object InterObjView "Authentication Service" @238
+			location   	(1467, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@238
+			    location   	(1467, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Authentication Service")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B0100219"
+			width      	300
+			height     	2912
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @239
+			    location   	(1467, 536)
+			    line_color 	3342489
+			    InterObjView 	@238
+			    height     	195
+			    y_coord    	105
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @240
+			    location   	(1467, 666)
+			    line_color 	3342489
+			    InterObjView 	@238
+			    height     	2381
+			    y_coord    	2291
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @241
+			    location   	(1467, 876)
+			    line_color 	3342489
+			    InterObjView 	@238
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @242
+			    location   	(1467, 1221)
+			    line_color 	3342489
+			    InterObjView 	@238
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @243
+			    location   	(1467, 2191)
+			    line_color 	3342489
+			    InterObjView 	@238
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @244
+			    location   	(1467, 2672)
+			    line_color 	3342489
+			    InterObjView 	@238
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Domain Repository" @245
+			location   	(2171, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@245
+			    location   	(2171, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Domain Repository")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B0100239"
+			width      	300
+			height     	1164
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @246
+			    location   	(2171, 1095)
+			    line_color 	3342489
+			    InterObjView 	@245
+			    height     	126
+			    y_coord    	36
+			    Nested     	FALSE))
+		    (object InterObjView "$UNNAMED$37" @247
+			location   	(2556, 272)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@247
+			    location   	(2556, 297)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B03C022D"
+			width      	300
+			height     	2865
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @248
+			    location   	(2556, 1536)
+			    line_color 	3342489
+			    InterObjView 	@247
+			    height     	195
+			    y_coord    	105
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @249
+			    location   	(2556, 1666)
+			    line_color 	3342489
+			    InterObjView 	@247
+			    height     	525
+			    y_coord    	435
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @250
+			    location   	(2556, 2086)
+			    line_color 	3342489
+			    InterObjView 	@247
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "Account Repository" @251
+			location   	(2984, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@251
+			    location   	(2984, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Account Repository")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B010022B"
+			width      	300
+			height     	2507
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @252
+			    location   	(2984, 2326)
+			    line_color 	3342489
+			    InterObjView 	@251
+			    height     	346
+			    y_coord    	256
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @253
+			    location   	(2984, 2567)
+			    line_color 	3342489
+			    InterObjView 	@251
+			    height     	1
+			    y_coord    	-89
+			    Nested     	TRUE))
+		    (object InterObjView "SQL Database" @254
+			location   	(3415, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@254
+			    location   	(3415, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"SQL Database")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B0100231"
+			width      	300
+			height     	2912
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @255
+			    location   	(3415, 771)
+			    line_color 	3342489
+			    InterObjView 	@254
+			    height     	105
+			    y_coord    	15
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @256
+			    location   	(3415, 1876)
+			    line_color 	3342489
+			    InterObjView 	@254
+			    height     	300
+			    y_coord    	210
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @257
+			    location   	(3415, 2431)
+			    line_color 	3342489
+			    InterObjView 	@254
+			    height     	226
+			    y_coord    	136
+			    Nested     	FALSE))
+		    (object InterObjView "Email Sender" @258
+			location   	(3881, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@258
+			    location   	(3881, 225)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Email Sender")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF0B0100237"
+			width      	300
+			height     	2882
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @259
+			    location   	(3881, 2957)
+			    line_color 	3342489
+			    InterObjView 	@258
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterMessView "Fill registration form" @260
+			location   	(0, 431)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @261
+			    Parent_View 	@260
+			    location   	(590, 387)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B010020E"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	398
+			    justify    	0
+			    label      	"Fill registration form"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@232
+			supplier   	@235
+			Focus_Src  	@233
+			Focus_Entry 	@236
+			origin     	(290, 431)
+			terminus   	(890, 431)
+			ordinal    	0)
+		    (object InterMessView "Send registration request" @262
+			location   	(0, 536)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @263
+			    Parent_View 	@262
+			    location   	(1186, 492)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B0100212"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	491
+			    justify    	0
+			    label      	"Send registration request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@235
+			supplier   	@238
+			Focus_Src  	@236
+			Focus_Entry 	@239
+			origin     	(921, 536)
+			terminus   	(1451, 536)
+			ordinal    	1)
+		    (object SelfMessView "Create registration request" @264
+			location   	(0, 641)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @265
+			    Parent_View 	@264
+			    location   	(1753, 598)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B0100217"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	516
+			    justify    	0
+			    label      	"Create registration request"
+			    pctDist    	1.806667
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@238
+			supplier   	@238
+			Focus_Src  	@239
+			Focus_Entry 	@240
+			origin     	(1483, 641)
+			terminus   	(1633, 641)
+			ordinal    	2)
+		    (object InterMessView "Send request" @266
+			location   	(0, 1536)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @267
+			    Parent_View 	@266
+			    location   	(2011, 1492)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B0610049"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	297
+			    justify    	0
+			    label      	"Send request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@238
+			supplier   	@247
+			Focus_Src  	@240
+			Focus_Entry 	@248
+			origin     	(1482, 1536)
+			terminus   	(2540, 1536)
+			ordinal    	7)
+		    (object SelfMessView "Approve request" @268
+			location   	(0, 1641)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @269
+			    Parent_View 	@268
+			    location   	(2757, 1592)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B07D00F6"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	344
+			    justify    	0
+			    label      	"Approve request"
+			    pctDist    	1.233333
+			    height     	50
+			    orientation 	0)
+			line_color 	3342489
+			client     	@247
+			supplier   	@247
+			Focus_Src  	@248
+			Focus_Entry 	@249
+			origin     	(2572, 1641)
+			terminus   	(2722, 1641)
+			ordinal    	8)
+		    (object InterMessView "Registration approved" @270
+			location   	(0, 2191)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @271
+			    Parent_View 	@270
+			    location   	(2012, 2147)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B08F0231"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	438
+			    justify    	0
+			    label      	"Registration approved"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@247
+			supplier   	@238
+			Focus_Src  	@249
+			Focus_Entry 	@243
+			origin     	(2540, 2191)
+			terminus   	(1483, 2191)
+			ordinal    	13)
+		    (object InterMessView "Create user" @272
+			location   	(0, 2326)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @273
+			    Parent_View 	@272
+			    location   	(2225, 2282)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B1070304"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	269
+			    justify    	0
+			    label      	"Create user"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@238
+			supplier   	@251
+			Focus_Src  	@240
+			Focus_Entry 	@252
+			origin     	(1482, 2326)
+			terminus   	(2968, 2326)
+			ordinal    	14)
+		    (object InterMessView "Insert rows" @274
+			location   	(0, 2431)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @275
+			    Parent_View 	@274
+			    location   	(3199, 2387)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B1420351"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	266
+			    justify    	0
+			    label      	"Insert rows"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@251
+			supplier   	@254
+			Focus_Src  	@252
+			Focus_Entry 	@257
+			origin     	(2999, 2431)
+			terminus   	(3399, 2431)
+			ordinal    	15)
+		    (object InterMessView "Return results" @276
+			location   	(0, 2567)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @277
+			    Parent_View 	@276
+			    location   	(3200, 2523)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B14E01C6"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	316
+			    justify    	0
+			    label      	"Return results"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@254
+			supplier   	@251
+			Focus_Src  	@257
+			Focus_Entry 	@253
+			origin     	(3399, 2567)
+			terminus   	(3000, 2567)
+			ordinal    	16)
+		    (object InterMessView "Return user id" @278
+			location   	(0, 2672)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @279
+			    Parent_View 	@278
+			    location   	(2227, 2630)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B1620232"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	319
+			    justify    	0
+			    label      	"Return user id"
+			    pctDist    	0.499663
+			    height     	43
+			    orientation 	1)
+			line_color 	3342489
+			client     	@251
+			supplier   	@238
+			Focus_Src  	@252
+			Focus_Entry 	@244
+			origin     	(2968, 2672)
+			terminus   	(1483, 2672)
+			ordinal    	17)
+		    (object InterMessView "Send email" @280
+			location   	(0, 2957)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @281
+			    Parent_View 	@280
+			    location   	(2673, 2913)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B17C02D3"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	272
+			    justify    	0
+			    label      	"Send email"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@238
+			supplier   	@258
+			Focus_Src  	@240
+			Focus_Entry 	@259
+			origin     	(1482, 2957)
+			terminus   	(3865, 2957)
+			ordinal    	18)
+		    (object InterMessView "Check user email registered" @282
+			location   	(0, 1095)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @283
+			    Parent_View 	@282
+			    location   	(1818, 1051)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B21400CD"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	544
+			    justify    	0
+			    label      	"Check user email registered"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@238
+			supplier   	@245
+			Focus_Src  	@240
+			Focus_Entry 	@246
+			origin     	(1482, 1095)
+			terminus   	(2155, 1095)
+			ordinal    	5)
+		    (object InterMessView "Email not found" @284
+			location   	(0, 1221)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @285
+			    Parent_View 	@284
+			    location   	(1819, 1177)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B23A0180"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	326
+			    justify    	0
+			    label      	"Email not found"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@245
+			supplier   	@238
+			Focus_Src  	@246
+			Focus_Entry 	@242
+			origin     	(2155, 1221)
+			terminus   	(1483, 1221)
+			ordinal    	6)
+		    (object InterMessView "Registration request sent" @286
+			location   	(0, 1771)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @287
+			    Parent_View 	@286
+			    location   	(1187, 1727)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B2460236"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	503
+			    justify    	0
+			    label      	"Registration request sent"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@238
+			supplier   	@235
+			Focus_Src  	@240
+			Focus_Entry 	@237
+			origin     	(1451, 1771)
+			terminus   	(922, 1771)
+			ordinal    	9)
+		    (object InterMessView "Redirect to Confiramtion page" @288
+			location   	(0, 1981)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @289
+			    Parent_View 	@288
+			    location   	(591, 1937)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B271016A"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	581
+			    justify    	0
+			    label      	"Redirect to Confiramtion page"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@235
+			supplier   	@232
+			Focus_Src  	@237
+			Focus_Entry 	@234
+			origin     	(890, 1981)
+			terminus   	(291, 1981)
+			ordinal    	11)
+		    (object InterMessView "Save request" @290
+			location   	(0, 771)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @291
+			    Parent_View 	@290
+			    location   	(2440, 727)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B2A20034"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	282
+			    justify    	0
+			    label      	"Save request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@238
+			supplier   	@254
+			Focus_Src  	@240
+			Focus_Entry 	@255
+			origin     	(1482, 771)
+			terminus   	(3399, 771)
+			ordinal    	3)
+		    (object InterMessView "Return results" @292
+			location   	(0, 876)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @293
+			    Parent_View 	@292
+			    location   	(2441, 832)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B2B00391"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	298
+			    justify    	0
+			    label      	"Return results"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@254
+			supplier   	@238
+			Focus_Src  	@255
+			Focus_Entry 	@241
+			origin     	(3399, 876)
+			terminus   	(1483, 876)
+			ordinal    	4)
+		    (object Destruction_Marker @294
+			Parent_View 	@258
+			location   	(3881, 3107)
+			line_color 	3342489
+			fill_color 	13434879)
+		    (object InterMessView "Update registration request" @295
+			location   	(0, 1876)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @296
+			    Parent_View 	@295
+			    location   	(2985, 1832)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B43402FE"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	544
+			    justify    	0
+			    label      	"Update registration request"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@247
+			supplier   	@254
+			Focus_Src  	@249
+			Focus_Entry 	@256
+			origin     	(2571, 1876)
+			terminus   	(3399, 1876)
+			ordinal    	10)
+		    (object InterMessView "Update results" @297
+			location   	(0, 2086)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @298
+			    Parent_View 	@297
+			    location   	(2987, 2045)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"5AF0B4420172"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	329
+			    justify    	0
+			    label      	"Update results"
+			    pctDist    	0.499395
+			    height     	42
+			    orientation 	1)
+			line_color 	3342489
+			client     	@254
+			supplier   	@247
+			Focus_Src  	@256
+			Focus_Entry 	@250
+			origin     	(3399, 2086)
+			terminus   	(2572, 2086)
+			ordinal    	12)
+		    (object Destruction_Marker @299
+			Parent_View 	@251
+			location   	(2984, 2732)
+			line_color 	3342489
+			fill_color 	13434879)
+		    (object Destruction_Marker @300
+			Parent_View 	@245
+			location   	(2171, 1389)
+			line_color 	3342489
+			fill_color 	13434879)))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"5AEF18C002B5"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"5AEF18C002B7"
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main"
+		quid       	"5AEF18C002BC"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"5AEF18C002B7"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"5AEF18C002CF"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list)))
+	category   	"Logical View"
+	quidu      	"5AEF18C002B5")
+    process_structure 	(object Processes
+	quid       	"5AEF18C002B8"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"5AEF18C002BA"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	attributes 	(list Attribute_Set
+	    (object Attribute
+		tool       	"framework"
+		name       	"HiddenTool"
+		value      	FALSE))
+	quid       	"5AEF18C002B9"))

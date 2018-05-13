@@ -1,0 +1,67 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<div class="col-md-10" ng-app="app.instruments" ng-controller="EditInstrumentsCtrl as vm">
+    <h3 style="margin-top:0;" ng-cloak>{{vm.pageMode()}} Instrument</h3>
+    <form name="form" class="form-horizontal" ng-submit="vm.submit()">
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtName">Instrument Name:</label>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-error" ng-bind="vm.instrument.Error.Name"></span>
+                <input class="form-control" id="txtName" style="max-width:59%;" type="text" ng-model="vm.instrument.Name" ng-show="vm.editMode" required />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.instrument.Name"></p>
+            </div>
+            @if (User.HasPermissions(Permission.CreateEditInstruments))
+            {
+                <div class="col-md-2">
+                    <input type="button" id="pageMode" ng-value="vm.pageMode()" class="btn btn-default" ng-disabled="vm.permitView()" ng-click="vm.viewModeChange()"/>
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="max-amidites">Maximum Amidites:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="max-amidites" style="max-width:59%;" type="text" ng-model="vm.instrument.MaxAmidites" ng-show="vm.editMode" required />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.instrument.MaxAmidites"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-5" ng-show="!vm.instrument.HasAssociatedCompounds">
+                <input type="button" value="Delete Instrument" class="btn btn-default" ng-show="vm.editMode" ng-click="vm.showDeleteModal()" />
+            </div>
+            @*<div class="col-md-2" ng-show="vm.instrument.HasAssociatedCompounds">
+                <input type="checkbox" style="margin-right:5px;" ng-model="vm.instrument.IsActive" ng-disabled="!vm.editMode" />
+                Active Instrument
+            </div>*@
+        </div>
+        <div class="row" ng-show="vm.editMode">
+            <div class="col-md-2 col-md-offset-5">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" ng-disabled="!vm.permitSubmit()" />
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" ng-disabled="!form.$dirty" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/utils.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    <script src="~/Scripts/angular-app/widgets/confirmModalCtrl.js"></script>
+    <script src="~/Scripts/angular-app/widgets/deleteModalService.js"></script>
+
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    <script src="~/Scripts/angular-app/services/lookupService.js"></script>
+    
+    @Scripts.Render("~/bundles/edit-instrument")
+}

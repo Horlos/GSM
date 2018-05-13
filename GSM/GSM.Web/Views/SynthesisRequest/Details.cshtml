@@ -1,0 +1,162 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/SynthesisRequest/_Layout.cshtml";
+}
+
+<div class="container-fluid" ng-app="synthesisRequestApp" ng-controller="DetailSynthesisRequestCtrl as ctrl">
+    <div class="row">
+        <h3 style="margin-top:0;">Detail Synthesis Request</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="text-align:left;">Synthesis Request ID:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control"
+                               ng-model="ctrl.formData.Id" ng-disabled="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-horizontal">
+                <div class="form-group" ng-cloak>
+                    <label class="col-md-3 control-label" style="text-align:left;">Request Date:</label>
+                    <div class="col-md-5">
+                        <input type="text"
+                               name="RequestDate"
+                               class="form-control"
+                               value="{{ctrl.formData.RequestDate | amDateFormat:'MM/DD/YYYY'}}"
+                               ng-disabled="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="text-align:left;">Status:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control"
+                               ng-model="ctrl.formData.Status.Description"
+                               ng-disabled="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="row  form-horizontal">
+                <div class="form-group" ng-cloak>
+                    <label class="col-md-3 control-label" style="text-align:left;">Need By Date:</label>
+                    <div class="col-md-5">
+                        <input type="text"
+                               class="form-control"
+                               value="{{ctrl.formData.Needed | amDateFormat:'MM/DD/YYYY'}}"
+                               ng-disabled="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="text-align:left;">Set Detail:</label>
+                    <div class="col-md-5">
+                        <textarea class="form-control"
+                                  ng-model="ctrl.formData.SetDetail"
+                                  ng-disabled="true"
+                                  rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="text-align:left;">Notes:</label>
+                    <div class="col-md-5">
+                        <textarea class="form-control"
+                                  ng-model="ctrl.formData.Notes"
+                                  ng-disabled="true"
+                                  rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" style="text-align:left;">Requested By:</label>
+                    <div class="col-md-5">
+                        <textarea class="form-control"
+                                  ng-model="ctrl.formData.RequestedBy"
+                                  ng-disabled="true"
+                                  rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 panel panel-default">
+            <label class="label label-default" style="position:relative;top:-10px;left:5px;">Strands</label>
+            <div class="row">
+                <div class="grid col-md-8"
+                     style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                     ui-grid="ctrl.selectedSenseStrands"
+                     ui-grid-resize-columns
+                     ui-grid-selection>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-md-offset-1 panel panel-default">
+            <label class="label label-default" style="position:relative;top:-10px;left:5px;">Associated Material Requests</label>
+            <div class="row">
+                <div class="grid col-md-8"
+                     style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                     ui-grid="ctrl.selectedMaterialRequest"
+                     ui-grid-resize-columns
+                     ui-grid-selection>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-cloak>
+        <div class="row"><span class="text-danger field-validation-error col-md-2 col-md-offset-2" ng-bind="ctrl.submitMessage"></span></div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-7">
+                <div class="btn-group">
+                    @if (User.HasPermissions(Permission.CreateSynthesisRequest) || User.HasPermissions(Permission.UpdateSynthesisRequestStatus))
+                    {
+                        <input type="button" id="edit" value="Edit" class="btn btn-success btn-primary center-block"
+                               ng-click="ctrl.editRequest()" ng-disabled="!ctrl.canEdit" />
+                    }
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default"
+                           ng-click="ctrl.cancelChanges()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angularMoment")
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/Custom/Utils.js"></script>
+
+    <script src="~/Scripts/Custom/UserSettings.js"></script>
+    <script src="~/Scripts/angular-app/AppService.js"></script>
+    <script src="~/Scripts/angular-app/synthesisRequest/services/SynthesisRequestService.js"></script>
+
+    <script src="~/Scripts/angular-app/synthesisRequest/SynthesisRequestApp.js"></script>
+    <script src="~/Scripts/angular-app/synthesisRequest/controllers/DetailSynthesisRequestCtrl.js"></script>
+}
+
+
+

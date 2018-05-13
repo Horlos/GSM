@@ -1,0 +1,115 @@
+﻿<ng-form name="form" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-5 control-label">Initiated Date:</label>
+        <div class="col-md-6">
+            <p class="input-group">
+                <input type="text"
+                       name="initiatedDate"
+                       class="form-control"
+                       ng-class="{ 'invalid': isFormSubmitted && form.initiatedDate.$invalid }"
+                       uib-datepicker-popup=""
+                       ng-model="model.InitiatedDate"
+                       is-open="vm.isDatePickerOpened"
+                       datepicker-options=""
+                       date-disabled=""
+                       close-text="Close"
+                       required />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="vm.selectDate()">
+                        <i class="">Select...</i>
+                    </button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">Position:</label>
+        <div class="col-md-6">
+            <input name="position"
+                   class="form-control"
+                   ng-class="{ 'invalid': isFormSubmitted && form.position.$invalid }"
+                   ng-model="model.Position"
+                   required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">Run ID:</label>
+        <div class="col-md-6">
+            <input name="runId"
+                   class="form-control"
+                   ng-class="{ 'invalid': isFormSubmitted && form.runId.$invalid }"
+                   ng-model="model.RunId"
+                   required />
+            <p class="text-danger field-validation-error" ng-bind="model.Error.ArrowHeadBatchNumber"></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">Synthesis Scale (μmol):</label>
+        <div class="col-md-6">
+            <input type="number"
+                   name="synthesisScale"
+                   class="form-control"
+                   ng-model="model.SynthesisScale" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">% FLP:</label>
+        <div class="col-md-6">
+            <input type="number"
+                   step="0.01"
+                   name="purity"
+                   class="form-control"
+                   ng-class="{ 'invalid': isFormSubmitted && form.purity.$invalid }"
+                   ng-model="model.Purity"
+                   min="1"
+                   max="100"
+                   required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">Amount Prepared (mg):</label>
+        <div class="col-md-6">
+            <input type="number"
+                   step="0.1"
+                   name="amountPrepared"
+                   class="form-control"
+                   ng-class="{ 'invalid': isFormSubmitted && form.amountPrepared.$invalid }"
+                   ng-model="model.AmountPrepared"
+                   min="0"
+                   required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">Prepared Volume (μl):</label>
+        <div class="col-md-6">
+            <input type="number"
+                   step="0.1"
+                   name="preparedVolume"
+                   class="form-control"
+                   ng-class="{ 'invalid': isFormSubmitted && form.preparedVolume.$invalid}"
+                   ng-model="model.PreparedVolume"
+                   min="1"
+                   required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">Misc Volume Used (μl):</label>
+        <div class="col-md-6">
+            <input type="number"
+                   step="0.1"
+                   name="miscVolumeUsed"
+                   class="form-control"
+                   ng-class="{ 'invalid': isFormSubmitted && form.miscVolumeUsed.$invalid}"
+                   ng-model="model.MiscVolumeUsed"
+                   min="0"
+                   max="{{model.PreparedVolume || 0}}"
+                   required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-5 control-label">Notes:</label>
+        <div class="col-md-6">
+            <textarea class="form-control" rows="5" ng-model="model.Notes"></textarea>
+        </div>
+    </div>
+</ng-form>

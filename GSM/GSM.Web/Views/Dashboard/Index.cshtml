@@ -1,0 +1,127 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AngularLayout.cshtml";
+}
+
+@section styles
+{
+    <link href="~/Content/Styles/Dashboard/dashboard.css" rel="stylesheet" />
+}
+
+<div class="container" ng-app="app.dashboard" ng-controller="DashboardCtrl as vm">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-lg-10">
+                <h4 ng-bind="vm.materialRequestsTitle"></h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" style="margin-bottom:5px;" class="form-control" placeholder="search" ng-model="vm.materialRequestSearch" ng-enter="vm.searchMaterialsRequests()" />
+                    </div>
+                    @if (User.HasPermissions(Permission.CreateMaterialRequest))
+                    {
+                        <div class="col-md-4" style="margin-top: 20px;">
+                            @Html.ActionLink("Add New", "Create", "MaterialRequest")
+                        </div>
+                    }
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-group list-group" id="materials-requests-group">
+                        <div class="panel list-group-item" ng-repeat="(status, requests) in vm.materialsRequestsMap">
+                            <button type="button"
+                                    class="list-group-item"
+                                    data-toggle="collapse"
+                                    data-parent="#materials-requests-group"
+                                    data-target="#materials-requests-{{status}}" ng-cloak>
+                                {{vm.getRequestStatus(status)}}
+                                <span class="badge" ng-bind="requests.length"></span>
+                            </button>
+                            <div id="materials-requests-{{status}}" class="list-group collapse" style="max-height: 110px; overflow-y: scroll;">
+                                <div class="list-group-item" ng-repeat="request in requests">
+                                    <span class="badge badge-info"></span>
+                                    <a ng-href="/MaterialRequest/Details/{{request.Id}}" ng-bind-template="{{request.Id}}  {{request.RequestDate | date:'MM/dd/yyyy'}}"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-lg-10">
+                <h4 ng-bind="vm.synthesisRequestsTitle"></h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" style="margin-bottom:5px;" class="form-control" placeholder="search" ng-model="vm.synthesisRequestSearch" ng-enter="vm.searchSynthesisRequests()" />
+                    </div>
+                    @if (User.HasPermissions(Permission.CreateSynthesisRequest))
+                    {
+                        <div class="col-md-4" style="margin-top: 20px;">
+                            @Html.ActionLink("Add New", "Create", "SynthesisRequest")
+                        </div>
+                    }
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-group list-group" id="synthesis-requests-group">
+                        <div class="panel list-group-item" ng-repeat="(status, requests) in vm.synthesisRequestsMap">
+                            <button type="button"
+                                    class="list-group-item"
+                                    data-toggle="collapse"
+                                    data-parent="#synthesis-requests-group"
+                                    data-target="#synthesis-requests-{{status}}" ng-cloak>
+                                {{vm.getRequestStatus(status)}}
+                                <span class="badge" ng-bind="requests.length"></span>
+                            </button>
+                            <div id="synthesis-requests-{{status}}" class="list-group collapse" style="max-height: 110px; overflow-y:scroll;">
+                                <div class="list-group-item" ng-repeat="request in requests">
+                                    <span class="badge badge-info"></span>
+                                    <a ng-href="/MaterialRequest/Details/{{request.Id}}" ng-bind="request.RequestDate | date:'MM/dd/yyyy'"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <div class="col-lg-8">
+                <h4>Quick Search</h4>
+                <div class="row">
+                    <div class="col-md-5" style="text-align:right;">
+                        <h4>Strands</h4>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" style="margin-bottom:5px;" class="form-control" placeholder="search" ng-model="vm.strandsSearch" ng-enter="vm.searchStrands()" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5" style="text-align:right;">
+                        <h4>Duplexes</h4>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" style="margin-bottom:5px;" class="form-control" placeholder="search" ng-model="vm.duplexesSearch" ng-enter="vm.searchDuplexes()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/angularMoment")
+    <script src="~/Scripts/angular-toastr/angular-toastr.tpls.js"></script>
+
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/enumExtensions.js"></script>
+    <script src="~/Scripts/angular-app/common/ngEnterDirective.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+    @Scripts.Render("~/bundles/dashboard")
+}

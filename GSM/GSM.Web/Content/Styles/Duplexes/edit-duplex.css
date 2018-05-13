@@ -1,0 +1,38 @@
+﻿#alignment-table {
+    margin-top: 20px;
+}
+
+#alignment-table .mod-structure {
+    min-width: 20px;
+    text-align: center;
+    padding: 0;
+    color: white;
+    background: #CCCCCC;
+    border: none;
+    border-bottom-width: 0;
+}
+
+#alignment-table .axis-position {
+    min-width: 20px;
+    text-align: center;
+    padding: 0;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+#alignment-table .axis-space {
+    min-width: 20px;
+    padding: 0;
+    color: white;
+    border: none;
+}
+
+#alignment-table .cell-content {
+    font-size: small;
+    padding: 3px;
+    min-height: 15px;
+}
+
+#alignment-table .axis-position .cell-content {
+    padding: 0;
+}

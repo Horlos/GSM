@@ -1,0 +1,15 @@
+﻿.active-link {
+    font-weight: bold;
+}
+
+.grid-section {
+    height: 380px;
+}
+
+.header {
+    margin-top: 0;
+}
+
+.selected-nav {
+    font-weight: bold;
+}

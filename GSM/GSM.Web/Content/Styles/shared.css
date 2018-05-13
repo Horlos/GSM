@@ -1,0 +1,43 @@
+﻿.search-clear {
+	position: absolute;
+	right: 10px;
+	top: 0;
+	bottom: 0;
+	height: 14px;
+	margin: auto;
+	font-size: 12px;
+	cursor: pointer;
+	color: #ccc;
+}
+
+	.search-clear:hover {
+		color: #000;
+	}
+
+.search-field {
+	max-width: 280px;
+	position: relative;
+}
+
+	.search-field > input {
+		padding-right: 25px;
+	}
+
+		.search-field > input::-ms-clear {
+			display: none;
+		}
+
+		.search-field > input:invalid ~ .search-clear {
+			display: none;
+		}
+
+.ui-grid-header-cell-wrapper .ui-grid-cell-contents {
+	white-space: inherit !important;
+	text-overflow: inherit !important;
+	overflow: inherit !important;
+}
+
+.grid {
+	height: 525px;
+}
+

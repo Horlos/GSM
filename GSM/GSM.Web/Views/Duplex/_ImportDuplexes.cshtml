@@ -1,0 +1,32 @@
+﻿<div class="row">
+    <h3 class="form-header">Import Duplexes</h3>
+</div>
+<div class="select-file-control">
+    <label class="">Select File: </label>
+    <input type="text" ng-model="vm.uploadedFile.name" style="width: 500px; max-width:100%" disabled />
+    <input type="button"
+           value="..."
+           ngf-select="vm.uploadFile($file, $invalidFiles)" />
+    <div class="process-btn">
+        <button class="btn btn-primary" ng-disabled="!vm.permitProcessFile()" ng-click="vm.processFile()">Process File</button>
+    </div>
+</div>
+<form name="form" class="form-horizontal" ng-cloak>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="imported-duplexes-panel" class="panel panel-default">
+                <label class="label label-default label-top">Verify New Duplexes</label>
+                <div class="panel-body">
+                    <div class="grid" ui-grid="vm.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns ui-grid-selection></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="btn-group">
+                <input type="submit" id="submit" value="Import" class="btn btn-success btn-primary center-block" ng-click="vm.importDuplexes()" ng-disabled="!vm.permitImport()"/>
+            </div>
+        </div>
+    </div>
+</form>

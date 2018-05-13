@@ -1,0 +1,192 @@
+﻿<h3 style="margin-top:0; margin-bottom: 20px;">Create Strand</h3>
+<form name="form" class="form-horizontal">
+    <div class="panel panel-default" ng-show="vm.chosenModStructures.length == 0">
+        <label class="label label-default" style="position:relative;top:-10px;left:5px;">Enter Sequence</label>
+        <div class="panel-body">
+            <input type="button" value="Copy Existing..." ng-click="vm.copyExistingStrand()" class="btn btn-success btn-primary" />
+        </div>
+        <div class="panel-body" style="padding-top: 0; height: 40px;">
+            <table width="100%">
+                <tr>
+                    <td style="width:1px; padding-right: 20px; white-space: nowrap;"><label>OR</label></td>
+                    <td><hr /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-body" style="padding-top: 0; padding-bottom: 0">
+            <label>Enter Manually:</label>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1 col-md-offset-2">
+                <label style="padding-top: 0" class="radio-inline col-md-offset-1">
+                    <input type="radio" name="rdoType" ng-model="vm.entryUsingModified" ng-value="true"/>Modified
+                </label>
+            </div>
+            <div class="col-md-1">
+                <label style="padding-top: 0" class="radio-inline">
+                    <input type="radio" name="rdoType" ng-model="vm.entryUsingModified" ng-value="false"/>Unmodified
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2 control-label">
+                <label for="txtBaseSequence">Sequence(5' -> 3'):</label>
+            </div>
+            <div class="col-md-9">
+                <span class="text-danger field-validation-error" ng-bind="vm.sequenceEnteredError"></span>
+                <input id="txtBaseSequence" maxlength="255" height="100" type="text" style="max-width:100%" class="form-control sequence" ng-model="vm.sequenceEntered" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-1 col-md-offset-9">
+                <input type="button" value="Apply" class="btn btn-success btn-primary" ng-disabled="vm.sequenceEntered.length == 0 || vm.availableSpeciesList.length == 0" ng-click="vm.buildChosenModStructures()" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-show="vm.chosenModStructures.length != 0">
+        <label class="label label-default" style="position:relative;top:-10px;left:5px;">Sequence</label>
+        <div class="row">
+            <label class="col-md-2 col-md-offset-1" style="text-align:left;" for="txtOrientation">Base Sequence (5' -> 3'):</label>
+            <div class="col-md-3">
+                <p ng-show="vm.validChosenModStructureBases()" style="text-align: left;" ng-bind="vm.baseSequence()"></p>
+            </div>
+            <div class="col-md-1 col-md-offset-4">
+                <input type="button" value="Change" class="btn btn-success btn-primary" ng-click="vm.resetForm()" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-2 col-md-offset-1" style="text-align:left;" for="txtOrientation">Sequence (5' -> 3'):</label>
+            <div class="col-md-9">
+                <p ng-show="vm.validChosenModStructures()" style="text-align: left;" ng-bind="vm.modifiedSequence()"></p>
+                <span class="text-danger field-validation-error" ng-bind="vm.strand.Error.Sequence"></span>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-2 col-md-offset-1" style="text-align:left;" for="txtOrientation">Copied From:</label>
+            <div class="col-md-3">
+                <p style="text-align: left;" ng-bind="vm.copiedFrom"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="vm.chosenModStructures.length != 0">
+        <div class="col-md-2 control-label" style="text-align:left;">
+            <label for="txtBaseSequence">Modifier Template:</label>
+        </div>
+        <ul class="list-inline control-label" style="text-align:left; margin-bottom: 10px;">
+            <li><p ng-bind="vm.modifierTemplate.Name"></p></li>
+            <li><input type="button" value="Select..." class="btn btn-sm btn-success btn-primary" ng-disabled="!vm.validChosenModStructureBases()" ng-click="vm.selectModifierTemplate()" /></li>
+        </ul>
+    </div>
+    <div class="row" ng-show="vm.chosenModStructures.length != 0">
+        <div class="col-md-2 control-label">
+            <input type="button" class="btn btn-sm btn-primary" value="+" ng-click="prependModifier()" />
+        </div>
+        <div class="col-md-6" style="width:auto; max-width: 580px; overflow-x: auto; white-space: nowrap;" oncontextmenu="return false">
+            <table class="table">
+                <tr>
+                    <td style="text-align: center; padding: 0; color: black; background: #CCCCCC; border:1px solid black; border-bottom-width: 0" ng-repeat="mod in vm.chosenModStructures" context-menu="vm.menuOptions">
+                        <div ng-style="{'background-color':(mod.OrdinalPosition == vm.strand.FirstPosition?'rgba(255, 255, 0, 0.5)':''),'color':(mod.HasErrors?'rgba(255, 0, 0, 1)':'')}" ng-bind="vm.getPositionRelativeToFirst(mod)"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; padding: 0; color: black; background: #CCCCCC; border:1px solid black; border-bottom-width: 0;border-top-width: 0" ng-repeat="mod in vm.chosenModStructures" context-menu="vm.menuOptions">
+                        <div ng-style="{'background-color':(mod.OrdinalPosition == vm.strand.FirstPosition?'rgba(255, 255, 0, 0.5)':''),'color':(mod.HasErrors?'rgba(255, 0, 0, 1)':'')}" ng-bind="mod.Base"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; padding: 0; color: black; background: #EEEEEE; border:1px solid black; border-top-width: 0; min-width: 20px;" ng-repeat="mod in vm.chosenModStructures" context-menu="vm.menuOptions">
+                        <div ng-style="{'background-color':(mod.OrdinalPosition == vm.strand.FirstPosition?'rgba(255, 255, 0, 0.5)':'')}">
+                            <select ng-model="mod.Name" class="form-control" ng-show="mod == vm.selectedModStructure" ng-change="vm.changeInModStructure(mod)">
+                                <option ng-repeat="option in vm.availableModStructures" value="{{option.Name}}" ng-bind="option.Name"></option>
+                            </select>
+                            <p ng-click="vm.selectedModStructure = mod" ng-show="mod != vm.selectedModStructure" class="form-control-static" ng-bind="mod.Name"></p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-2 control-label" style="text-align:left;">
+            <input type="button" class="btn btn-sm btn-primary" value="+" ng-click="vm.appendModifier()" />
+        </div>
+    </div>
+    <div class="form-group" ng-show="vm.chosenModStructures.length != 0">
+        <div class="col-md-4">
+            <label class="col-md-5" style="text-align:left;" for="txtOrientation">First Position:</label>
+            <div class="col-md-offset-4" style="width: 20px; height: 20px; background-color:rgba(255, 255, 0, 0.5); border:1px solid black;"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="text-align:left;" for="txtTarget">Target:</label>
+                <div class="col-md-6">
+                    <select id="txtTarget" ng-model="vm.strand.Target" ng-options="target.Name for target in vm.availableTargets track by target.Id" class="form-control"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" style="text-align:left;" for="txtOrientation">Orientation:</label>
+                <div class="col-md-6">
+                    <select id="txtOrientation" ng-model="vm.strand.Orientation" ng-options="orientation.Name for orientation in vm.availableOrientations track by orientation.Id" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-6 control-label" style="text-align:left;" for="txtGenomeNumber">Genome #:</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="txtGenomeNumber" type="text" ng-model="vm.strand.GenomeNumber" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label" style="text-align:left;" for="txtGenomePosition">Genome Position:</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="txtGenomePosition" type="text" ng-model="vm.strand.GenomePosition" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-2">
+                <label for="txtNotes">Notes:</label>
+            </div>
+            <div class="col-md-10">
+                <textarea id="txtNotes" cols="50" style="max-width:100%" rows="5" ng-model="vm.strand.Notes"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-md-2 control-label" style="text-align:left;" for="txtParentSequence">Parent Sequence:</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="txtParentSequence" style="max-width: 100%" type="text" ng-model="vm.strand.ParentSequence" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-md-2 control-label" style="text-align:left;">Species:</label>
+                <div class="row" style="margin-top:10px;">
+                    <span ng-repeat="species in vm.availableSpeciesList track by species.Id" style="margin-right: 15px;">
+                        <input type="checkbox" ng-click="vm.selectSpecies(species)" ng-checked="vm.isSpeciesSelected(species)">
+                        <label ng-bind="species.Name"></label>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+            <div class="btn-group">
+                <input type="submit" id="submit" value="Return" class="btn btn-success btn-primary center-block" ng-click="vm.returnStrand()" ng-disabled="!vm.permitSave()" />
+            </div>
+        </div>
+    </div>
+</form>

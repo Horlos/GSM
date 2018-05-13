@@ -1,0 +1,1971 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 2006.0.0.060314"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"5AEF2E67035D"
+    enforceClosureAutoLoad 	FALSE
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	0.250000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	0
+	gridY      	0
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	3
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"5AEF2E67035F"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list
+	    (object Class "Synthetic chemist"
+		quid       	"5AEF2E730187"
+		stereotype 	"Actor")
+	    (object UseCase "Manage strands"
+		quid       	"5AEF2E8A02A9")
+	    (object UseCase "Search existing strands"
+		quid       	"5AEF2EBD01D8"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF2ED502EC"
+			supplier   	"Use Case View::Manage strands"
+			quidu      	"5AEF2E8A02A9"))
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2F060027"
+			supplier   	"Use Case View::Search by name"
+			quidu      	"5AEF2EDB0295")))
+	    (object UseCase "Search by name"
+		quid       	"5AEF2EDB0295"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2F0E023B"
+			stereotype 	"extends"
+			supplier   	"Use Case View::Search existing strands"
+			quidu      	"5AEF2EBD01D8")))
+	    (object UseCase "Search by id"
+		quid       	"5AEF2EF700F8"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2F0A00E0"
+			stereotype 	"extends"
+			supplier   	"Use Case View::Search existing strands"
+			quidu      	"5AEF2EBD01D8")))
+	    (object UseCase "Export to csv"
+		quid       	"5AEF2F610155"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF2F7402A9"
+			stereotype 	"extends"
+			supplier   	"Use Case View::Search existing strands"
+			quidu      	"5AEF2EBD01D8")))
+	    (object UseCase "Create strand"
+		quid       	"5AEF3076016E"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF308D028B"
+			supplier   	"Use Case View::Manage strands"
+			quidu      	"5AEF2E8A02A9"))
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF346500D0"
+			stereotype 	"include"
+			supplier   	"Use Case View::Fill form"
+			quidu      	"5AEF346101CB")))
+	    (object UseCase "Edit strand"
+		quid       	"5AEF310F0226"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF3114025D"
+			supplier   	"Use Case View::Manage strands"
+			quidu      	"5AEF2E8A02A9"))
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF312B02E3"
+			stereotype 	"include"
+			supplier   	"Use Case View::Search existing strands"
+			quidu      	"5AEF2EBD01D8")))
+	    (object UseCase "Copy existing"
+		quid       	"5AEF32A002CF"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF32DA02E2"
+			stereotype 	"extends"
+			supplier   	"Use Case View::Create strand"
+			quidu      	"5AEF3076016E")
+		    (object Dependency_Relationship
+			quid       	"5AEF33770039"
+			stereotype 	"include"
+			supplier   	"Use Case View::Search existing strands"
+			quidu      	"5AEF2EBD01D8")))
+	    (object UseCase "Fill form"
+		quid       	"5AEF346101CB"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF34F30189"
+			stereotype 	"include"
+			supplier   	"Use Case View::Select targets"
+			quidu      	"5AEF34DC03B7")
+		    (object Dependency_Relationship
+			quid       	"5AEF34F600C5"
+			stereotype 	"include"
+			supplier   	"Use Case View::Select species"
+			quidu      	"5AEF34DF027C")
+		    (object Dependency_Relationship
+			quid       	"5AEF34F803E2"
+			stereotype 	"include"
+			supplier   	"Use Case View::Select orientation"
+			quidu      	"5AEF34E20024")))
+	    (object UseCase "Select targets"
+		quid       	"5AEF34DC03B7")
+	    (object UseCase "Select species"
+		quid       	"5AEF34DF027C")
+	    (object UseCase "Select orientation"
+		quid       	"5AEF34E20024")
+	    (object UseCase "Modifier Merge"
+		quid       	"5AEF36FF00B9"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF378303D6"
+			stereotype 	"include"
+			supplier   	"Use Case View::Search existing strands"
+			quidu      	"5AEF2EBD01D8")
+		    (object Dependency_Relationship
+			quid       	"5AEF37B600AC"
+			stereotype 	"include"
+			supplier   	"Use Case View::Search Modifier Template"
+			quidu      	"5AEF379C0113")))
+	    (object UseCase "Manage Strand Batches"
+		quid       	"5AEF371901C1")
+	    (object UseCase "Search Modifier Template"
+		quid       	"5AEF379C0113")
+	    (object UseCase "Change sequence"
+		quid       	"5AEF37EE025E"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF37F20194"
+			stereotype 	"extend"
+			supplier   	"Use Case View::Modifier Merge"
+			quidu      	"5AEF36FF00B9")))
+	    (object UseCase "Create Strand Batch"
+		quid       	"5AEF38D1015E"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF38D4018C"
+			supplier   	"Use Case View::Manage Strand Batches"
+			quidu      	"5AEF371901C1"))
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF39230330"
+			stereotype 	"include"
+			supplier   	"Use Case View::Search existing strands"
+			quidu      	"5AEF2EBD01D8")))
+	    (object UseCase "Split Existing Batch"
+		quid       	"5AEF39410249"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF3944022C"
+			stereotype 	"extend"
+			supplier   	"Use Case View::Create Strand Batch"
+			quidu      	"5AEF38D1015E")
+		    (object Dependency_Relationship
+			quid       	"5AEF398D00A1"
+			stereotype 	"include"
+			supplier   	"Use Case View::Search Strand Batches"
+			quidu      	"5AEF39780334")))
+	    (object UseCase "Combine existing batches"
+		quid       	"5AEF3947015B"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"5AEF394A0259"
+			stereotype 	"extend"
+			supplier   	"Use Case View::Create Strand Batch"
+			quidu      	"5AEF38D1015E")
+		    (object Dependency_Relationship
+			quid       	"5AEF3BC3039A"
+			stereotype 	"include"
+			supplier   	"Use Case View::Search Strand Batches"
+			quidu      	"5AEF39780334")))
+	    (object UseCase "Search Strand Batches"
+		quid       	"5AEF39780334"
+		superclasses 	(list inheritance_relationship_list
+		    (object Inheritance_Relationship
+			quid       	"5AEF397C022E"
+			supplier   	"Use Case View::Manage Strand Batches"
+			quidu      	"5AEF371901C1")))
+	    (object Association "$UNNAMED$0"
+		quid       	"5AEF2EB90120"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$1"
+			quid       	"5AEF2EB903D7"
+			supplier   	"Use Case View::Manage strands"
+			quidu      	"5AEF2E8A02A9"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$2"
+			quid       	"5AEF2EB903D9"
+			supplier   	"Use Case View::Synthetic chemist"
+			quidu      	"5AEF2E730187")))
+	    (object Association "$UNNAMED$3"
+		quid       	"5AEF370F0146"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$4"
+			quid       	"5AEF370F03C1"
+			supplier   	"Use Case View::Modifier Merge"
+			quidu      	"5AEF36FF00B9"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$5"
+			quid       	"5AEF370F03C3"
+			supplier   	"Use Case View::Synthetic chemist"
+			quidu      	"5AEF2E730187")))
+	    (object Association "$UNNAMED$6"
+		quid       	"5AEF371F002D"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$7"
+			quid       	"5AEF371F0249"
+			supplier   	"Use Case View::Manage Strand Batches"
+			quidu      	"5AEF371901C1"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$8"
+			quid       	"5AEF371F024B"
+			supplier   	"Use Case View::Synthetic chemist"
+			quidu      	"5AEF2E730187")))
+	    (object Mechanism @1
+		logical_models 	(list unit_reference_list
+		    (object Object "$UNNAMED$9"
+			quid       	"5AF1F6C10017"
+			class      	"Use Case View::Synthetic chemist"
+			quidu      	"5AEF2E730187"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE))))
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"5AEF2E67037A"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	3037
+		origin_y   	494
+		items      	(list diagram_item_list
+		    (object UseCaseView "Use Case View::Search existing strands" @2
+			location   	(3051, 571)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@2
+			    location   	(3051, 709)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Search existing strands")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2EBD01D8"
+			height     	118)
+		    (object UseCaseView "Use Case View::Search by name" @3
+			location   	(3892, 573)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@3
+			    location   	(3892, 711)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Search by name")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2EDB0295"
+			height     	118)
+		    (object UseCaseView "Use Case View::Search by id" @4
+			location   	(3904, 877)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@4
+			    location   	(3904, 1031)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Search by id")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2EF700F8"
+			width      	256
+			height     	150)
+		    (object DependencyView "" @5
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @6
+			    Parent_View 	@5
+			    location   	(3550, 746)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extends>>"
+			    pctDist    	0.440072
+			    height     	2
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF2F0A00E0"
+			client     	@4
+			supplier   	@2
+			vertices   	(list Points
+			    (3775, 829)
+			    (3262, 643))
+			line_style 	0)
+		    (object DependencyView "" @7
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @8
+			    Parent_View 	@7
+			    location   	(3420, 515)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extends>>"
+			    pctDist    	0.580947
+			    height     	56
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF2F0E023B"
+			client     	@3
+			supplier   	@2
+			vertices   	(list Points
+			    (3782, 570)
+			    (3159, 570))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Export to csv" @9
+			location   	(3371, 166)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@9
+			    location   	(3371, 304)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Export to csv")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2F610155"
+			height     	118)
+		    (object DependencyView "" @10
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @11
+			    Parent_View 	@10
+			    location   	(3091, 356)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extends>>"
+			    pctDist    	0.521665
+			    height     	102
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF2F7402A9"
+			client     	@9
+			supplier   	@2
+			vertices   	(list Points
+			    (3251, 318)
+			    (3093, 513))
+			line_style 	0)
+		    (object NoteView @12
+			location   	(2496, 225)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@12
+			    location   	(2159, 87)
+			    fill_color 	13434879
+			    nlines     	5
+			    max_width  	639
+			    justify    	1
+			    label      	
+|Extension point:
+|Search Results
+|Conditions:
+|User performed search and clicked button "Export to csv"
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	699
+			height     	288)
+		    (object AttachView "" @13
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@10
+			supplier   	@12
+			vertices   	(list Points
+			    (3172, 415)
+			    (2845, 322))
+			line_style 	0)
+		    (object NoteView @14
+			location   	(4139, 185)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@14
+			    location   	(3814, 72)
+			    fill_color 	13434879
+			    nlines     	4
+			    max_width  	615
+			    justify    	1
+			    label      	
+|Extension point:
+|Advanced search
+|Conditions:
+|User activated advanced search
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	675
+			height     	238)
+		    (object AttachView "" @15
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@7
+			supplier   	@14
+			vertices   	(list Points
+			    (3470, 570)
+			    (3930, 304))
+			line_style 	0)
+		    (object AttachView "" @16
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@5
+			supplier   	@14
+			vertices   	(list Points
+			    (3518, 736)
+			    (4002, 304))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Create strand" @17
+			location   	(2849, 1452)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@17
+			    location   	(2849, 1590)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Create strand")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF3076016E"
+			height     	118)
+		    (object UseCaseView "Use Case View::Edit strand" @18
+			location   	(3677, 1144)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@18
+			    location   	(3677, 1282)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Edit strand")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF310F0226"
+			height     	118)
+		    (object DependencyView "" @19
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @20
+			    Parent_View 	@19
+			    location   	(3401, 917)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.520903
+			    height     	19
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF312B02E3"
+			client     	@18
+			supplier   	@2
+			vertices   	(list Points
+			    (3610, 1084)
+			    (3229, 734))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Copy existing" @21
+			location   	(3508, 1450)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@21
+			    location   	(3508, 1588)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Copy existing")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF32A002CF"
+			height     	118)
+		    (object NoteView @22
+			location   	(3808, 2048)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@22
+			    location   	(3586, 1904)
+			    fill_color 	13434879
+			    nlines     	5
+			    max_width  	409
+			    justify    	1
+			    label      	
+|Extension point:
+|Enter sequence
+|Conditions:
+|User clicked button "Copy existing"
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	469
+			height     	300)
+		    (object DependencyView "" @23
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @24
+			    Parent_View 	@23
+			    location   	(3208, 1473)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extends>>"
+			    pctDist    	0.428235
+			    height     	24
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF32DA02E2"
+			client     	@21
+			supplier   	@17
+			vertices   	(list Points
+			    (3396, 1449)
+			    (2957, 1449))
+			line_style 	0)
+		    (object DependencyView "" @25
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @26
+			    Parent_View 	@25
+			    location   	(3381, 1235)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.248598
+			    height     	12
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF33770039"
+			client     	@21
+			supplier   	@2
+			vertices   	(list Points
+			    (3475, 1391)
+			    (3133, 734))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Fill form" @27
+			location   	(2850, 1878)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@27
+			    location   	(2850, 2016)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Fill form")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF346101CB"
+			height     	118)
+		    (object DependencyView "" @28
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @29
+			    Parent_View 	@28
+			    location   	(2849, 1732)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.583017
+			    height     	1
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF346500D0"
+			client     	@17
+			supplier   	@27
+			vertices   	(list Points
+			    (2849, 1615)
+			    (2848, 1818))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Select targets" @30
+			location   	(2565, 2369)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@30
+			    location   	(2565, 2507)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Select targets")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF34DC03B7"
+			height     	118)
+		    (object UseCaseView "Use Case View::Select species" @31
+			location   	(2947, 2370)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@31
+			    location   	(2947, 2508)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Select species")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF34DF027C"
+			height     	118)
+		    (object UseCaseView "Use Case View::Select orientation" @32
+			location   	(3314, 2367)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@32
+			    location   	(3314, 2505)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Select orientation")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF34E20024"
+			height     	118)
+		    (object DependencyView "" @33
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @34
+			    Parent_View 	@33
+			    location   	(2690, 2163)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.510310
+			    height     	7
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF34F30189"
+			client     	@27
+			supplier   	@30
+			vertices   	(list Points
+			    (2774, 2003)
+			    (2596, 2310))
+			line_style 	0)
+		    (object DependencyView "" @35
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @36
+			    Parent_View 	@35
+			    location   	(2930, 2222)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.677634
+			    height     	15
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF34F600C5"
+			client     	@27
+			supplier   	@31
+			vertices   	(list Points
+			    (2879, 2041)
+			    (2932, 2311))
+			line_style 	0)
+		    (object DependencyView "" @37
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @38
+			    Parent_View 	@37
+			    location   	(3048, 2076)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.355261
+			    height     	8
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF34F803E2"
+			client     	@27
+			supplier   	@32
+			vertices   	(list Points
+			    (2923, 1956)
+			    (3258, 2308))
+			line_style 	0)
+		    (object AttachView "" @39
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@22
+			supplier   	@24
+			vertices   	(list Points
+			    (3650, 1897)
+			    (3235, 1499))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Manage strands" @40
+			location   	(2851, 1043)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@40
+			    location   	(2851, 1181)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Manage strands")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF2E8A02A9"
+			height     	118)
+		    (object InheritView "" @41
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF2ED502EC"
+			client     	@2
+			supplier   	@40
+			vertices   	(list Points
+			    (2978, 734)
+			    (2872, 984))
+			line_style 	0)
+		    (object InheritView "" @42
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF308D028B"
+			client     	@17
+			supplier   	@40
+			vertices   	(list Points
+			    (2849, 1394)
+			    (2848, 1206))
+			line_style 	0)
+		    (object InheritView "" @43
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF3114025D"
+			client     	@18
+			supplier   	@40
+			vertices   	(list Points
+			    (3567, 1128)
+			    (2959, 1054))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Modifier Merge" @44
+			location   	(2230, 1542)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@44
+			    location   	(2230, 1680)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Modifier Merge")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF36FF00B9"
+			height     	118)
+		    (object UseCaseView "Use Case View::Manage Strand Batches" @45
+			location   	(1792, 743)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@45
+			    location   	(1792, 881)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Manage Strand Batches")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF371901C1"
+			height     	118)
+		    (object ClassView "Class" "Use Case View::Synthetic chemist" @46
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2248, 1043)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@46
+			    location   	(2248, 1203)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	325
+			    justify    	0
+			    label      	"Synthetic chemist")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"5AEF2E730187"
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$0" @47
+			location   	(2523, 1043)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF2EB90120"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @48
+				Parent_View 	@47
+				location   	(2131, 387)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2EB903D7"
+				client     	@47
+				supplier   	@40
+				vertices   	(list Points
+				    (2523, 1043)
+				    (2741, 1043))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$2" @49
+				Parent_View 	@47
+				location   	(2131, 387)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF2EB903D9"
+				client     	@47
+				supplier   	@46
+				vertices   	(list Points
+				    (2523, 1043)
+				    (2305, 1043))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$3" @50
+			location   	(2234, 1355)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF370F0146"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$4" @51
+				Parent_View 	@50
+				location   	(1485, 278)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF370F03C1"
+				client     	@50
+				supplier   	@44
+				vertices   	(list Points
+				    (2234, 1355)
+				    (2230, 1483))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$5" @52
+				Parent_View 	@50
+				location   	(1485, 278)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF370F03C3"
+				client     	@50
+				supplier   	@46
+				vertices   	(list Points
+				    (2234, 1355)
+				    (2239, 1228))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$6" @53
+			location   	(2097, 942)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF371F002D"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$7" @54
+				Parent_View 	@53
+				location   	(1348, -135)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF371F0249"
+				client     	@53
+				supplier   	@45
+				vertices   	(list Points
+				    (2097, 942)
+				    (2008, 883))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$8" @55
+				Parent_View 	@53
+				location   	(1348, -135)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"5AEF371F024B"
+				client     	@53
+				supplier   	@46
+				vertices   	(list Points
+				    (2097, 942)
+				    (2187, 1002))
+				line_style 	0)))
+		    (object DependencyView "" @56
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @57
+			    Parent_View 	@56
+			    location   	(2438, 1312)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.239903
+			    height     	13
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF378303D6"
+			client     	@44
+			supplier   	@2
+			vertices   	(list Points
+			    (2274, 1484)
+			    (2914, 734))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Search Modifier Template" @58
+			location   	(1749, 1773)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@58
+			    location   	(1749, 1911)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Search Modifier Template")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF379C0113"
+			height     	118)
+		    (object DependencyView "" @59
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @60
+			    Parent_View 	@59
+			    location   	(1949, 1615)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.525644
+			    height     	55
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF37B600AC"
+			client     	@44
+			supplier   	@58
+			vertices   	(list Points
+			    (2096, 1605)
+			    (1857, 1717))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Change sequence" @61
+			location   	(2233, 1970)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@61
+			    location   	(2233, 2108)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Change sequence")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF37EE025E"
+			height     	118)
+		    (object DependencyView "" @62
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @63
+			    Parent_View 	@62
+			    location   	(2218, 1826)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extend>>"
+			    pctDist    	0.412823
+			    height     	12
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF37F20194"
+			client     	@61
+			supplier   	@44
+			vertices   	(list Points
+			    (2229, 1910)
+			    (2230, 1705))
+			line_style 	0)
+		    (object NoteView @64
+			location   	(1802, 2361)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@64
+			    location   	(1511, 2252)
+			    fill_color 	13434879
+			    nlines     	4
+			    max_width  	546
+			    justify    	1
+			    label      	
+|Extension point:
+|Merge Results
+|Conditions:
+|User selected merged strands
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	606
+			height     	231)
+		    (object AttachView "" @65
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@64
+			supplier   	@63
+			vertices   	(list Points
+			    (1891, 2245)
+			    (2196, 1852))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Create Strand Batch" @66
+			location   	(1338, 540)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@66
+			    location   	(1338, 678)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Create Strand Batch")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF38D1015E"
+			height     	118)
+		    (object InheritView "" @67
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF38D4018C"
+			client     	@66
+			supplier   	@45
+			vertices   	(list Points
+			    (1521, 619)
+			    (1681, 691))
+			line_style 	0)
+		    (object DependencyView "" @68
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @69
+			    Parent_View 	@68
+			    location   	(2084, 524)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.427074
+			    height     	28
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF39230330"
+			client     	@66
+			supplier   	@2
+			vertices   	(list Points
+			    (1446, 539)
+			    (2941, 567))
+			line_style 	0)
+		    (object UseCaseView "Use Case View::Split Existing Batch" @70
+			location   	(634, 765)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@70
+			    location   	(634, 903)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Split Existing Batch")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF39410249"
+			height     	118)
+		    (object UseCaseView "Use Case View::Combine existing batches" @71
+			location   	(936, 1374)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@71
+			    location   	(936, 1512)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Combine existing batches")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF3947015B"
+			height     	118)
+		    (object UseCaseView "Use Case View::Search Strand Batches" @72
+			location   	(1790, 1261)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@72
+			    location   	(1790, 1399)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"Search Strand Batches")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AEF39780334"
+			height     	118)
+		    (object InheritView "" @73
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"5AEF397C022E"
+			client     	@72
+			supplier   	@45
+			vertices   	(list Points
+			    (1790, 1203)
+			    (1789, 906))
+			line_style 	0)
+		    (object DependencyView "" @74
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @75
+			    Parent_View 	@74
+			    location   	(1027, 1145)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extend>>"
+			    pctDist    	0.268226
+			    height     	13
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF394A0259"
+			client     	@71
+			supplier   	@66
+			vertices   	(list Points
+			    (960, 1315)
+			    (1255, 703))
+			line_style 	0)
+		    (object DependencyView "" @76
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @77
+			    Parent_View 	@76
+			    location   	(956, 720)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<extend>>"
+			    pctDist    	0.479016
+			    height     	59
+			    orientation 	1)
+			line_color 	3342489
+			quidu      	"5AEF3944022C"
+			client     	@70
+			supplier   	@66
+			vertices   	(list Points
+			    (742, 727)
+			    (1154, 595))
+			line_style 	0)
+		    (object DependencyView "" @78
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @79
+			    Parent_View 	@78
+			    location   	(1318, 984)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.554704
+			    height     	68
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF398D00A1"
+			client     	@70
+			supplier   	@72
+			vertices   	(list Points
+			    (812, 838)
+			    (1678, 1212))
+			line_style 	0)
+		    (object NoteView @80
+			location   	(375, 1222)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@80
+			    location   	(112, 1050)
+			    fill_color 	13434879
+			    nlines     	6
+			    max_width  	490
+			    justify    	1
+			    label      	
+|Extension point:
+|Combined Batches
+|Conditions:
+|User checked box
+|"This batch is combination of existing batches"
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	550
+			height     	356)
+		    (object NoteView @81
+			location   	(487, 234)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@81
+			    location   	(209, 106)
+			    fill_color 	13434879
+			    nlines     	5
+			    max_width  	521
+			    justify    	1
+			    label      	
+|Extension point:
+|Split existing batch
+|Conditions:
+|User clicked button
+|"Split Existing Batch"
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	581
+			height     	269)
+		    (object AttachView "" @82
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@81
+			supplier   	@76
+			vertices   	(list Points
+			    (632, 368)
+			    (948, 661))
+			line_style 	0)
+		    (object AttachView "" @83
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@80
+			supplier   	@75
+			vertices   	(list Points
+			    (650, 1187)
+			    (914, 1157))
+			line_style 	0)
+		    (object DependencyView "" @84
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @85
+			    Parent_View 	@84
+			    location   	(1284, 1298)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<include>>"
+			    pctDist    	0.382466
+			    height     	28
+			    orientation 	0)
+			line_color 	3342489
+			quidu      	"5AEF3BC3039A"
+			client     	@71
+			supplier   	@72
+			vertices   	(list Points
+			    (1044, 1357)
+			    (1679, 1273))
+			line_style 	0)))
+	    (object InteractionDiagram "CreateStrandSequenceDiagram"
+		mechanism_ref 	@1
+		quid       	"5AF1F6B60397"
+		title      	"CreateStrandSequenceDiagram"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object InterObjView "$UNNAMED$9" @86
+			location   	(353, 288)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@86
+			    location   	(353, 313)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"5AF1F6C10017"
+			width      	300
+			height     	170
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1)))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"5AEF2E67035E"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"5AEF2E670360"
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main"
+		quid       	"5AEF2E670365"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"5AEF2E670360"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"5AEF2E670379"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list)))
+	category   	"Logical View"
+	quidu      	"5AEF2E67035E")
+    process_structure 	(object Processes
+	quid       	"5AEF2E670361"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"5AEF2E670363"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	attributes 	(list Attribute_Set
+	    (object Attribute
+		tool       	"framework"
+		name       	"HiddenTool"
+		value      	FALSE))
+	quid       	"5AEF2E670362"))

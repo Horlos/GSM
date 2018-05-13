@@ -1,0 +1,66 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<div class="col-md-10" ng-app="app.targets" ng-controller="EditTargetCtrl as vm">
+    <h3 style="margin-top:0;" ng-cloak>{{vm.pageMode()}} Target</h3>
+    <form name="form" class="form-horizontal" ng-submit="vm.submit()">
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtName">Target Name:</label>
+            <div class="col-md-6">
+                <span class="text-danger field-validation-error" ng-bind="vm.target.Error.Name"></span>
+                <input class="form-control" id="txtName" style="max-width:59%;" type="text" ng-model="vm.target.Name" ng-show="vm.editMode" required />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.target.Name"></p>
+            </div>
+            @if (User.HasPermissions(Permission.CreateEditTargets))
+            {
+                <div class="col-md-2">
+                    <input type="button" id="pageMode" ng-value="vm.pageMode()" class="btn btn-default" ng-disabled="vm.permitView()" ng-click="vm.viewModeChange()" />
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-5"
+                 uib-tooltip="This target is associated with at least one strand or duplex and cannot be deleted."
+                 tooltip-placement="top"
+                 tooltip-trigger="'mouseenter'"
+                 tooltip-enable="!vm.permitDeletion()">
+                <input type="button" value="Delete Target" class="btn btn-default" 
+                       ng-disabled="!vm.permitDeletion()" 
+                       ng-show="vm.editMode" 
+                       ng-click="vm.showDeleteModal()" />
+            </div>
+            @*<div class="col-md-2" ng-show="vm.target.HasAssociations">
+                    <input type="checkbox" style="margin-right:5px;" ng-model="vm.target.IsActive" ng-disabled="!vm.editMode" />Active Target
+                </div>*@
+        </div>
+        <div class="row" ng-show="vm.editMode">
+            <div class="col-md-2 col-md-offset-5">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" ng-disabled="!vm.permitSubmit()" />
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/utils.js"></script>
+
+   @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    <script src="~/Scripts/angular-app/widgets/confirmModalCtrl.js"></script>
+    <script src="~/Scripts/angular-app/widgets/deleteModalService.js"></script>
+    
+    @Scripts.Render("~/bundles/edit-target")
+}

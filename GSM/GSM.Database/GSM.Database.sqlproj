@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Arrowhead.TriggerDB.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{378aa692-0933-4e5e-9515-c5cdcf7f82b6}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>LabManager.Database</RootNamespace>
+    <AssemblyName>LabManager.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="dbo\Views" />
+    <Folder Include="Security" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deployment" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Target.sql" />
+    <Build Include="dbo\Tables\SynthesisRequest.sql" />
+    <Build Include="dbo\Tables\StrandSpecies.sql" />
+    <Build Include="dbo\Tables\StrandBatch.sql" />
+    <Build Include="dbo\Tables\Strand.sql" />
+    <Build Include="dbo\Tables\Species.sql" />
+    <Build Include="dbo\Tables\ModStructure.sql" />
+    <Build Include="dbo\Tables\ModifierTemplate.sql" />
+    <Build Include="dbo\Tables\MaterialRequestStrand.sql" />
+    <Build Include="dbo\Tables\MaterialRequestDuplex.sql" />
+    <Build Include="dbo\Tables\MaterialRequest.sql" />
+    <Build Include="dbo\Tables\DuplexBatch.sql" />
+    <Build Include="dbo\Tables\Duplex.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_AnyDataInTables.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Applications_CreateApplication.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_CheckSchemaVersion.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_DeleteInactiveProfiles.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_DeleteProfiles.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_GetNumberOfInactiveProfiles.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_GetProfiles.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_GetProperties.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_SetProperties.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_RegisterSchemaVersion.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Setup_RemoveAllRoleMembers.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Setup_RestorePermissions.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_UnRegisterSchemaVersion.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Users_CreateUser.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Users_DeleteUser.sql" />
+    <Build Include="dbo\Views\vw_aspnet_Applications.sql" />
+    <Build Include="dbo\Views\vw_aspnet_Profiles.sql" />
+    <Build Include="dbo\Views\vw_aspnet_Users.sql" />
+    <Build Include="dbo\Tables\aspnet_Users.sql" />
+    <Build Include="dbo\Tables\aspnet_Applications.sql" />
+    <Build Include="dbo\Tables\aspnet_Profile.sql" />
+    <Build Include="dbo\Tables\aspnet_SchemaVersions.sql" />
+    <Build Include="Security\aspnet_Profile_BasicAccess.sql" />
+    <Build Include="Security\aspnet_Profile_BasicAccess_1.sql" />
+    <Build Include="Security\aspnet_Profile_FullAccess.sql" />
+    <Build Include="Security\aspnet_Profile_FullAccess_1.sql" />
+    <Build Include="Security\aspnet_Profile_ReportingAccess.sql" />
+    <Build Include="Security\aspnet_Profile_ReportingAccess_1.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\RoleUser.sql" />
+    <Build Include="dbo\Tables\Instrument.sql" />
+    <Build Include="dbo\Tables\Orientation.sql" />
+    <Build Include="dbo\Tables\InstrumentModStructure.sql" />
+    <Build Include="dbo\Tables\ModStructureAttachment.sql" />
+    <Build Include="dbo\Tables\ModifierTemplatePosition.sql" />
+    <Build Include="dbo\Tables\ModStructureType.sql" />
+    <Build Include="dbo\Tables\StrandModStructure.sql" />
+    <Build Include="dbo\Tables\Status.sql" />
+    <Build Include="dbo\Tables\SythesisRequestMaterialRequest.sql" />
+    <Build Include="dbo\Tables\SynthesisRequestStrand.sql" />
+    <Build Include="dbo\Tables\DuplexBatchStrandBatch.sql" />
+    <Build Include="dbo\Tables\Permissions.sql" />
+    <Build Include="dbo\Tables\RolePermissions.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Post-Deployment\PostDeployment.sql" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+﻿
+    <div class="modal-body">
+        <div class="row" style="margin-bottom:20px;">
+            <div class="col-md-4">
+                <h5 style="margin-top:0;" ng-bind="prompt"></h5>
+            </div>
+            <div class="col-md-5">
+                <input class="form-control" ng-model='filterValue' ng-change="singleFilter()" ng-disabled="advancedFiltering" ng-init="advancedFiltering=false">
+            </div>
+            <div class="col-md-offset-10">
+                <button id='toggleFiltering' ng-click="toggleFiltering()" style="margin-top:5px;" class="btn-link">Advanced Filtering</button>
+            </div>
+        </div>
+        <div class="grid" style="height:345px" ui-grid="availableItems" ui-grid-pagination ui-grid-resize-columns ui-grid-selection></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()" ng-disabled="!isOkEnabled()">Select</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>

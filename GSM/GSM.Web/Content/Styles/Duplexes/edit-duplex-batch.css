@@ -1,0 +1,59 @@
+﻿textarea {
+    max-width: 100%;
+}
+
+.table-header {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.table-row {
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.label-top {
+    position: relative;
+    top: -10px;
+    left: 5px;
+}
+
+.invalid {
+    border: 1px solid red;
+}
+
+.ng-cloak {
+    display: none !important;
+}
+
+input:invalid {
+    outline: none;
+}
+
+.strand-batch-table {
+    max-height: 100px;
+    height: 100px;
+    overflow: auto;
+}
+
+.form-header {
+    display: inline-block;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+.remove-strand-btn {
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 800;
+    color: red;
+}
+
+.remove-strand-btn:hover {
+    text-decoration: none;
+    color: #e50000;
+}

@@ -1,0 +1,216 @@
+﻿<form name="form" class="form-horizontal" ng-submit="vm.submitForm()">
+    <div class="row">
+        <h3 class="form-header">Create Strand Batch</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Initiated Date:</label>
+                <div class="col-md-5">
+                    <p class="input-group">
+                        <input type="text"
+                               name="initiatedDate"
+                               class="form-control"
+                               ng-class="{ 'invalid': vm.isFormSubmitted && form.initiatedDate.$invalid }"
+                               uib-datepicker-popup=""
+                               ng-model="vm.strandBatch.InitiatedDate"
+                               is-open="vm.isDatePickerOpened"
+                               datepicker-options=""
+                               date-disabled=""
+                               close-text="Close"
+                               required />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.selectDate()">
+                                <i class="">Select...</i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Position:</label>
+                <div class="col-md-5">
+                    <input name="position"
+                           class="form-control"
+                           ng-class="{ 'invalid': vm.isFormSubmitted && form.position.$invalid }"
+                           ng-model="vm.strandBatch.Position"
+                           required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Run ID:</label>
+                <div class="col-md-5">
+                    <input name="runId"
+                           class="form-control"
+                           ng-class="{ 'invalid': vm.isFormSubmitted && form.runId.$invalid }"
+                           ng-model="vm.strandBatch.RunId"
+                           required />
+                </div>
+                <p class="text-danger field-validation-error" ng-bind="vm.strandBatch.Error.BatchNumber"></p>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Synthesis Scale (μmol):</label>
+                <div class="col-md-5">
+                    <input type="number"
+                           name="synthesisScale"
+                           class="form-control"
+                           ng-model="vm.strandBatch.SynthesisScale" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">% FLP:</label>
+                <div class="col-md-5">
+                    <input type="number"
+                           step="0.01"
+                           name="purity"
+                           class="form-control"
+                           ng-class="{ 'invalid': vm.isFormSubmitted && form.purity.$invalid }"
+                           ng-model="vm.strandBatch.Purity"
+                           min="1"
+                           max="100"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Amount Prepared (mg):</label>
+                <div class="col-md-5">
+                    <input type="number"
+                           step="0.0001"
+                           name="amountPrepared"
+                           class="form-control"
+                           ng-class="{ 'invalid': vm.isFormSubmitted && form.amountPrepared.$invalid }"
+                           ng-model="vm.strandBatch.AmountPrepared"
+                           min="0"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Prepared Volume (μl):</label>
+                <div class="col-md-5">
+                    <input type="number"
+                           step="0.1"
+                           name="preparedVolume"
+                           class="form-control"
+                           ng-class="{ 'invalid': vm.isFormSubmitted && form.preparedVolume.$invalid}"
+                           ng-model="vm.strandBatch.PreparedVolume"
+                           min="1"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Misc Volume Used (μl):</label>
+                <div class="col-md-5">
+                    <input type="number"
+                           step="0.1"
+                           name="miscVolumeUsed"
+                           class="form-control"
+                           ng-class="{ 'invalid': vm.isFormSubmitted && form.miscVolumeUsed.$invalid}"
+                           ng-model="vm.strandBatch.MiscVolumeUsed"
+                           min="0"
+                           max="{{vm.strandBatch.PreparedVolume || 0}}"
+                           required />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7"></div>
+        <div class="col-md-5 form-group">
+            <div class="col-md-12">
+                <input type="checkbox"
+                       name="isCombined"
+                       class=""
+                       ng-disabled="!vm.isStrandSelected()"
+                       ng-model="vm.isCombined"
+                       ng-click="vm.onIsCombinedChecked()" />
+                <label class="control-label">This batch is a combination of existing batches</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-default"
+                 ng-class="{ 'invalid': vm.isFormSubmitted && !vm.isStrandSelected() }">
+                <label class="label label-default label-top">Strand</label>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="strand-table-header">Strand ID</div>
+                            <div ng-bind="vm.strandBatch.Strand.StrandId"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="strand-table-header">Sequence 5'->3'</div>
+                            <div ng-bind="vm.strandBatch.Strand.Sequence"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="strand-table-header">Target</div>
+                            <div ng-bind="vm.strandBatch.Strand.Target.Name"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="strand-table-header">MW</div>
+                            <div ng-bind="vm.strandBatch.Strand.MW"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-10 text-right">
+                            <input type="button" value="Select" class="btn btn-sm btn-default" ng-click="vm.selectStrand()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <input type="button" value="Split Existing Batch…"
+                           class="btn btn-sm btn-default"
+                           ng-disabled="!vm.isStrandSelected() || vm.isCombined"
+                           ng-click="vm.selectSourceBatch()" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Notes:</label>
+                <div class="col-md-7">
+                    <textarea class="form-control" rows="5" ng-model="vm.strandBatch.Notes"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="panel panel-default"
+                         ng-class="{ 'invalid': vm.isFormSubmitted && vm.isCombined && vm.combinedBatches.length < 2 }">
+                        <label class="label label-default label-top">Combined Batches</label>
+                        <div class="panel-body">
+                            <div class="row" ng-repeat="batch in vm.combinedBatches track by batch.Id">
+                                <div class="col-md-5">
+                                    <div class="strand-table-header">Batch #</div>
+                                    <div ng-bind="batch.BatchNumber"></div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="strand-table-header">Date</div>
+                                    <div ng-bind="batch.InitiatedDate | date:'yyyy-MM-dd'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="button" value="Add Batches..."
+                                   class="btn btn-sm btn-default"
+                                   ng-disabled="!vm.isStrandSelected() || !vm.isCombined"
+                                   ng-click="vm.selectBatches()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-10">
+            <div class="btn-group">
+                <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" ng-click="vm.onSubmit();" />
+                <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+            </div>
+        </div>
+    </div>
+</form>

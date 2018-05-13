@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/angular-colorpicker/css")
+}
+
+<div class="col-md-10" ng-app="app.modStructures" ng-controller="CreateModStructureCtrl as vm">
+    <h3 style="margin-top:0;">Create Mod Structure</h3>
+    <form name="form" class="form-horizontal" ng-submit="vm.submit()">
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtName">Mod Structure Name:</label>
+            <div class="col-md-4">
+                <span class="text-danger field-validation-error" ng-bind="vm.modStructure.Error.Name"></span>
+                <input class="form-control" id="txtName" type="text" maxlength="255" ng-model="vm.modStructure.Name" required />
+            </div>
+            <label class="col-md-1 control-label" style="text-align:left;" for="cbFivePrime">Type:</label>
+            <div class="col-md-2">
+                <select class="form-control" id="cbFivePrime" ng-model="vm.modStructure.ModStructureType" ng-options="option.Name for option in vm.availableModStructureTypes track by option.Id" required>
+                    <option value="">Select...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtSymbol">Base:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtSymbol" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Base" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtVendorName">Vendor Name:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtVendorName" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.VendorName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtVendorCatalogNumber">Vendor Catalog #:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtVendorCatalogNumber" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.VendorCatalogNumber" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtCoupling">Coupling:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtCoupling" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Coupling" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtDeprotection">Deprotection:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtDeprotection" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Deprotection" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtFormula">Formula:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtFormula" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Formula" />
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtDisplayColor">Display Color:</label>
+            <div class="input-group" style="padding-left: 15px;">
+                <span class="input-group-addon" ng-attr-style="background-color: {{vm.modStructure.DisplayColor}}"></span>
+                <input class="form-control col-md-2" id="txtDisplayColor" colorpicker colorpicker-close-on-select type="text" ng-model="vm.modStructure.DisplayColor" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtStartingMaterialMW">Starting Material MW:</label>
+            <div class="col-md-2">
+                <input class="form-control" id="txtStartingMaterialMW" type="number" min="0" max="999999" step="any" ng-model="vm.modStructure.StartingMaterialMW" required />
+            </div>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtIncorporatedMW">Incorporated MW:</label>
+            <div class="col-md-2">
+                <input class="form-control" id="txtIncorporatedMW" type="number" min="0" max="999999" step="any" ng-model="vm.modStructure.IncorporatedMW" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="txtNotes">Notes:</label>
+            <div class="col-md-6">
+                <textarea id="txtNotes" cols="62" style="max-width:100%" rows="3" ng-model="vm.modStructure.Notes"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3 col-md-offset-1">
+                <label>Instrument codes:</label>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="instrument in vm.modStructure.InstrumentModStructures track by instrument.InstrumentId">
+                            <td style="vertical-align: middle;" ng-bind="vm.getInstrumentName(instrument.InstrumentId)"></td>
+                            <td><input class="form-control col-md-1" type="text" maxlength="50" ng-model="instrument.Code"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <label>Attached Files:</label>
+                <a class="col-md-offset-3" ngf-select="vm.uploadFiles($files, $invalidFiles)" multiple>
+                    Add File
+                </a>
+                @*<a class="col-md-offset-3" onclick="selectFile()">Add File</a>
+                <input id="ctlFileUpload" type="file" nv-file-select="" uploader="uploader" style="display:none;" />*@
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="attachment in vm.modStructure.Attachments">
+                            <td><a ng-href="/api/modstructures/attachment/{{attachment.Id}}" ng-bind="attachment.FileName"></a></td>
+                            <td><input type="image" src="../../Content/Images/delete_icon.png" style="height: 17px;" ng-click="vm.deleleAttachment(attachment)" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-5">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block"/>
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/toasterService.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    <script src="~/Scripts/angular-app/services/userSettingsService.js"></script>
+    <script src="~/Scripts/angular-app/services/lookupService.js"></script>
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    
+    @Scripts.Render("~/bundles/create-modStructure")
+}

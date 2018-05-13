@@ -1,0 +1,186 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/angular-colorpicker/css")
+}
+
+<div class="col-md-10" ng-app="app.modStructures" ng-controller="EditModStructureCtrl as vm">
+    <h3 style="margin-top:0;" ng-cloak>{{vm.pageMode()}} Mod Structure</h3>
+    <form name="form" class="form-horizontal" ng-submit="vm.submit()">
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtName">Mod Structure Name:</label>
+            <div class="col-md-4">
+                <span class="text-danger field-validation-error" ng-cloak ng-bind="vm.modStructure.Error.Name"></span>
+                <input class="form-control" id="txtName" name="mod-structure-name" style="max-width:91%;" type="text" maxlength="255" ng-model="vm.modStructure.Name" ng-show="vm.editMode" required />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.Name"></p>
+            </div>
+            <label class="col-md-1 control-label" style="text-align:left;" for="cbFivePrime">Type:</label>
+            <div class="col-md-2">
+                <select class="form-control" id="cbFivePrime" ng-model="vm.modStructure.ModStructureType" ng-show="vm.editMode" ng-options="option.Name for option in vm.availableModStructureTypes track by option.Id" required></select>
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.ModStructureType.Name"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtSymbol">Base:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtSymbol" name="base" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Base" ng-show="vm.editMode" />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.Base"></p>
+            </div>
+            @if (User.HasPermissions(Permission.ManageModStructure))
+            {
+                <div class="col-md-2">
+                    <input type="button" id="pageMode" ng-value="vm.pageMode()" class="btn btn-default" ng-disabled="vm.permitView()" ng-click="vm.viewModeChange()" />
+                </div>
+            }
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtVendorName">Vendor Name:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtVendorName" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.VendorName" ng-show="vm.editMode" />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.VendorName"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtVendorCatalogNumber">Vendor Catalog #:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtVendorCatalogNumber" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.VendorCatalogNumber" ng-show="vm.editMode" />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.VendorCatalogNumber"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtCoupling">Coupling:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtCoupling" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Coupling" ng-show="vm.editMode" />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.Coupling"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtDeprotection">Deprotection:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtDeprotection" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Deprotection" ng-show="vm.editMode" />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.Deprotection"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtFormula">Formula:</label>
+            <div class="col-md-6">
+                <input class="form-control" id="txtFormula" style="max-width:59%;" type="text" maxlength="255" ng-model="vm.modStructure.Formula" ng-show="vm.editMode" />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.Formula"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtDisplayColor">Display Color:</label>
+            <div class="input-group" style="padding-left: 15px;">
+                <span class="input-group-addon" ng-attr-style="background-color: {{vm.modStructure.DisplayColor}}"></span>
+                <input class="form-control col-md-2" id="txtDisplayColor" colorpicker colorpicker-close-on-select type="text" ng-model="vm.modStructure.DisplayColor" ng-show="vm.editMode" />
+                <p class="form-control-static" style="padding-left: 15px;" ng-show="!vm.editMode" ng-bind="vm.modStructure.DisplayColor"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtStartingMaterialMW">Starting Material MW:</label>
+            <div class="col-md-2">
+                <input class="form-control" id="txtStartingMaterialMW" name="starting-material-weight" type="number" min="0" max="999999" step="any" ng-model="vm.modStructure.StartingMaterialMW" ng-show="vm.editMode" required />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.StartingMaterialMW"></p>
+            </div>
+            <label class="col-md-2 control-label" style="text-align:left;" for="txtIncorporatedMW">Incorporated MW:</label>
+            <div class="col-md-2">
+                <input class="form-control" id="txtIncorporatedMW" name="incorporated-weight" type="number" min="0" max="999999" step="any" ng-model="vm.modStructure.IncorporatedMW" ng-show="vm.editMode" required />
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.IncorporatedMW"></p>
+            </div>
+        </div>
+        <div class="form-group" ng-cloak>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2"
+                 uib-tooltip="This mod structure is associated with at least one strand and cannot be deleted."
+                 tooltip-placement="top"
+                 tooltip-trigger="'mouseenter'"
+                 tooltip-enable="!vm.permitDeletion()">
+                <input type="button" value="Delete Mod Structure" class="btn btn-default"
+                       ng-disabled="!vm.permitDeletion()"
+                       ng-show="vm.editMode"
+                       ng-click="vm.showDeleteModal()" />
+            </div>
+            @*<div class="col-md-2" ng-show="vm.modStructure.HasAssociations" ng-cloak>
+                    <input type="checkbox" style="margin-right:5px;" ng-model="vm.modStructure.IsActive" ng-disabled="!vm.editMode" />
+                    Active Mod Structure
+                </div>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="txtNotes">Notes:</label>
+            <div class="col-md-6">
+                <textarea id="txtNotes" cols="62" style="max-width:100%" rows="3" ng-model="vm.modStructure.Notes" ng-show="vm.editMode"></textarea>
+                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="vm.modStructure.Notes"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3 col-md-offset-1">
+                <label>Instrument codes:</label>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="instrument in vm.modStructure.InstrumentModStructures track by instrument.InstrumentId">
+                            <td style="vertical-align: middle;" ng-bind="vm.getInstrumentName(instrument.InstrumentId)"></td>
+                            <td>
+                                <input class="form-control col-md-1" type="text" ng-show="vm.editMode" maxlength="50" ng-model="instrument.Code" />
+                                <p class="form-control-static" ng-show="!vm.editMode" ng-bind="instrument.Code"></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <label>Attached Files:</label>
+                <a class="col-md-offset-3" ngf-select="vm.uploadFiles($files, $invalidFiles)" ng-show="vm.editMode" multiple>
+                    Add File
+                </a>
+                <table class="table">
+                    <tbody>
+                        <tr ng-repeat="attachment in vm.modStructure.Attachments">
+                            <td><a ng-href="/api/modstructures/attachment/{{attachment.Id}}" ng-bind="attachment.FileName"></a></td>
+                            <td ng-show="vm.editMode"><input type="image" src="../../Content/Images/delete_icon.png" style="height: 17px;" ng-click="vm.deleleAttachment(attachment)" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row" ng-show="vm.editMode">
+            <div class="col-md-2 col-md-offset-5">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" />
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/utils.js"></script>
+    <script src="~/Scripts/angular-app/common/toasterService.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    <script src="~/Scripts/angular-app/services/userSettingsService.js"></script>
+    <script src="~/Scripts/angular-app/services/lookupService.js"></script>
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    <script src="~/Scripts/angular-app/widgets/confirmModalCtrl.js"></script>
+    <script src="~/Scripts/angular-app/widgets/deleteModalService.js"></script>
+
+    @Scripts.Render("~/bundles/edit-modStructure")
+
+}

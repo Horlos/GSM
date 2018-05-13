@@ -1,0 +1,88 @@
+﻿@{
+    Layout = "~/Views/Duplex/_Layout.cshtml";
+}
+
+<div class="row" style="margin-left: 30px; margin-right: 30px;" ng-app="multipleDuplexesApp" ng-controller="multipleDuplexesController">
+    <div class="col-md-12">
+        <h3 style="margin-top:0;">Create Multiple Duplexes</h3>
+        <script type="text/ng-template" id="selectItem.html">
+            <div class="modal-body">
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-md-4">
+                        <h5 style="margin-top:0px;" ng-bind="prompt"></h5>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control" ng-model='filterValue' ng-change="singleFilter()" ng-disabled="advancedFiltering" ng-init="advancedFiltering=false">
+                    </div>
+                    <div class="col-md-offset-10">
+                        <button id='toggleFiltering' ng-click="toggleFiltering()" style="margin-top:5px;" class="btn-link">Advanced Filtering</button>
+                    </div>
+                </div>
+                <div class="grid" style="height:345px" ui-grid="availableItems" ui-grid-pagination ui-grid-resize-columns ui-grid-selection></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="ok()">Select</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            </div>
+        </script>
+    </div>
+    <form name="multipleDuplexesForm" class="form-horizontal" style="margin-top: 50px;">
+        <div class="form-group">
+            <label class="col-md-2 control-label" style="text-align:left;" for="Target">Select Target:</label>
+            <div class="col-md-2">
+                <select id="Target" ng-model="selectedTarget" ng-options="target.Name for target in availableTargets track by target.Id" class="form-control" ng-disabled="availableTargets.length == 0 || selectedSenseStrands.data.length > 0 || selectedAntisenseStrands.data.length > 0"></select>
+            </div>
+        </div>
+        <div class="col-md-4 panel panel-default">
+            <label class="label label-default" style="position:relative;top:-10px;left:5px;">Sense Strands</label>
+            <div class="row">
+                <div class="grid col-md-8" style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0" ui-grid="selectedSenseStrands" ui-grid-resize-columns ui-grid-selection></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="button" value="Add..." class="btn btn-sm btn-default" ng-click="addSenseStrandModal()" ng-disabled="selectedTarget.Id == undefined" />
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="Remove" class="btn btn-sm btn-default" ng-click="removeSelectedSenseStrand()" ng-disabled="selectedSenseStrand.Sequence == undefined" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <p>Combined With:</p>
+        </div>
+        <div class="col-md-4 panel panel-default">
+            <label class="label label-default" style="position:relative;top:-10px;left:5px;">Antisense Strands</label>
+            <div class="row">
+                <div class="grid col-md-8" style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0" ui-grid="selectedAntisenseStrands" ui-grid-resize-columns ui-grid-selection></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="button" value="Add..." class="btn btn-sm btn-default" ng-click="addAntisenseStrandModal()" ng-disabled="selectedTarget.Id == undefined" />
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="Remove" class="btn btn-sm btn-default" ng-click="removeSelectedAntisenseStrand()" ng-disabled="selectedAntisenseStrand.Sequence == undefined" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <input type="button" value="Merge" class="btn btn-default" ng-click="queueMergeedItems()" ng-disabled="selectedSenseStrands.data.length == 0 || selectedAntisenseStrands.data.length == 0" />
+        </div>
+        <div class="col-md-12 panel panel-default">
+            <label class="label label-default" style="position:relative;top:-10px;left:5px;">Merge Results</label>
+            <div class="row">
+                <input type="button" value="Import" class="btn btn-success col-md-offset-11" ng-click="importMergedItems()" style="margin-top: -10px; margin-bottom: 10px;" ng-disabled="!permitImport()" />
+                <div class="grid" style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px;" ui-grid="mergeResults" ui-grid-resize-columns ui-grid-selection></div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/Custom/Utils.js"></script>
+
+    <script src="~/Scripts/angular-app/widgets/modals/SelectMultiDuplexesModal.js"></script>
+    <script src="~/Scripts/angular-app/widgets/selectModalCtrl.js"></script>
+    <script src="~/Scripts/angular-app/duplexes/controllers/MultipleDuplexes.js"></script>
+}

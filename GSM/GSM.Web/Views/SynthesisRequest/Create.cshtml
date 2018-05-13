@@ -1,0 +1,151 @@
+﻿@{
+    Layout = "~/Views/SynthesisRequest/_Layout.cshtml";
+}
+
+<div class="container-fluid" ng-app="synthesisRequestApp" ng-controller="EditCreateSynthesisRequestCtrl as ctrl">
+    <form name="ctrl.createForm" class="form-horizontal" ng-submit="ctrl.save()">
+        <div class="row">
+            <h3 style="margin-top:0;">Create Synthesis Request</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="form-group" ng-cloak>
+                        <label class="col-md-3 control-label" style="text-align:left;" for="AntiSenseStrand">Need By Date:</label>
+                        <div class="col-md-5">
+                            <p class="input-group">
+                                <input type="text"
+                                       class="form-control"
+                                       style="max-width: initial"
+                                       uib-datepicker-popup=""
+                                       ng-model="ctrl.formData.Needed"
+                                       is-open="dpOpened_1"
+                                       min-date="ctrl.NeededMinDate"
+                                       max-date=""
+                                       datepicker-options=""
+                                       date-disabled=""
+                                       ng-required="true"
+                                       close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="dpOpened_1 = !dpOpened_1">
+                                        <!--<i class="glyphicon glyphicon-calendar"></i>-->
+                                        <i class="">OPEN</i>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" style="text-align:left;">Set Detail:</label>
+                        <div class="col-md-5">
+                            <textarea class="form-control" ng-model="ctrl.formData.SetDetail" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" style="text-align:left;">Notes:</label>
+                        <div class="col-md-5">
+                            <textarea class="form-control" ng-model="ctrl.formData.Notes" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" style="text-align:left;">Requested By:</label>
+                        <div class="col-md-5">
+                            <textarea class="form-control" ng-model="ctrl.formData.RequestedBy" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 panel panel-default">
+                <label class="label label-default" style="position:relative;top:-10px;left:5px;">Strands</label>
+                <div class="row">
+                    <div class="grid col-md-8"
+                         style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                         ui-grid="ctrl.selectedSenseStrands"
+                         ui-grid-resize-columns
+                         ui-grid-selection>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="button" value="Add..." class="btn btn-sm btn-default"
+                                   ng-click="ctrl.addItems('strands')" ng-disabled="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" value="Remove" class="btn btn-sm btn-default"
+                                   ng-click="ctrl.removeSelectedAntisenseStrand()"
+                                   ng-disabled="ctrl.selectedAntisenseStrand == null" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1 panel panel-default">
+                <label class="label label-default" style="position:relative;top:-10px;left:5px;">Associated Material Requests</label>
+                <div class="row">
+                    <div class="grid col-md-8"
+                         style="height:250px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                         ui-grid="ctrl.selectedMaterialRequest"
+                         ui-grid-resize-columns
+                         ui-grid-selection>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="button" value="Add..." class="btn btn-sm btn-default"
+                                   ng-click="ctrl.addItemasMaterialRequests()" ng-disabled="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" value="Remove" class="btn btn-sm btn-default"
+                                   ng-click="ctrl.removeSelectedMaterialRequest()" ng-disabled="ctrl.selectedMaterialRequestoRemove == null" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row"><span class="text-danger field-validation-error col-md-2 col-md-offset-2" ng-bind="ctrl.submitMessage"></span></div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-7">
+                    <div class="btn-group">
+                        <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block"
+                               ng-disabled="!ctrl.canSubmit || !ctrl.createForm.$valid || !ctrl.validateCanSave()" />
+
+                        <input type="button" id="cancel" value="Cancel" class="btn btn-default"
+                               ng-disabled="!ctrl.canReset"
+                               ng-click="ctrl.cancelChanges()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/ng-template" id="ScaleInput">
+        <input type="number" placeholder="Decimal" step="0.1" ng-model="MODEL_COL_FIELD" ng-pattern="/^([0-9]{0,8})+(\.[0-9]{1})?$/" required />
+    </script>
+    <script type="text/ng-template" id="unitSelect">
+        <select ng-model="MODEL_COL_FIELD"
+                ng-options="unit for unit in col.colDef.editDropdownOptionsArray"
+                ng-required="true"></select>
+    </script>
+</div>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angularMoment")
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/Custom/Utils.js"></script>
+    <script src="~/Scripts/angular-app/widgets/selectModalCtrl.js"></script>
+    <script src="~/Scripts/Custom/UserSettings.js"></script>
+    <script src="~/Scripts/angular-app/AppService.js"></script>
+    <script src="~/Scripts/angular-app/synthesisRequest/services/SynthesisRequestService.js"></script>
+
+    <script src="~/Scripts/angular-app/synthesisRequest/SynthesisRequestApp.js"></script>
+    <script src="~/Scripts/angular-app/synthesisRequest/controllers/EditCreateSynthesisRequestCtrl.js"></script>
+}

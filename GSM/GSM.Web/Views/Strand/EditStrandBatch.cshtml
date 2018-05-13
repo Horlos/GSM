@@ -1,0 +1,263 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/Strand/_Layout.cshtml";
+}
+
+@section styles {
+    <link href="~/Content/Styles/Strands/edit-strand-batch.css" rel="stylesheet"/>
+}
+
+<div class="container-fluid" ng-app="app.strands" ng-controller="EditStrandBatchCtrl as vm" ng-cloak>
+    <div class="row">
+        <h3 class="form-header" ng-cloak>{{vm.pageMode(!vm.editMode)}} Strand Batch #{{vm.strandBatch.BatchNumber}}</h3>
+    </div>
+    <form id="edit-strand-batch-form" name="form" class="form-horizontal" ng-submit="vm.saveStrandBatch()" ng-cloak>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Initiated Date:</label>
+                    <div class="col-md-5">
+                        <p class="input-group" ng-show="vm.editMode">
+                            <input type="text"
+                                   name="initiatedDate"
+                                   class="form-control"
+                                   ng-class="{ 'invalid': vm.isFormSubmitted && editStrandBatchForm.initiatedDate.$invalid }"
+                                   uib-datepicker-popup=""
+                                   ng-model="vm.strandBatch.InitiatedDate"
+                                   is-open="vm.isDatePickerOpened"
+                                   datepicker-options=""
+                                   date-disabled=""
+                                   close-text="Close"
+                                   required />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.selectDate()">
+                                    <i class="">Select...</i>
+                                </button>
+                            </span>
+                        </p>
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.InitiatedDate | date:'yyyy-MM-dd'"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Position:</label>
+                    <div class="col-md-5">
+                        <input name="position"
+                               class="form-control"
+                               ng-class="{ 'invalid': vm.isFormSubmitted && editStrandBatchForm.position.$invalid }"
+                               ng-model="vm.strandBatch.Position"
+                               ng-show="vm.editMode"
+                               required />
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.Position"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Run ID:</label>
+                    <div class="col-md-5">
+                        <input name="runId"
+                               class="form-control"
+                               ng-class="{ 'invalid': vm.isFormSubmitted && editStrandBatchForm.runId.$invalid }"
+                               ng-model="vm.strandBatch.RunId"
+                               ng-show="vm.editMode"
+                               required />
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.RunId"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Synthesis Scale (μmol):</label>
+                    <div class="col-md-5">
+                        <input type="number"
+                               name="synthesisScale"
+                               class="form-control"
+                               ng-model="vm.strandBatch.SynthesisScale"
+                               ng-show="vm.editMode" />
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.SynthesisScale"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">% FLP:</label>
+                    <div class="col-md-5">
+                        <input type="number"
+                               step="0.01"
+                               name="purity"
+                               class="form-control"
+                               ng-class="{ 'invalid': vm.isFormSubmitted && editStrandBatchForm.purity.$invalid }"
+                               ng-model="vm.strandBatch.Purity"
+                               ng-show="vm.editMode"
+                               min="1"
+                               max="100" />
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.Purity"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" ng-show="!vm.editMode">
+                    <label class="col-md-6 control-label">Concentration (mg/mL):</label>
+                    <div class="col-md-4">
+                        <p class="control-label" ng-bind="vm.strandBatch.Concentration | number:2"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Amount Prepared (mg):</label>
+                    <div class="col-md-4">
+                        <input type="number"
+                               step="0.0001"
+                               name="amountPrepared"
+                               class="form-control"
+                               ng-class="{ 'invalid': vm.isFormSubmitted && editStrandBatchForm.amountPrepared.$invalid }"
+                               ng-model="vm.strandBatch.AmountPrepared"
+                               ng-show="vm.editMode"
+                               min="0" />
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.AmountPrepared"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Prepared Volume (μl):</label>
+                    <div class="col-md-4">
+                        <input type="number"
+                               step="0.1"
+                               name="preparedVolume"
+                               class="form-control"
+                               ng-model="vm.strandBatch.PreparedVolume"
+                               ng-show="vm.editMode"
+                               min="1" />
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.PreparedVolume"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Misc Volume Used (μl):</label>
+                    <div class="col-md-4">
+                        <input type="number"
+                               step="0.1"
+                               name="miscVolumeUsed"
+                               class="form-control"
+                               ng-class="{ 'invalid': vm.isFormSubmitted && editStrandBatchForm.miscVolumeUsed.$invalid}"
+                               ng-model="vm.strandBatch.MiscVolumeUsed"
+                               ng-show="vm.editMode"
+                               min="0"
+                               max="{{vm.strandBatch.PreparedVolume || 0}}"
+                               required />
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.MiscVolumeUsed"></p>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="!vm.editMode">
+                    <label class="col-md-6 control-label">Remaining Volume (μl):</label>
+                    <div class="col-md-4">
+                        <p class="control-label" ng-show="!vm.editMode" ng-bind="vm.strandBatch.RemainingVolume | number:2"></p>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="!vm.editMode">
+                    <label class="col-md-6 control-label">Amount Remaining (mg):</label>
+                    <div class="col-md-4">
+                        <p class="control-label" ng-bind="vm.strandBatch.AmountRemaining | number:2"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                @if (User.HasPermissions(Permission.CreateStrandBatch))
+                {
+                    <div class="btn-group">
+                        <input id="pageMode" type="button" value="{{vm.pageMode(vm.editMode)}}" class="btn btn-default" ng-click="vm.viewModeChange()"/>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 form-group">
+                <div class="col-md-12">
+                    <input type="checkbox" class=""
+                           ng-model="vm.strandBatch.Unavailable"
+                           ng-disabled="!vm.editMode" />
+                    <label class="control-label"> No longer Available</label>
+                </div>
+            </div>
+            <div class="col-md-5 form-group">
+                <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="panel panel-default"
+                     ng-class="{ 'invalid': vm.editMode && vm.isFormSubmitted && !vm.strandBatch.StrandId }">
+                    <label class="label label-default label-top">Strand</label>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="strand-table-header">Strand ID</div>
+                                <div ng-bind="vm.strandBatch.Strand.StrandId"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="strand-table-header">Sequence 5'->3'</div>
+                                <div ng-bind="vm.strandBatch.Strand.Sequence"></div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="strand-table-header">Target</div>
+                                <div ng-bind="vm.strandBatch.Strand.Target.Name"></div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="strand-table-header">MW</div>
+                                <div ng-bind="vm.strandBatch.Strand.MW"></div>
+                            </div>
+                            <div class="col-md-2 text-right" ng-show="vm.editMode">
+                                <input type="button" value="Select" class="btn btn-sm btn-default" ng-click="vm.selectStrand()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="!vm.editMode">
+                    <div class="col-md-9">
+                        <label class="control-label">Notes:</label>
+                        <span class="white-space-pre-line" ng-bind="vm.strandBatch.Notes"></span>
+                    </div>
+                </div>
+                <div class="row" ng-show="vm.editMode">
+                    <div class="col-md-9 form-group">
+                        <div class="col-md-2">
+                            <label class="control-label">Notes:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea class="form-control" rows="5" ng-model="vm.strandBatch.Notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+        <div class="row" ng-show="vm.editMode">
+            <div class="col-md-2 col-md-offset-10">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" ng-click="vm.onSubmit()" />
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angularMoment")
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/angular-ui-router/angular-ui-router.js"></script>
+    <script src="~/Scripts/angular-toastr/angular-toastr.tpls.js"></script>
+    <script src="~/Scripts/angular-local-storage/angular-local-storage.js"></script>
+    <script src="~/Scripts/ng-file-upload/ng-file-upload-shim.js"></script>
+    <script src="~/Scripts/ng-file-upload/ng-file-upload.js"></script>
+
+    @Scripts.Render("~/bundles/angular-app")
+
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/utils.js"></script>
+    <script src="~/Scripts/angular-app/common/searchOptions.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+    
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    <script src="~/Scripts/angular-app/widgets/selectModalCtrl.js"></script>
+    
+    @Scripts.Render("~/bundles/edit-strand-batch")
+}

@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "~/Views/SynthesisRequest/_Layout.cshtml";
+}
+
+<div class="container-fluid" ng-app="app.synthesisRequests" ng-controller="ExportSequenceCtrl as vm">
+    <form name="form" class="form-horizontal" ng-submit="">
+        <div class="row">
+            <h3 style="margin-top:0;">Export Sequence File</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-7 panel panel-default">
+                <label class="label label-default" style="position:relative;top:-10px;left:5px;">Strand List</label>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-pull-12" style="text-align:right">
+                            <div class="btn-group">
+                                <input type="button" value="Add..." class="btn btn-sm btn-default"
+                                       ng-click="vm.addItemsStrand()" ng-disabled="" />
+
+                                <input type="button" value="Remove" class="btn btn-sm btn-default"
+                                       ng-click="vm.removeSelectedStrand()"
+                                       ng-disabled="vm.selectedStrandToRemove == null" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="grid col-md-12"
+                             style="height:350px; margin-left: 5px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                             ui-grid="vm.strandsGrid"
+                             ui-grid-resize-columns
+                             ui-grid-selection>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 panel">
+                <div class="panel-body">
+                    <div class="row form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" style="text-align:left;">Instrument:</label>
+                            <div class="col-md-6">
+                                <select class="form-control"
+                                        ng-model="vm.selectedInstrument"
+                                        ng-options="instrument.Name for instrument in vm.availableInstruments track by instrument.Id"
+                                        ng-required="true"
+                                        ng-change="vm.instrumentSelected()"
+                                        close-text="Close"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label" style="text-align:left;">Total Amidites:</label>
+                            <div class="col-md-6">
+                                <label ng-bind="vm.StrandModStructures.length"></label>
+                                <span class="text-danger field-validation-error" ng-bind="vm.totalAmiditesMessage"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" style="text-align:left;">Machine Codes:</label>
+                        </div>
+                    </div>
+                    <div class="row form-horizontal">
+                        <div class="form-group">
+                            <div class="grid  col-md-offset-1 col-md-10 "
+                                 style="height:280px; margin-left:15px; margin-bottom: 5px; margin-right: 5px; padding-left: 0; padding-right: 0"
+                                 ui-grid="vm.machineCodesGrid"
+                                 ui-grid-resize-columns
+                                 ui-grid-selection>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-md-offset-8">
+                            <div class="btn-group">
+                                <input type="submit" id="export" value="Export" class="btn btn-success btn-primary center-block"
+                                       ng-click="vm.exportFile()"
+                                       @*ng-disabled="!vm.canSubmit()"*@ />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row"><span class="text-danger field-validation-error col-md-2 col-md-offset-2" ng-bind="vm.submitMessage"></span></div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angularMoment")
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/angular-toastr/angular-toastr.tpls.js"></script>
+
+    @Scripts.Render("~/bundles/angular-app")
+
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/utils.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+    
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    <script src="~/Scripts/angular-app/services/lookupService.js"></script>
+    <script src="~/Scripts/angular-app/services/strandsService.js"></script>
+    
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    <script src="~/Scripts/angular-app/widgets/selectModalCtrl.js"></script>
+    
+    @Scripts.Render("~/bundles/export-sequence")
+}

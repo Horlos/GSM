@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+@section styles
+{
+    <link href="~/Content/Styles/ModifierTemplates/create-modifier-template.css" rel="stylesheet" />
+}
+
+<div class="col-md-10">
+    <div class="container-fluid" ng-app="app.modifierTemplates" ng-controller="CreateModifierTemplateCtrl as vm">
+        <form name="form" class="form-horizontal" ng-submit="vm.submit()">
+            <div class="row">
+                <h3 style="margin-top:0;">Create Modifier Template</h3>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" style="text-align:left;" for="txtName">Modifier Template Name:</label>
+                    <div class="col-md-6">
+                        <span class="text-danger field-validation-error" ng-bind="vm.modifierTemplate.Error.Name"></span>
+                        <input class="form-control" id="txtName" style="max-width:59%;" type="text" ng-model="vm.modifierTemplate.Name" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" style="text-align:left;" for="Orientation">Orientation:</label>
+                    <div class="col-md-6">
+                        <select id="Orientation" ng-change="vm.calculateDisplayPosition()" ng-model="vm.modifierTemplate.Orientation" ng-options="orientation.Name for orientation in vm.availableOrientations track by orientation.Id" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 control-label">
+                    <input type="button" class="btn btn-primary" value="+" ng-click="vm.addPosition(false)" />
+                </div>
+                <div class="col-md-10" style="width:auto; max-width: 680px; overflow-x: auto; white-space: nowrap;" oncontextmenu="return false">
+                    <table class="table">
+                        <tr>
+                            <td style="min-width: 50px; text-align: center; padding: 0; color: black; background: #CCCCCC; border:1px solid black; border-bottom-width: 0" ng-repeat="position in vm.modifierTemplate.ModifierTemplatePositions" context-menu="vm.menuOptions">
+                                <p class="form-control-static" ng-style="{'background-color':(position.Position == vm.modifierTemplate.FirstPosition?'rgba(255, 255, 0, 0.5)':'')}" ng-cloak>{{position.displayPosition}}{{vm.displayPositionDecorator()}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; padding: 0; color: black; background: #EEEEEE; border:1px solid black; border-top-width: 0; min-width: 20px;" ng-repeat="position in vm.modifierTemplate.ModifierTemplatePositions" context-menu="vm.menuOptions">
+                                <input ng-model="position.Mod" width="80" class="form-control" ng-class="{'input-invalid': !position.isValid && form.$submitted}" ng-change="vm.validatePosition(position)" required />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-1 control-label">
+                    <input type="button" class="btn btn-primary" value="+" ng-click="vm.addPosition(true)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-2 col-md-offset-5">
+                        <div class="btn-group">
+                            <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" />
+                            <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="vm.cancelChanges()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/contextmenu")
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    <script src="~/Scripts/angular-app/services/lookupService.js"></script>
+    
+    @Scripts.Render("~/bundles/create-modifierTemplate")
+}

@@ -1,0 +1,46 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+    {
+    @Styles.Render("~/angular/css")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav navbar-left">
+            <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "font-weight:bold" : "")">@Html.ActionLink("Search Strands", "Index", "Strand")</li>
+            @if (User.HasPermissions(Permission.CreateStrand))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "font-weight:bold" : "")">@Html.ActionLink("Create Strand", "Create", "Strand")</li>
+            }
+            @if (User.HasPermissions(Permission.ImportStrand))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Import" ? "font-weight:bold" : "")">@Html.ActionLink("Import Strands", "Import", "Strand")</li>
+            }
+            @if (User.HasPermissions(Permission.CreateStrand))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "CreateModifierBatch" ? "font-weight:bold" : "")">@Html.ActionLink("Modifier Merge", "CreateModifierBatch", "Strand")</li>
+            }
+            <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "Batches" ? "font-weight:bold" : "")">@Html.ActionLink("Search Strand Batch", "Batches", "Strand")</li>
+            @if (User.HasPermissions(Permission.CreateStrandBatch))
+            {
+                <li style="@(ViewContext.RouteData.Values["Action"].ToString() == "CreateStrandBatch" ? "font-weight:bold" : "")">@Html.ActionLink("Create Strand Batch", "CreateStrandBatch", "Strand")</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-10">
+        @RenderBody()
+    </div>
+
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/angular")
+    @RenderSection("scripts", required: false)
+}

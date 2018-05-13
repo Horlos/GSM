@@ -1,0 +1,144 @@
+﻿@using GSM.Infrastructure.Filters
+@using GSM.Utils
+@{
+    Layout = "~/Views/Duplex/_Layout.cshtml";
+}
+
+@section styles
+{
+    <link href="~/Content/Styles/Duplexes/edit-duplex.css" rel="stylesheet" />
+}
+
+<div class="col-md-12" ng-app="editDuplexApp" ng-controller="editDuplexController">
+    <form name="editDuplexForm" class="form-horizontal" ng-submit="submit()">
+        <div class="row">
+
+            <h3 style="margin-top:0;" ng-cloak>{{pageMode(!editMode)}} Duplex</h3>
+            <div class="form-group">
+                <label class="col-md-2 control-label" style="text-align:left;">Duplex ID:</label>
+                <div class="col-md-6">
+                    <p class="form-control-static" ng-bind="editDuplex.DuplexId"></p>
+                </div>
+                @if (User.HasPermissions(Permission.CreateDuplex))
+                {
+                    <div class="col-md-2">
+                        <input type="button" id="pageMode" value="Edit" class="btn btn-default" ng-show="showEdit()" ng-click="viewModeChange()" />
+                        <input type="button" value="Delete" class="btn btn-danger" ng-show="editMode" ng-click="deleteConfirmation()" />
+                    </div>
+                }
+            </div>
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;">Target:</label>
+                <div class="col-md-6">
+                    <p class="form-control-static" ng-bind="editDuplex.Target.Name"></p>
+                </div>
+            </div>
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;">Sense Strand:</label>
+                <div class="col-md-6">
+                    <p class="form-control-static" ng-bind="editDuplex.SenseStrand.StrandId"></p>
+                </div>
+            </div>
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;">Antisense Strand:</label>
+                <div class="col-md-6">
+                    <p class="form-control-static" ng-bind="editDuplex.AntiSenseStrand.StrandId"></p>
+                </div>
+            </div>
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;">Molecular Weight:</label>
+                <div class="col-md-6">
+                    <p class="form-control-static" ng-bind="editDuplex.MW"></p>
+                </div>
+            </div>
+            <div class="form-group" ng-cloak>
+                <label class="col-md-2 control-label" style="text-align:left;" for="txtNotes">Notes:</label>
+                <div class="col-md-6">
+                    <textarea id="txtNotes" cols="62" style="max-width:100%" rows="3" ng-model="editDuplex.Notes" ng-show="editMode"></textarea>
+                    <p class="form-control-static" ng-show="!editMode" ng-bind="editDuplex.Notes"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-md-2 control-label" style="text-align:left;">Alignment:</label>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="width:auto; overflow-x: auto; white-space: nowrap;" oncontextmenu="return false">
+                <table id="alignment-table" class="table">
+                    <tr>
+                        <td class="axis-position"
+                            ng-repeat="position in alignmentAxis track by $index">
+                            <p class="form-control-static cell-content" ng-bind="position"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="axis-space"
+                            ng-repeat="position in alignmentAxis track by $index">
+                            <p class="form-control-static cell-content"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="mod-structure"
+                            ng-style="{'background-color':(position.Color), 'color': (position.TextColor)}"
+                            ng-repeat="position in editDuplex.SenseStrandPositions track by $index">
+                            <p class="form-control-static cell-content" ng-bind="position.Name"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="mod-structure"
+                            ng-style="{'background-color':(position.Color), 'color': (position.TextColor)}"
+                            ng-repeat="position in editDuplex.AntiSenseStrandPositions | orderBy:'-' track by $index">
+                            <p class="form-control-static cell-content" ng-bind="position.Name"></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div ng-show="!editMode">
+                    <p ng-bind-template="Total Amount Remaining (mg): {{totalAmountRemaining | number:1}}"></p>
+                    <div style="height: 200px" class="grid" ui-grid="batchesGridOptions" ui-grid-resize-columns ui-grid-selection></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="editMode">
+            <div class="col-md-2 col-md-offset-5">
+                <div class="btn-group">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success btn-primary center-block" ng-disabled="!editDuplexForm.$dirty" />
+                    <input type="button" id="cancel" value="Cancel" class="btn btn-default" ng-click="cancelChanges()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script type="text/ng-template" id="deleteConfirmation.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Confirmation</h3>
+        </div>
+        <div class="modal-body" ng-cloak>
+            Do you wish to delete this duplex {{editDuplex.Name}}?
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Yes</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">No</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="deleteCompleted.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Complete</h3>
+        </div>
+        <div class="modal-body" ng-cloak>
+            Duplex {{editDuplex.Name}} was deleted.
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Ok</button>
+        </div>
+    </script>
+    <script src="~/Scripts/Custom/Utils.js"></script>
+    <script src="~/Scripts/angular-app/widgets/modals/DeleteModal.js"></script>
+    <script src="~/Scripts/angular-app/duplexes/controllers/EditDuplex.js"></script>
+}

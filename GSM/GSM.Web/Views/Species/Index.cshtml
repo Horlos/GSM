@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+@section styles
+{
+    <link href="~/Content/Styles/grid-loader.css" rel="stylesheet" />
+}
+<div class="col-md-10" ng-app="app.species" ng-controller="SpeciesCtrl as vm">
+    <div class="row" style="margin-bottom:20px;">
+        <div class="col-md-4">
+            <h3 style="margin-top:0;">Search Species</h3>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-7">
+                <div class="search-field">
+                    <input class="form-control"
+                           ng-model='vm.filterValue'
+                           ng-change="vm.singleFilter()"
+                           ng-disabled="vm.searchOptions.advancedFiltering"
+                           required>
+                    <span class="search-clear" ng-click="vm.clearFilter()">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <button id='toggleFiltering' ng-click="vm.toggleFiltering()" class="btn btn-success">Advanced Filtering</button>
+            </div>
+        </div>
+    </div>
+    <div class="grid"
+         ui-grid="vm.gridOptions" 
+         ui-grid-pagination 
+         ui-grid-move-columns 
+         ui-grid-resize-columns 
+         ui-grid-selection
+         ui-grid-auto-fit-columns>
+        <div class="grid-overlay" ng-class="{'show-grid-overlay': vm.loading}">
+            <div class="load-container">
+                <div class="load-speeding-wheel"></div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-success" ng-href="{{vm.getExportAsCsvLink()}}" title="Export search results"><span>Export to CSV</span></a>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/angular-app/common/commonSection.js"></script>
+    <script src="~/Scripts/angular-app/common/dataProvider.js"></script>
+    <script src="~/Scripts/angular-app/common/utils.js"></script>
+
+    @Scripts.Render("~/bundles/logger")
+
+    <script src="~/Scripts/angular-app/services/servicesSection.js"></script>
+    <script src="~/Scripts/angular-app/services/userSettingsService.js"></script>
+
+    <script src="~/Scripts/angular-app/widgets/widgetsSection.js"></script>
+    
+    @Scripts.Render("~/bundles/species")
+}

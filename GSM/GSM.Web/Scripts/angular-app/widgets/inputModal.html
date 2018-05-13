@@ -1,0 +1,14 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title" ng-bind="vm.title"></h4>
+</div>
+<div class="modal-body">
+    <p class="text-danger field-validation-error" ng-bind="vm.validationMessage"></p>
+    <label>
+        Name:
+        <input type="text" ng-model="vm.model"/>
+    </label>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="vm.ok()" ng-bind="vm.confirmOption"></button>
+    <button class="btn btn-default" type="button" ng-click="vm.cancel()" ng-bind="vm.cancelOption"></button>
+</div>
